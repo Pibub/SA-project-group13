@@ -1,10 +1,10 @@
-module com.example.warehousedata {
+module ku.cs {
     requires javafx.controls;
     requires javafx.fxml;
 
-    requires org.controlsfx.controls;
-    requires org.kordamp.bootstrapfx.core;
+    opens ku.cs to javafx.fxml;
+    exports ku.cs;
 
-    opens com.example.warehousedata to javafx.fxml;
-    exports com.example.warehousedata;
+    exports ku.cs.controllers;
+    opens ku.cs.controllers to javafx.fxml;
 }
