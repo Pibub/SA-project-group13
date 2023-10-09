@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
    <children>
       <AnchorPane prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #191717;">
@@ -34,7 +33,7 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="-2.0" layoutY="117.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Creat new user" textAlignment="CENTER">
+            <Button layoutX="-2.0" layoutY="117.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Create new user" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
