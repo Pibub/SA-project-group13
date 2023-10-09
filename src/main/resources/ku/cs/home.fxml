@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
+   <children>
+      <AnchorPane prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #191717;">
+         <children>
+            <Label layoutX="254.0" layoutY="8.0" text="KOMATSU Co., Ltd." textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="61.0" prefHeight="538.0" prefWidth="185.0" style="-fx-background-color: #CCC8AA;">
+         <children>
+            <Button layoutX="2.0" layoutY="470.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="182.0" style="-fx-background-color: transparenttransparent transparenttransparent;" text="Logout">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button layoutX="-2.0" layoutY="117.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Creat new user" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/AddUser.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="-5.0" layoutY="27.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Profile" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Button>
+            <Button layoutX="-2.0" layoutY="189.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Edit stock" textAlignment="CENTER">
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/EditStock2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="2.0" layoutY="269.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Requisition" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/requisition.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="2.0" layoutY="349.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Change password" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="33.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/keys.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Separator layoutX="182.0" layoutY="61.0" orientation="VERTICAL" prefHeight="538.0" prefWidth="6.0" style="-fx-background-color: #191717;" />
+   </children>
+</AnchorPane>
