@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
     private static void configRoute() {
         String packageStr = "ku/cs/";
         FXRouter.when("home", packageStr + "hello-view.fxml");
-
+        FXRouter.when("disable-service" , packageStr + "service-disabled.fxml");
 
     }
 
