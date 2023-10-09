@@ -9,7 +9,7 @@ import java.io.IOException;
 public class ServiceDisabledController {
     public void onBackButtonClick(){
         try {
-            FXRouter.goTo("home");
+            FXRouter.goTo("login");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
