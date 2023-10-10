@@ -17,7 +17,25 @@ public class UserList {
             }
         }
         return false;
+    }
 
+    public User findUser(String username, String password) {
+        for (User user : users) {
+            if (user.isUser(username) && user.isPassword(password)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User findUserByUsername(String username) {
+        for(User user : users)
+        {
+            if(user.isUser(username)){
+                return user;
+            }
+        }
+        return null;
     }
 
 }

@@ -6,13 +6,13 @@ public class User {
     private String birthDate;
     private String sex;
     private String address;
-    private int tel;
+    private String tel;
     private String workDate;
     private String password;
     private String userRole;
     private String databaseName = "User";
 
-    public User(String userId , String userName , String birthDate , String sex , String address , int tel , String workDate ,String password ,  String userRole){
+    public User(String userId , String userName , String birthDate , String sex , String address , String tel , String workDate ,String password ,  String userRole){
         this.userId = userId;
         this.userName = userName;
         this.birthDate = birthDate;
@@ -46,7 +46,7 @@ public class User {
         return address;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
@@ -82,7 +82,7 @@ public class User {
         this.address = address;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -104,5 +104,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isUser(String username){
+        return this.userName.equals(username);
+    }
+
+    public boolean isPassword(String password){
+        return this.password.equals(password);
     }
 }

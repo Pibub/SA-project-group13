@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ku.cs.controllers.ProfileController"
-            prefHeight="600.0" prefWidth="800.0">
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ProfileController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="125.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/DefaultImageProfileUser.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="42.0" layoutY="47.0" mnemonicParsing="false" onAction="#OnBackButtonClick" text="Back" />
+      <Label layoutX="125.0" layoutY="300.0" text="Id" />
+      <Label fx:id="sexLabel" layoutX="600.0" layoutY="300.0" text="Label" />
+      <Label fx:id="swdLabel" layoutX="600.0" layoutY="500.0" text="Label" />
+      <Label fx:id="adressLabel" layoutX="600.0" layoutY="200.0" text="Label" />
+      <Label fx:id="roleLabel" layoutX="600.0" layoutY="100.0" text="Label" />
+      <Label layoutX="425.0" layoutY="500.0" text="Start working date" />
+      <Label layoutX="425.0" layoutY="400.0" text="Phone" />
+      <Label layoutX="425.0" layoutY="300.0" text="Sex" />
+      <Label fx:id="dobLabel" layoutX="250.0" layoutY="500.0" text="Label" />
+      <Label fx:id="nameLabel" layoutX="250.0" layoutY="400.0" text="Label" />
+      <Label fx:id="idLabel" layoutX="250.0" layoutY="300.0" text="Label" />
+      <Label fx:id="phoneLabel" layoutX="600.0" layoutY="400.0" text="Label" />
+      <Label layoutX="125.0" layoutY="500.0" text="Date of brith" />
+      <Label layoutX="125.0" layoutY="400.0" text="Name" />
+      <Label layoutX="425.0" layoutY="200.0" text="Address" />
+      <Label layoutX="425.0" layoutY="100.0" text="Role" />
+   </children>
 </AnchorPane>

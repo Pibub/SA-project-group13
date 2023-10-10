@@ -30,7 +30,7 @@ public class UserDataSource implements Datasource<UserList> {
                 String birthDate = queryOutput.getString(3);
                 String sex = queryOutput.getString(4);
                 String address = queryOutput.getString(5);
-                int tel = queryOutput.getInt(6);
+                String tel = queryOutput.getString(6);
                 String workDate = queryOutput.getString(7);
                 String password = queryOutput.getString(8);
                 String userRole = queryOutput.getString(9);

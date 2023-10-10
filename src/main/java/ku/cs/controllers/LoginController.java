@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import com.github.saacsos.FXRouter;
+import ku.cs.models.User;
 import ku.cs.models.UserList;
 import ku.cs.services.Datasource;
 import ku.cs.services.UserDataSource;
@@ -18,6 +19,7 @@ public class LoginController {
     @FXML private Label passwordLabel;
     @FXML private TextField usernameText;
     @FXML private TextField passwordText;
+    private User user;
 
     private UserList userList;
     private Datasource<UserList> userListDatasource;
@@ -29,9 +31,12 @@ public class LoginController {
         passwordLabel.setText("");
     }
     public void onConfirmButtonClick(){
-        if(userList.isCorrectPair(usernameText.getText() , passwordText.getText() )){
+        String username = usernameText.getText();
+        String password = passwordText.getText();
+        User user = userList.findUser(username, password);
+        if(user != null){
             try{
-                FXRouter.goTo("home");
+                FXRouter.goTo("home", user.getUserName());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -58,4 +63,10 @@ public class LoginController {
         usernameLabel.setText("");
         passwordLabel.setText("");
     }
+
+    @FXML
+    public void onBypassClick() throws IOException {
+        FXRouter.goTo("home", "Joe");
+    }
+
 }
