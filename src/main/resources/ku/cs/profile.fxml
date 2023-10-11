@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #CCC8AA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #CCC8AA;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ProfileController">
    <children>
       <ImageView fitHeight="190.0" fitWidth="190.0" layoutX="70.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@image/icon-profile.png" />
          </image>
       </ImageView>
-      <Button layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#OnBackButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #191717; -fx-border-radius: 30;" text="Back">
+      <Button layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #191717; -fx-border-radius: 30;" text="Back">
          <font>
             <Font size="16.0" />
          </font></Button>
@@ -85,5 +85,14 @@
             <Font name="System Bold" size="16.0" />
          </font></Label>
       <Separator layoutX="323.0" layoutY="2.0" orientation="VERTICAL" prefHeight="600.0" />
+      <Button layoutX="148.0" layoutY="33.0" mnemonicParsing="false" onAction="#onChangePasswordClick" text="Change Password">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/key2.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

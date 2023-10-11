@@ -40,12 +40,23 @@ public class ProfileController {
     }
 
     @FXML
-    public void OnBackButtonClick() {
+    public void onBackButtonClick() {
         try {
             FXRouter.goTo("home");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    public void onChangePasswordClick() {
+        try {
+            FXRouter.goTo("changePassword", user.getUserName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 }

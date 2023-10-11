@@ -21,6 +21,8 @@ public class HelloApplication extends Application {
         FXRouter.when("login" , packageStr + "login.fxml");
         FXRouter.when("profile" , packageStr + "profile.fxml");
         FXRouter.when("editstock" ,packageStr+ "editstock.fxml");
+        FXRouter.when("changePassword" ,packageStr+ "change-password.fxml");
+        FXRouter.when("createNewUser" ,packageStr+ "create-new-user.fxml");
     }
 
     public static void main(String[] args) {

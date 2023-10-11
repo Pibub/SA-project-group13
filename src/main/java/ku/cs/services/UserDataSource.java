@@ -45,6 +45,41 @@ public class UserDataSource implements Datasource<UserList> {
 
     @Override
     public void insertData(UserList userList) {
+        databaseConnection = new DatabaseConnection();
+        Connection connectionUser = databaseConnection.getConnection();
 
+        for (User user : userList.getUsers()) {
+            try {
+                Statement statement = connectionUser.createStatement();
+
+                String checkUserQuery = "SELECT * FROM employee WHERE id = '" + user.getUserId() + "'";
+                ResultSet checkUserResult = statement.executeQuery(checkUserQuery);
+
+                if (checkUserResult.next()) {
+                    String updateUserQuery = "UPDATE employee SET name = '" + user.getUserName() + "', " +
+                            "date_of_birth = '" + user.getBirthDate() + "', " +
+                            "sex = '" + user.getSex() + "', " +
+                            "address = '" + user.getAddress() + "', " +
+                            "phone_number = '" + user.getTel() + "', " +
+                            "start_working_date = '" + user.getWorkDate() + "', " +
+                            "password = '" + user.getPassword() + "', " +
+                            "role = '" + user.getUserRole() + "' " +
+                            "WHERE id = '" + user.getUserId() + "'";
+
+                    statement.executeUpdate(updateUserQuery);
+                } else {
+                    // If the user doesn't exist, insert a new user
+                    String insertUserQuery = "INSERT INTO employee (id, name, date_of_birth, sex, address, phone_number, start_working_date, password, role) " +
+                            "VALUES ('" + user.getUserId() + "', '" + user.getUserName() + "', '" + user.getBirthDate() + "', '" +
+                            user.getSex() + "', '" + user.getAddress() + "', '" + user.getTel() + "', '" +
+                            user.getWorkDate() + "', '" + user.getPassword() + "', '" + user.getUserRole() + "')";
+
+                    statement.executeUpdate(insertUserQuery);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 }

@@ -49,4 +49,13 @@ public class HomeController {
         }
     }
 
+    @FXML
+    public void onCreateNewUserClick() {
+        try {
+            FXRouter.goTo("createNewUser");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
