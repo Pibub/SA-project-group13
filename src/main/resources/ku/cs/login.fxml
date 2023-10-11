@@ -50,16 +50,11 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <Hyperlink layoutX="204.0" layoutY="324.0" onAction="#onBypassClick" text="Bypass" textFill="#ccc8aa">
+            <Hyperlink layoutX="344.0" layoutY="365.0" onAction="#onBypassClick" text="Bypass" textFill="#ccc8aa">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Hyperlink>
-            <Label layoutX="70.0" layoutY="327.0" text="For New User--&gt;" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <ImageView fitHeight="724.0" fitWidth="520.0" layoutX="-66.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
