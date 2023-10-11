@@ -26,6 +26,7 @@ public class LoginController {
     private Datasource<UserList> userListDatasource;
 
     public void initialize(){
+        System.currentTimeMillis();
         userListDatasource = new UserDataSource();
         userList = userListDatasource.readData();
         usernameLabel.setText("");
