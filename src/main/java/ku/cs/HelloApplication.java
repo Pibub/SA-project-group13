@@ -11,7 +11,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         com.github.saacsos.FXRouter.bind(this, stage, "Warehouse", 800, 600);
         configRoute();
-        FXRouter.goTo("login");
+        FXRouter.goTo("editstock");
     }
 
     private static void configRoute() {
@@ -20,6 +20,7 @@ public class HelloApplication extends Application {
         FXRouter.when("disable-service" , packageStr + "service-disabled.fxml");
         FXRouter.when("login" , packageStr + "login.fxml");
         FXRouter.when("profile" , packageStr + "profile.fxml");
+        FXRouter.when("editstock" ,packageStr+ "editstock.fxml");
     }
 
     public static void main(String[] args) {

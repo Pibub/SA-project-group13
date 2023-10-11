@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
    <children>
       <AnchorPane prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #191717;">
          <children>
@@ -21,7 +21,7 @@
       </AnchorPane>
       <AnchorPane layoutY="61.0" prefHeight="538.0" prefWidth="185.0" style="-fx-background-color: #CCC8AA;">
          <children>
-            <Button layoutX="2.0" layoutY="470.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="182.0" style="-fx-background-color: transparenttransparent transparenttransparent;" text="Logout">
+            <Button layoutX="2.0" layoutY="470.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="53.0" prefWidth="182.0" style="-fx-background-color: transparenttransparent transparenttransparent;" text="Logout">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" onDragDetected="#onLogoutClick" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -57,7 +57,7 @@
                   <Font name="System Bold" size="23.0" />
                </font>
             </Button>
-            <Button layoutX="-2.0" layoutY="189.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Edit stock" textAlignment="CENTER">
+            <Button layoutX="-2.0" layoutY="189.0" mnemonicParsing="false" onAction="#onEditStock" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Edit stock" textAlignment="CENTER">
                <graphic>
                   <ImageView fitHeight="49.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                      <image>

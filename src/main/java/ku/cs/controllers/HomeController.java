@@ -1,5 +1,6 @@
 package ku.cs.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import com.github.saacsos.FXRouter;
@@ -39,4 +40,13 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    public void onEditStock() {
+        try {
+            FXRouter.goTo("editstock");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
