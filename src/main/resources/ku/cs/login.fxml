@@ -20,32 +20,27 @@
                   <Font name="System Bold" size="45.0" />
                </font>
             </Text>
-            <TextField fx:id="usernameText" layoutX="46.0" layoutY="110.0" prefHeight="45.0" prefWidth="250.0" promptText="enter username" style="-fx-border-radius: 30; -fx-background-radius: 30; -fx-border-color: #CCC8AA;">
+            <TextField fx:id="usernameText" layoutX="105.0" layoutY="110.0" prefHeight="45.0" prefWidth="250.0" promptText="Enter username" style="-fx-border-radius: 30; -fx-background-radius: 30; -fx-border-color: #CCC8AA;">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordText" layoutX="46.0" layoutY="185.0" prefHeight="45.0" prefWidth="250.0" promptText="enter password" style="-fx-background-radius: 30; -fx-border-color: #7D7C7C; -fx-border-radius: 30;">
+            <PasswordField fx:id="passwordText" layoutX="105.0" layoutY="190.0" prefHeight="45.0" prefWidth="250.0" promptText="Enter password" style="-fx-background-radius: 30; -fx-border-color: #7D7C7C; -fx-border-radius: 30;">
                <font>
                   <Font size="20.0" />
                </font>
             </PasswordField>
-            <Label fx:id="usernameLabel" layoutX="316.0" layoutY="121.0" text="usernameLabel" textFill="RED">
+            <Label fx:id="passwordLabel" layoutX="110.0" layoutY="240.0" text="passwordLabel" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="passwordLabel" layoutX="317.0" layoutY="199.0" text="passwordLabel" textFill="RED">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Button layoutX="74.0" layoutY="268.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Confirm">
+            <Button layoutX="130.0" layoutY="280.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Confirm">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button layoutX="171.0" layoutY="268.0" mnemonicParsing="false" onAction="#onClearButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Clear">
+            <Button layoutX="230.0" layoutY="280.0" mnemonicParsing="false" onAction="#onClearButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Clear">
                <font>
                   <Font size="17.0" />
                </font>
@@ -55,6 +50,11 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Hyperlink>
+            <Label fx:id="usernameLabel" layoutX="110.0" layoutY="160.0" text="usernameLabel" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <ImageView fitHeight="724.0" fitWidth="520.0" layoutX="-66.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
