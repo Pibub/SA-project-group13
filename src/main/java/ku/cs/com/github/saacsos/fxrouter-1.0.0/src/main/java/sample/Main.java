@@ -10,6 +10,7 @@ public class Main extends Application {
         FXRouter.bind(this, primaryStage, "Hello World");
         configRoute();
         FXRouter.goTo("first");
+        return null;
     }
 
     private static void configRoute() {
