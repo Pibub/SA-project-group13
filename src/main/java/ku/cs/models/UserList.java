@@ -37,6 +37,31 @@ public class UserList {
         }
         return null;
     }
+    public User findUserByIdAndUsername(String id, String username) {
+        for(User user : users)
+        {
+            if(user.isId(id) && user.isUser(username)){
+                return user;
+            }
+        }
+        return null;
+    }
+    public void addNewUser(String userId, String userName, String birthDate , String sex, String address, String tel, String workDate, String password, String userRole) {
+        userId = userId.trim();
+        userName = userName.trim();
+        birthDate = birthDate.trim();
+        sex = sex.trim();
+        address = address.trim();
+        tel = tel.trim();
+        workDate = workDate.trim();
+        userRole = userRole.trim();
+        if (!userId.equals("") && !userName.equals("")) {
+            User exist = findUserByIdAndUsername(userId, userName);
+            if (exist == null) {
+                users.add(new User(userId, userName, birthDate , sex, address, tel, workDate, password, userRole));
+            }
+        }
+    }
 
     public ArrayList<User> getUsers(){
         return users;

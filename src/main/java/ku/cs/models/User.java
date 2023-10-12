@@ -109,6 +109,9 @@ public class User {
     public boolean isUser(String username){
         return this.userName.equals(username);
     }
+    public boolean isId(String id){
+        return this.userId.equals(id);
+    }
 
     public boolean isPassword(String password){
         return this.password.equals(password);
