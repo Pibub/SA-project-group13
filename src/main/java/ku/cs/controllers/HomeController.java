@@ -57,5 +57,13 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    public void onReceivingDataClick() {
+        try {
+            FXRouter.goTo("receivingData");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

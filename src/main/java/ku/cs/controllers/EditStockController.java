@@ -2,10 +2,7 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.io.IOException;
 
@@ -22,7 +19,7 @@ public class EditStockController {
     public TextField storageDateField;
     public TextField locationField;
     @FXML
-    private ListView stockListView;
+    Label warningLabel;
     @FXML
     public void onButtonClick() {
         try {
@@ -30,5 +27,22 @@ public class EditStockController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @FXML
+    public void saveButton() {
+            warningLabel.setText("Success");
+    }
+
+    @FXML
+    public void editButton() {
+            warningLabel.setText("Success");
+
+    }
+
+    @FXML
+    public void deleteButton() {
+
+            warningLabel.setText("Success");
     }
 }

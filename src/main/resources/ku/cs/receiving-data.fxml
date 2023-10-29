@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.InvoiceListController">
+   <children>
+      <Button layoutX="27.0" layoutY="41.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
+      <TableView fx:id="itemTableView" layoutX="50.0" layoutY="76.0" prefHeight="500.0" prefWidth="705.0">
+        <columns>
+            <TableColumn fx:id="itemId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="itemName" prefWidth="75.0" text="NAME" />
+          <TableColumn fx:id="qty" prefWidth="75.0" text="QTY" />
+            <TableColumn fx:id="description" prefWidth="75.0" text="DESCRIPTION" />
+            <TableColumn fx:id="vendor" prefWidth="75.0" text="VENDOR" />
+            <TableColumn fx:id="invoiceNo" prefWidth="75.0" text="InvoiceNo" />
+            <TableColumn fx:id="poNo" prefWidth="75.0" text="PoNo" />
+            <TableColumn fx:id="dueDate" prefWidth="75.0" text="DUE-DATE" />
+            <TableColumn fx:id="line" prefWidth="75.0" text="LINE" />
+            <TableColumn fx:id="keepLoc" prefWidth="75.0" text="K-LOC" />
+            <TableColumn fx:id="receiveLoc" prefWidth="75.0" text="R-LOC" />
+            <TableColumn fx:id="status" prefWidth="75.0" text="STATUS" />
+        </columns>
+      </TableView>
+      <TextField fx:id="keywordsTextField" layoutX="138.0" layoutY="40.0" prefHeight="26.0" prefWidth="625.0" promptText="Keywords....." />
+      <Label layoutX="94.0" layoutY="45.0" text="Search :" />
+   </children>
+</AnchorPane>

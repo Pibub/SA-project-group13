@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.EditStockController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.EditStockController">
    <children>
       <Button layoutX="14.0" layoutY="363.0" mnemonicParsing="false" onAction="#onButtonClick" text="back" />
       <TableView fx:id="dataTableField" layoutY="163.0" prefHeight="200.0" prefWidth="615.0">
@@ -32,5 +32,6 @@
       <Button layoutX="14.0" layoutY="123.0" mnemonicParsing="false" onAction="#saveButton" text="save" />
       <Button layoutX="103.0" layoutY="123.0" mnemonicParsing="false" onAction="#editButton" text="edit" />
       <Button layoutX="186.0" layoutY="123.0" mnemonicParsing="false" onAction="#deleteButton" text="delete" />
+      <Label fx:id="warningLabel" layoutX="346.0" layoutY="127.0" text="Label" />
    </children>
 </AnchorPane>

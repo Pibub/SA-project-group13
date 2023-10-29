@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class DatabaseConnection {
     public Connection databaseLink;
     public Connection getConnection(){
-        String databaseName = "test";
+        String databaseName = "warehouse";
         String databaseUser = "root";
         String databasePassword = "";
         String url = "jdbc:mysql://localhost:3306/" + databaseName;

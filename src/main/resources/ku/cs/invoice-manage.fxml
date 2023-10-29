@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.InvoiceManageController">
+   <children>
+      <Button layoutX="33.0" layoutY="35.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
+      <Label layoutX="74.0" layoutY="107.0" text="Invoice NO:" />
+      <Label layoutX="74.0" layoutY="155.0" text="Item Id: " />
+      <Label layoutX="74.0" layoutY="200.0" text="Item Name:" />
+      <Label layoutX="74.0" layoutY="251.0" text="QTY:" />
+      <Label layoutX="74.0" layoutY="300.0" text="Keep Location:" />
+      <Label fx:id="invoiceIDLable" layoutX="175.0" layoutY="107.0" text="Label" />
+      <Label fx:id="itemIDLable" layoutX="175.0" layoutY="155.0" text="Label" />
+      <Label layoutX="175.0" layoutY="200.0" text="Label" />
+      <Label fx:id="qtyLable" layoutX="175.0" layoutY="251.0" text="Label" />
+      <Label fx:id="kLocLable" layoutX="175.0" layoutY="300.0" text="Label" />
+      <Label layoutX="97.0" layoutY="74.0" text="Detail of invoice" />
+      <Label layoutX="480.0" layoutY="74.0" text="Add item from invoice" />
+      <Label layoutX="372.0" layoutY="107.0" text="Item Id:" />
+      <Label layoutX="372.0" layoutY="155.0" text="Item Name:" />
+      <Label layoutX="372.0" layoutY="200.0" text="amount:" />
+      <Label layoutX="376.0" layoutY="251.0" text="Location:" />
+      <Label layoutX="369.0" layoutY="300.0" text="Sorage Date:" />
+      <TextField layoutX="465.0" layoutY="103.0" />
+      <TextField layoutX="465.0" layoutY="151.0" />
+      <TextField layoutX="465.0" layoutY="196.0" />
+      <TextField layoutX="466.0" layoutY="247.0" />
+      <Button layoutX="513.0" layoutY="355.0" mnemonicParsing="false" text="Add" />
+      <Button layoutX="203.0" layoutY="470.0" mnemonicParsing="false" text="Incomplete this invoice" />
+      <Button layoutX="424.0" layoutY="470.0" mnemonicParsing="false" text="Complete this invoice" />
+      <DatePicker layoutX="466.0" layoutY="296.0" />
+   </children>
+</AnchorPane>

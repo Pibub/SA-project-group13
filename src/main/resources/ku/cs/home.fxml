@@ -81,7 +81,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="2.0" layoutY="349.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Receiving data" textAlignment="CENTER">
+            <Button layoutX="2.0" layoutY="349.0" mnemonicParsing="false" onAction="#onReceivingDataClick" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Receiving data" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
