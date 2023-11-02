@@ -70,11 +70,12 @@ public class InvoiceDataSource implements Datasource<InvoiceList> {
                             "invoice_no = '" + invoice.getInvoiceNo() + "', " +
                             "po_no = '" + invoice.getPoNo() + "', " +
                             "due_date = '" + invoice.getDueDate() + "', " +
-                            "line = '" + invoice.getLine() + "' " +
-                            "keep_loc = '" + invoice.getKeepLoc()+ "' " +
-                            "receive_loc = '" + invoice.getReceiveLoc() + "' " +
+                            "line = '" + invoice.getLine() + "', " +
+                            "keep_loc = '" + invoice.getKeepLoc()+ "', " +
+                            "receive_loc = '" + invoice.getReceiveLoc() + "', " +
                             "status = '" + invoice.getStatus()+ "' " +
                             "WHERE item_id = '" + invoice.getItemId() + "'";
+
 
                     statement.executeUpdate(updateUserQuery);
                 } else {

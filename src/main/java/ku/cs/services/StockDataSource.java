@@ -1,5 +1,6 @@
 package ku.cs.services;
 
+import ku.cs.models.Invoice;
 import ku.cs.models.Stock;
 import ku.cs.models.StockList;
 
@@ -28,7 +29,8 @@ public class StockDataSource implements Datasource<StockList> {
                 int amount = queryOutput.getInt(3);
                 String location = queryOutput.getString(4);
                 String storageDate = queryOutput.getString(5);
-                stockList.addStock(new Stock(itemId , itemName , amount , location , storageDate));
+                String categoryId = queryOutput.getString(6);
+                stockList.addStock(new Stock(itemId , itemName , amount , location , storageDate, categoryId));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,7 +40,37 @@ public class StockDataSource implements Datasource<StockList> {
 
     @Override
     public void insertData(StockList stockList) {
+        databaseConnection = new DatabaseConnection();
+        Connection connectionUser = databaseConnection.getConnection();
 
+        for (Stock stock : stockList.getStockList()) {
+            try {
+                Statement statement = connectionUser.createStatement();
+
+                String checkUserQuery = "SELECT * FROM stock WHERE item_id = '" + stock.getItemId() + "'";
+                ResultSet checkUserResult = statement.executeQuery(checkUserQuery);
+
+                if (checkUserResult.next()) {
+                    String updateUserQuery = "UPDATE invoice SET item_name = '" + stock.getItemName() + "', " +
+                            "amount = '" + stock.getAmount() + "', " +
+                            "location = '" + stock.getLocation() + "', " +
+                            "storage_date = '" + stock.getStorageDate() + "', " +
+                            "category_id = '" + stock.getCategoryId() + "', " +
+                            "WHERE item_id = '" + stock.getItemId() + "'";
+
+                    statement.executeUpdate(updateUserQuery);
+                } else {
+                    // If the user doesn't exist, insert a new user
+                    String insertUserQuery = "INSERT INTO stock (item_id, item_name, amount, location, storage_date, category_id) " +
+                            "VALUES ('" + stock.getItemId() + "', '" + stock.getItemName() + "', '" + stock.getAmount() + "', '" +
+                            stock.getLocation() + "', '" + stock.getStorageDate() + "', '" + stock.getCategoryId() + "')";
+
+                    statement.executeUpdate(insertUserQuery);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

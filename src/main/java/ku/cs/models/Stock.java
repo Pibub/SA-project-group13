@@ -6,15 +6,18 @@ public class Stock {
     private int amount;
     private String location;
     private String storageDate;
+    private String categoryId;
     private String databaseName = "Stock";
 
-    public Stock(String itemId , String itemName , int amount , String location , String storageDate){
+    public Stock(String itemId , String itemName , int amount , String location , String storageDate, String categoryId){
         this.itemId = itemId;
         this.itemName =itemName;
         this.amount = amount;
         this.location = location;
         this.storageDate = storageDate;
+        this.categoryId = categoryId;
     }
+    public String getCategoryId(){ return  categoryId;}
 
     public String getItemId() {
         return itemId;
@@ -59,5 +62,6 @@ public class Stock {
     public String getDatabaseName() {
         return databaseName;
     }
+
 
 }

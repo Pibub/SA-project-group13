@@ -1,5 +1,7 @@
 package ku.cs.models;
 
+import java.time.LocalDate;
+
 public class Invoice {
     private String itemId;
     private String itemName;

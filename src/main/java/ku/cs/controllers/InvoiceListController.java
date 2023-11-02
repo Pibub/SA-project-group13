@@ -25,6 +25,8 @@ public class InvoiceListController {
     private TableView<Invoice> itemTableView;
     @FXML
     private TextField keywordsTextField;
+    private FilteredList<Invoice> filteredList;
+
 
 
     @FXML
@@ -32,24 +34,52 @@ public class InvoiceListController {
         initTableView();
         loadData();
 
-        itemTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Invoice>() {
-            @Override
-            public void changed(ObservableValue observable, Invoice oldValue, Invoice newValue) {
-                if (newValue != null) {
+        itemTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                Invoice selectedInvoice = itemTableView.getSelectionModel().getSelectedItem();
+                if (selectedInvoice != null) {
                     try {
-                        com.github.saacsos.FXRouter.goTo("invoiceManage", newValue.getInvoiceNo());
+                        com.github.saacsos.FXRouter.goTo("invoiceManage", selectedInvoice.getInvoiceNo());
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
                     }
                 }
             }
         });
+
+        keywordsTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(invoice -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true; // Display all items when the search box is empty
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                // Check if the keyword is present in any of the columns
+                return invoice.getItemName().toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getItemId().toLowerCase().contains(lowerCaseFilter)
+                        || String.valueOf(invoice.getQty()).toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getDescription().toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getVendor().toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getPoNo().toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getDueDate().toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getLine().toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getKeepLoc().toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getReceiveLoc().toLowerCase().contains(lowerCaseFilter)
+                        || invoice.getStatus().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+
+
     }
 
     private void loadData() {
         Datasource<InvoiceList> invoiceListDatasource = new InvoiceDataSource();
         InvoiceList invoiceList = invoiceListDatasource.readData();
-        itemTableView.setItems(FXCollections.observableArrayList(invoiceList.getInvoices()));
+        ObservableList<Invoice> invoices = FXCollections.observableArrayList(invoiceList.getInvoices());
+        filteredList = new FilteredList<>(invoices, p -> true); // Initialize the filtered list
+
+        itemTableView.setItems(filteredList);
+//        itemTableView.setItems(FXCollections.observableArrayList(invoiceList.getInvoices()));
     }
 
     private void initTableView() {

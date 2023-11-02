@@ -1,25 +1,121 @@
 package ku.cs.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import ku.cs.models.Invoice;
+import ku.cs.models.Stock;
+import ku.cs.models.StockList;
+import ku.cs.services.Datasource;
+import ku.cs.services.StockDataSource;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class EditStockController {
-    public TableView dataTableField;
-    public TableColumn idTable;
-    public TableColumn nameTable;
-    public TableColumn amountTable;
-    public TableColumn dateTable;
-    public TableColumn locationTavble;
-    public TextField itemField;
-    public TextField itemNameField;
-    public TextField amountField;
-    public TextField storageDateField;
-    public TextField locationField;
+    @FXML private TableView<Stock> itemTableView;
+    private FilteredList<Stock> filteredList;
+    private Datasource<StockList> stockListDatasource;
     @FXML
-    Label warningLabel;
+    private TextField keywordsTextField;
+    private Map<String, Stock> stockMap = new HashMap<>();
+
+    @FXML public void initialize(){
+        loadData();
+        initTableView();
+
+        itemTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                Stock selectedStock = itemTableView.getSelectionModel().getSelectedItem();
+                if (selectedStock != null) {
+                    try {
+                        Map<String, Object> params = new HashMap<>();
+                        params.put("categoryId", selectedStock.getCategoryId());
+
+                        // Navigate to StockManageController and pass the category ID
+                        com.github.saacsos.FXRouter.goTo("stockManage", params);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+
+        keywordsTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(stock -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                return stock.getItemName().toLowerCase().contains(lowerCaseFilter)
+                        || stock.getItemId().toLowerCase().contains(lowerCaseFilter)
+                        || String.valueOf(stock.getAmount()).toLowerCase().contains(lowerCaseFilter)
+                        || stock.getLocation().toLowerCase().contains(lowerCaseFilter)
+                        || stock.getCategoryId().toLowerCase().contains(lowerCaseFilter);
+            });
+        });
+    }
+
+    private List<Stock> getItemsForCategory(String categoryId) {
+        List<Stock> items = new ArrayList<>();
+        for (Stock stock : stockMap.values()) {
+            if (stock.getCategoryId().equals(categoryId)) {
+                items.add(stock);
+            }
+        }
+        return items;
+    }
+
+
+    public void loadData(){
+        stockListDatasource = new StockDataSource();
+        StockList stockList = stockListDatasource.readData();
+        ObservableList<Stock> stockItems = FXCollections.observableArrayList(stockList.getStockList());
+
+        // Group and sum items by category ID
+        for (Stock stockItem : stockItems) {
+            String categoryID = stockItem.getCategoryId();
+            if (stockMap.containsKey(categoryID)) {
+                Stock existingItem = stockMap.get(categoryID);
+                // Add the amount to the existing item
+                existingItem.setAmount(existingItem.getAmount() + stockItem.getAmount());
+            } else {
+                // Add the item to the map
+                stockMap.put(categoryID, stockItem);
+            }
+        }
+
+        filteredList = new FilteredList<>(FXCollections.observableArrayList(stockMap.values()), p -> true);
+        itemTableView.setItems(filteredList);
+    }
+
+    private void initTableView() {
+        TableColumn<Stock, String> idColumn = new TableColumn<>("CATEGORY_ID");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+
+        TableColumn<Stock, String> nameColumn = new TableColumn<>("ITEM_NAME");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+
+        TableColumn<Stock, String> amountColumn = new TableColumn<>("AMOUNT");
+        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+        TableColumn<Stock, String> locationColumn = new TableColumn<>("LOCATION");
+        locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
+
+        itemTableView.getColumns().clear();
+        itemTableView.getColumns().addAll(idColumn, nameColumn, amountColumn, locationColumn);
+    }
+
+
     @FXML
     public void onButtonClick() {
         try {
@@ -28,21 +124,5 @@ public class EditStockController {
             throw new RuntimeException(e);
         }
     }
-
-    @FXML
-    public void saveButton() {
-            warningLabel.setText("Success");
-    }
-
-    @FXML
-    public void editButton() {
-            warningLabel.setText("Success");
-
-    }
-
-    @FXML
-    public void deleteButton() {
-
-            warningLabel.setText("Success");
-    }
 }
+

@@ -10,6 +10,7 @@ import javafx.util.Duration;
 import java.io.IOException;
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.Map;
 
 public final class FXRouter {
     private static final String WINDOW_TITLE = "";
@@ -26,6 +27,8 @@ public final class FXRouter {
     private static Double animationDuration;
     private static AbstractMap<String, RouteScene> routes = new HashMap();
     private static RouteScene currentRoute;
+    private static Map<String, Object> routeParams = new HashMap<>();
+
 
     private FXRouter() {
     }
@@ -89,12 +92,14 @@ public final class FXRouter {
 
     public static void goTo(String routeLabel) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
+        routeParams.put(routeLabel, route.data);
         loadNewRoute(route);
     }
 
     public static void goTo(String routeLabel, Object data) throws IOException {
         RouteScene route = (RouteScene)routes.get(routeLabel);
         route.data = data;
+        routeParams.put(routeLabel, data);
         loadNewRoute(route);
     }
 
@@ -150,6 +155,10 @@ public final class FXRouter {
     public static Object getData() {
         return currentRoute.data;
     }
+    public static Map<String, Object> getParams() {
+        return routeParams;
+    }
+
 
     private static class RouteScene {
         private String scenePath;

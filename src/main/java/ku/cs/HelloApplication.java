@@ -31,6 +31,7 @@ public class HelloApplication extends Application {
         FXRouter.when("createNewUser" ,packageStr+ "create-new-user.fxml");
         FXRouter.when("receivingData" ,packageStr+ "receiving-data.fxml");
         FXRouter.when("invoiceManage" ,packageStr+ "invoice-manage.fxml");
+        FXRouter.when("stockManage" ,packageStr+ "stock-manage.fxml");
     }
 
     public static void main(String[] args) {
