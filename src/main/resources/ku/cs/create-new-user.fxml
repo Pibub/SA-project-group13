@@ -6,29 +6,79 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.CreateNewUser">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #CCC8AA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.CreateNewUser">
    <children>
-      <Button layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" />
-      <TextField fx:id="idTextField" layoutX="178.0" layoutY="170.0" promptText="W1012" />
-      <TextField fx:id="nameTextField" layoutX="179.0" layoutY="235.0" promptText="pasdfas sdafdf" />
-      <TextField fx:id="sexTextField" layoutX="181.0" layoutY="346.0" promptText="Female" />
-      <TextField fx:id="addressTextField" layoutX="182.0" layoutY="404.0" promptText="548/89 a.asdf f.sadf g.adfg" />
-      <TextField fx:id="phoneTextField" layoutX="507.0" layoutY="170.0" promptText="098xxxxxxx" />
-      <TextField fx:id="roleTextField" layoutX="507.0" layoutY="292.0" promptText="Warehouse" />
-      <PasswordField fx:id="passwordTextField" layoutX="508.0" layoutY="346.0" />
-      <Label layoutX="132.0" layoutY="174.0" text="Id" />
-      <Label layoutX="126.0" layoutY="239.0" text="Name" />
-      <Label layoutX="90.0" layoutY="296.0" text="Date of birth" />
-      <Label layoutX="123.0" layoutY="350.0" text="Sex" />
-      <Label layoutX="123.0" layoutY="408.0" text="Address" />
-      <Label layoutX="434.0" layoutY="174.0" text="Tel" />
-      <Label layoutX="401.0" layoutY="239.0" text="Start working date" />
-      <Label layoutX="428.0" layoutY="296.0" text="Role" />
-      <Label layoutX="428.0" layoutY="350.0" text="Password" />
-      <DatePicker fx:id="dobPicker" layoutX="175.0" layoutY="292.0" />
-      <DatePicker fx:id="swdPicker" layoutX="508.0" layoutY="235.0" />
-      <Label fx:id="warningLabel" layoutX="373.0" layoutY="468.0" text="Label" />
-      <Button layoutX="367.0" layoutY="508.0" mnemonicParsing="false" onAction="#addNewUser" text="Add" />
+      <AnchorPane layoutX="50.0" layoutY="80.0" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #191717;">
+         <children>
+            <Button layoutX="300.0" layoutY="405.0" mnemonicParsing="false" onAction="#addNewUser" prefHeight="30.0" prefWidth="80.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Add">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="warningLabel" layoutX="324.0" layoutY="375.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="227.0" layoutY="22.0" text="Create New User" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="340.0" layoutY="153.0" text="Date of birth :" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="dobPicker" layoutX="465.0" layoutY="151.0" style="-fx-border-color: #CCC8AA;" />
+            <Label layoutX="340.0" layoutY="274.0" text="Start working date :" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="swdPicker" layoutX="465.0" layoutY="272.0" style="-fx-border-color: #CCC8AA;" />
+         </children>
+      </AnchorPane>
+      <Button layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #191717;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <TextField fx:id="idTextField" layoutX="170.0" layoutY="167.0" promptText="W1012" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" />
+      <TextField fx:id="nameTextField" layoutX="170.0" layoutY="227.0" promptText="pasdfas sdafdf" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" />
+      <TextField fx:id="sexTextField" layoutX="170.0" layoutY="347.0" promptText="Female" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" />
+      <TextField fx:id="addressTextField" layoutX="170.0" layoutY="407.0" promptText="548/89 a.asdf f.sadf g.adfg" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" />
+      <TextField fx:id="phoneTextField" layoutX="515.0" layoutY="167.0" prefWidth="176.0" promptText="098xxxxxxx" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" />
+      <TextField fx:id="roleTextField" layoutX="515.0" layoutY="287.0" prefWidth="176.0" promptText="Warehouse" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <PasswordField fx:id="passwordTextField" layoutX="170.0" layoutY="287.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <Label layoutX="80.0" layoutY="170.0" text="Id :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="80.0" layoutY="230.0" text="Name :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="80.0" layoutY="350.0" text="Sex :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="80.0" layoutY="410.0" text="Address :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="390.0" layoutY="170.0" text="Tel :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="390.0" layoutY="290.0" text="Role :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="80.0" layoutY="290.0" text="Password :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>

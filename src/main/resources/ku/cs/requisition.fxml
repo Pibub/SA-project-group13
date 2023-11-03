@@ -8,24 +8,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.RequisitionController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.RequisitionController">
    <children>
-      <Text layoutX="246.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisition">
+      <Text fill="WHITE" layoutX="310.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisition" textAlignment="CENTER">
          <font>
-            <Font size="22.0" />
+            <Font name="System Bold" size="35.0" />
          </font>
       </Text>
-      <TableView fx:id="itemTableView" layoutX="50.0" layoutY="112.0" prefHeight="200.0" prefWidth="500.0">
+      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="126.0" prefHeight="411.0" prefWidth="600.0" style="-fx-background-color: #CCC8AA;">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="145.0" text="Column X" />
-            <TableColumn prefWidth="170.0" text="Column X" />
+            <TableColumn prefWidth="300.0" text="Column X" />
+            <TableColumn prefWidth="150.0" text="Column X" />
         </columns>
       </TableView>
-      <TextField fx:id="keywordsTextField" layoutX="232.0" layoutY="62.0" promptText="keywords....." />
-      <Text layoutX="167.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search bar:" />
-      <Button layoutX="24.0" layoutY="354.0" mnemonicParsing="false" onAction="#onButtonClick" text="Back" />
+      <TextField fx:id="keywordsTextField" layoutX="185.0" layoutY="79.0" prefHeight="26.0" prefWidth="517.0" promptText="keywords....." style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Text fill="WHITE" layoutX="100.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search bar :" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Text>
+      <Button layoutX="355.0" layoutY="550.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>
