@@ -5,36 +5,111 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.InvoiceManageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #CCC8AA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.InvoiceManageController">
    <children>
-      <Button layoutX="33.0" layoutY="35.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
-      <Label layoutX="74.0" layoutY="107.0" text="Invoice NO:" />
-      <Label layoutX="74.0" layoutY="155.0" text="Item Id: " />
-      <Label layoutX="74.0" layoutY="200.0" text="Item Name:" />
-      <Label layoutX="74.0" layoutY="251.0" text="QTY:" />
-      <Label layoutX="74.0" layoutY="300.0" text="Keep Location:" />
-      <Label fx:id="invoiceIDLabel" layoutX="175.0" layoutY="107.0" text="Label" />
-      <Label fx:id="itemIDLabel" layoutX="175.0" layoutY="155.0" text="Label" />
-      <Label fx:id="itemNameLabel" layoutX="175.0" layoutY="200.0" text="Label" />
-      <Label fx:id="qtyLabel" layoutX="175.0" layoutY="251.0" text="Label" />
-      <Label fx:id="kLocLabel" layoutX="175.0" layoutY="300.0" text="Label" />
-      <Label layoutX="97.0" layoutY="74.0" text="Detail of invoice" />
-      <Label layoutX="480.0" layoutY="74.0" text="Add item from invoice" />
-      <Label layoutX="372.0" layoutY="107.0" text="Item Id:" />
-      <Label layoutX="372.0" layoutY="155.0" text="Item Name:" />
-      <Label layoutX="372.0" layoutY="200.0" text="amount:" />
-      <Label layoutX="376.0" layoutY="251.0" text="Location:" />
-      <Label fx:id="storageDateTextField" layoutX="369.0" layoutY="300.0" text="Storage Date:" />
-      <TextField fx:id="addItemIdTextField" layoutX="465.0" layoutY="103.0" />
-      <TextField fx:id="addItemNameTextField" layoutX="465.0" layoutY="151.0" />
-      <TextField fx:id="addAmountTextField" layoutX="465.0" layoutY="196.0" />
-      <TextField fx:id="addLocationTextField" layoutX="466.0" layoutY="247.0" />
-      <Button layoutX="520.0" layoutY="420.0" mnemonicParsing="false" onAction="#onAddItemClick" text="Add" />
-      <Button layoutX="203.0" layoutY="500.0" mnemonicParsing="false" onAction="#onInCompleteInvoice" text="Incomplete this invoice" />
-      <Button layoutX="424.0" layoutY="500.0" mnemonicParsing="false" onAction="#onCompleteInvoice" text="Complete this invoice" />
-      <DatePicker fx:id="addStorageDatePicker" layoutX="466.0" layoutY="296.0" />
-      <Label fx:id="warning" layoutX="390.0" layoutY="350.0" text="warning" />
-      <Label fx:id="successLabel" layoutX="490.0" layoutY="388.0" text="success" />
+      <AnchorPane layoutX="50.0" layoutY="60.0" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #191717;">
+         <children>
+            <Label fx:id="successLabel" layoutX="309.0" layoutY="360.0" text="success" textFill="#00c903">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="289.0" layoutY="395.0" mnemonicParsing="false" onAction="#onAddItemClick" prefHeight="30.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Add" />
+            <Label fx:id="warning" layoutX="309.0" layoutY="350.0" text="warning" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="261.0" layoutY="13.0" text="Invoice Manage" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Button layoutX="20.0" layoutY="15.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #191717;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Label layoutX="127.0" layoutY="160.0" text="Invoice NO :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="127.0" layoutY="210.0" text="Item Id : " textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="127.0" layoutY="260.0" text="Item Name :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="127.0" layoutY="310.0" text="QTY :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="127.0" layoutY="360.0" text="Keep Location :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="invoiceIDLabel" layoutX="228.0" layoutY="160.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="itemIDLabel" layoutX="228.0" layoutY="210.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="itemNameLabel" layoutX="228.0" layoutY="260.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="qtyLabel" layoutX="228.0" layoutY="310.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="kLocLabel" layoutX="228.0" layoutY="360.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="150.0" layoutY="120.0" text="Detail of invoice" textFill="WHITE" />
+      <Label layoutX="523.0" layoutY="120.0" text="Add item from invoice" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="425.0" layoutY="160.0" text="Item Id :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="425.0" layoutY="210.0" text="Item Name :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="425.0" layoutY="260.0" text="amount :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="425.0" layoutY="310.0" text="Location :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="storageDateTextField" layoutX="425.0" layoutY="360.0" text="Storage Date :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="addItemIdTextField" layoutX="518.0" layoutY="160.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="addItemNameTextField" layoutX="518.0" layoutY="210.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="addAmountTextField" layoutX="518.0" layoutY="260.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="addLocationTextField" layoutX="518.0" layoutY="310.0" prefHeight="25.0" prefWidth="150.0" />
+      <Button layoutX="180.0" layoutY="530.0" mnemonicParsing="false" onAction="#onInCompleteInvoice" style="-fx-border-radius: 30; -fx-border-color: #191717; -fx-background-radius: 30;" text="Incomplete this invoice">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button layoutX="410.0" layoutY="530.0" mnemonicParsing="false" onAction="#onCompleteInvoice" style="-fx-background-radius: 30; -fx-border-color: #191717; -fx-border-radius: 30;" text="Complete this invoice">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <DatePicker fx:id="addStorageDatePicker" layoutX="518.0" layoutY="360.0" />
    </children>
 </AnchorPane>
