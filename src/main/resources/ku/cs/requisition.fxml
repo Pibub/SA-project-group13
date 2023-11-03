@@ -17,10 +17,10 @@
       </Text>
       <TableView fx:id="itemTableView" layoutX="100.0" layoutY="126.0" prefHeight="411.0" prefWidth="600.0" style="-fx-background-color: #CCC8AA;">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="300.0" text="Column X" />
-            <TableColumn prefWidth="150.0" text="Column X" />
+          <TableColumn maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="C1" />
+          <TableColumn maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="C2" />
+            <TableColumn maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: center;" text="Column X" />
+            <TableColumn maxWidth="150.0" prefWidth="150.0" style="-fx-alignment: center;" text="Column X" />
         </columns>
       </TableView>
       <TextField fx:id="keywordsTextField" layoutX="185.0" layoutY="79.0" prefHeight="26.0" prefWidth="517.0" promptText="keywords....." style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;">

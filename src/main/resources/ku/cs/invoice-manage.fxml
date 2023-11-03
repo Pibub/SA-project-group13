@@ -11,13 +11,13 @@
    <children>
       <AnchorPane layoutX="50.0" layoutY="60.0" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #191717;">
          <children>
-            <Label fx:id="successLabel" layoutX="309.0" layoutY="360.0" text="success" textFill="#00c903">
+            <Label fx:id="successLabel" layoutX="309.0" layoutY="360.0" textFill="#00c903">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
             <Button layoutX="289.0" layoutY="395.0" mnemonicParsing="false" onAction="#onAddItemClick" prefHeight="30.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Add" />
-            <Label fx:id="warning" layoutX="309.0" layoutY="350.0" text="warning" textAlignment="CENTER" textFill="RED">
+            <Label fx:id="warning" layoutX="309.0" layoutY="350.0" textAlignment="CENTER" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>

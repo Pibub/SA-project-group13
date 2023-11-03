@@ -17,18 +17,18 @@
          </font></Button>
       <TableView fx:id="itemTableView" layoutX="50.0" layoutY="135.0" prefHeight="580.0" prefWidth="902.0" style="-fx-background-color: #CCC8AA;">
         <columns>
-            <TableColumn fx:id="itemId" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="itemName" prefWidth="75.0" text="NAME" />
-          <TableColumn fx:id="qty" prefWidth="75.0" text="QTY" />
-            <TableColumn fx:id="description" prefWidth="75.0" text="DESCRIPTION" />
-            <TableColumn fx:id="vendor" prefWidth="75.0" text="VENDOR" />
-            <TableColumn fx:id="invoiceNo" prefWidth="75.0" text="InvoiceNo" />
-            <TableColumn fx:id="poNo" prefWidth="75.0" text="PoNo" />
-            <TableColumn fx:id="dueDate" prefWidth="75.0" text="DUE-DATE" />
-            <TableColumn fx:id="line" prefWidth="75.0" text="LINE" />
-            <TableColumn fx:id="keepLoc" prefWidth="75.0" text="K-LOC" />
-            <TableColumn fx:id="receiveLoc" prefWidth="75.0" text="R-LOC" />
-            <TableColumn fx:id="status" prefWidth="75.0" text="STATUS" />
+            <TableColumn fx:id="itemId" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="ID" />
+          <TableColumn fx:id="itemName" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="NAME" />
+          <TableColumn fx:id="qty" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="QTY" />
+            <TableColumn fx:id="description" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="DESCRIPTION" />
+            <TableColumn fx:id="vendor" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="VENDOR" />
+            <TableColumn fx:id="invoiceNo" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="InvoiceNo" />
+            <TableColumn fx:id="poNo" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="PoNo" />
+            <TableColumn fx:id="dueDate" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="DUE-DATE" />
+            <TableColumn fx:id="line" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="LINE" />
+            <TableColumn fx:id="keepLoc" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="K-LOC" />
+            <TableColumn fx:id="receiveLoc" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="R-LOC" />
+            <TableColumn fx:id="status" maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="STATUS" />
         </columns>
       </TableView>
       <TextField fx:id="keywordsTextField" layoutX="140.0" layoutY="92.0" prefHeight="26.0" prefWidth="625.0" promptText="Keywords....." style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;">
