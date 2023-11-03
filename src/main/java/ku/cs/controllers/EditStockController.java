@@ -36,11 +36,7 @@ public class EditStockController {
                 Stock selectedStock = itemTableView.getSelectionModel().getSelectedItem();
                 if (selectedStock != null) {
                     try {
-                        Map<String, Object> params = new HashMap<>();
-                        params.put("categoryId", selectedStock.getCategoryId());
-
-                        // Navigate to StockManageController and pass the category ID
-                        com.github.saacsos.FXRouter.goTo("stockManage", params);
+                        com.github.saacsos.FXRouter.goTo("stockManage", selectedStock.getCategoryId());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -63,16 +59,6 @@ public class EditStockController {
                         || stock.getCategoryId().toLowerCase().contains(lowerCaseFilter);
             });
         });
-    }
-
-    private List<Stock> getItemsForCategory(String categoryId) {
-        List<Stock> items = new ArrayList<>();
-        for (Stock stock : stockMap.values()) {
-            if (stock.getCategoryId().equals(categoryId)) {
-                items.add(stock);
-            }
-        }
-        return items;
     }
 
 

@@ -93,4 +93,9 @@ public class InvoiceDataSource implements Datasource<InvoiceList> {
             }
         }
     }
+
+    @Override
+    public void deleteData(String itemId) {
+
+    }
 }

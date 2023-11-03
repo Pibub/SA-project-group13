@@ -4,9 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.github.saacsos.FXRouter;
 import ku.cs.models.Stock;
@@ -15,43 +13,51 @@ import ku.cs.services.Datasource;
 import ku.cs.services.StockDataSource;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class StockManageController {
     @FXML private TableView<Stock> itemTableView;
-    private Datasource<StockList> stockListDatasource;
-    private FilteredList<Stock> filteredList;
-    private Stock stock;
     @FXML private Label categoryIDLabel;
+    @FXML private TextField addItemIdTextField;
+    @FXML private TextField addItemNameTextField;
+    @FXML private TextField addAmountTextField;
+    @FXML private TextField addLocationTextField;
+    @FXML private DatePicker addStorageDatePicker;
+    @FXML private Label warning;
+    @FXML private Label successLabel;
+    private Datasource<StockList> stockListDatasource;
+    private StockList stockList;
+
+
 
     @FXML
     public void initialize() {
         loadData();
         initTableView();
+        stockListDatasource = new StockDataSource();
+        stockList = stockListDatasource.readData();
     }
 
     public void loadData() {
         stockListDatasource = new StockDataSource();
-        StockList stockList = stockListDatasource.readData();
-        ObservableList<Stock> stockItems = FXCollections.observableArrayList(stockList.getStockList());
+        stockList = stockListDatasource.readData();
 
-        // Retrieve the selected category ID from the parameters
-        Map<String, Object> params = FXRouter.getParams();
-        if (params != null && params.containsKey("categoryId")) {
-            String selectedCategoryId = (String) params.get("categoryId");
+        String categoryId = (String) FXRouter.getData();
 
-            // Clear the existing items in the table view
-            itemTableView.getItems().clear();
-
-            // Filter items by the selected category ID
-            filteredList = new FilteredList<>(stockItems.filtered(stock -> stock.getCategoryId().equals(selectedCategoryId)), p -> true);
-            itemTableView.setItems(filteredList);
-        } else {
-            // If no category ID is provided, show all items
-            itemTableView.setItems(stockItems);
+        if (categoryId != null) {
+            ObservableList<Stock> itemsWithSameCategory = FXCollections.observableArrayList(
+                    stockList.getStockList().stream()
+                            .filter(stock -> categoryId.equals(stock.getCategoryId()))
+                            .collect(Collectors.toList())
+            );
+            itemTableView.setItems(itemsWithSameCategory);
+            initTableView();
         }
+        categoryIDLabel.setText(categoryId);
     }
 
 
@@ -76,6 +82,49 @@ public class StockManageController {
         categoryIdColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
 
         itemTableView.getColumns().setAll(idColumn, nameColumn, amountColumn, locationColumn, storageDateColumn, categoryIdColumn);
+    }
+
+    @FXML public  void onDeleteItemButton(){
+        Stock selectedStock = itemTableView.getSelectionModel().getSelectedItem();
+        if (selectedStock != null) {
+            String itemId = selectedStock.getItemId();
+            stockListDatasource.deleteData(itemId);
+            loadData(); // Reload data in the table view after deletion
+        }
+    }
+    @FXML public  void onAddItemButton(){
+        String addItemID = addItemIdTextField.getText();
+        String addItemName = addItemNameTextField.getText();
+        Integer addAmountText = Integer.valueOf(addAmountTextField.getText());
+        String addLocation = addLocationTextField.getText();
+        String addDate = addStorageDatePicker.getValue().toString();
+
+        Stock stock = stockList.findItemByIdAndName(addItemID, addItemName);
+
+        if(!addItemID.isEmpty() && !addItemName.isEmpty() && addAmountText != null && !addLocation.isEmpty()){
+            try {
+                int addAmount = Integer.parseInt(String.valueOf(addAmountText));
+                LocalDateTime localDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
+                String formattedTime = localDateTime.format(formatter);
+                String itemIdWithDate = addItemID + "-" + formattedTime.toString();
+                stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, addDate, addItemID);
+                stockListDatasource.insertData(stockList);
+            } catch (NumberFormatException e) {
+                warning.setText("Please enter a valid amount.");
+            }
+            successLabel.setText("Add item to stock complete");
+            successLabel.setStyle("-fx-text-fill: green");
+        }
+        else {
+            warning.setText("Please fill in complete information.");
+        }
+        addItemIdTextField.clear();
+        addItemNameTextField.clear();
+        addAmountTextField.clear();
+        addLocationTextField.clear();
+        addStorageDatePicker.getEditor().clear();
+        loadData(); // Reload data in the table view
     }
 
     @FXML

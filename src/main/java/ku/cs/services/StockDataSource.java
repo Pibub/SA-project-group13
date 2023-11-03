@@ -1,6 +1,5 @@
 package ku.cs.services;
 
-import ku.cs.models.Invoice;
 import ku.cs.models.Stock;
 import ku.cs.models.StockList;
 
@@ -70,6 +69,20 @@ public class StockDataSource implements Datasource<StockList> {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+    @Override
+    public void deleteData(String itemId) {
+        databaseConnection = new DatabaseConnection();
+        Connection connectionStock = databaseConnection.getConnection();
+
+        try {
+            Statement statement = connectionStock.createStatement();
+
+            String deleteItemQuery = "DELETE FROM stock WHERE item_id = '" + itemId + "'";
+            statement.executeUpdate(deleteItemQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

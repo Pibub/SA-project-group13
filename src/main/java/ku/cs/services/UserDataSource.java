@@ -82,4 +82,9 @@ public class UserDataSource implements Datasource<UserList> {
         }
     }
 
+    @Override
+    public void deleteData(String itemId) {
+
+    }
+
 }
