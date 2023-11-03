@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
    <children>
       <AnchorPane prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #191717;">
          <children>
@@ -69,7 +69,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="2.0" layoutY="269.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Requisition" textAlignment="CENTER">
+            <Button layoutX="2.0" layoutY="269.0" mnemonicParsing="false" onAction="#onRequisitionClick" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Requisition" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

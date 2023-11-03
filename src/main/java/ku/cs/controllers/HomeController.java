@@ -66,4 +66,13 @@ public class HomeController {
         }
     }
 
+    @FXML
+    public void onRequisitionClick(){
+        try {
+            FXRouter.goTo("requisition");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
