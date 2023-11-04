@@ -1,5 +1,9 @@
 package ku.cs.models;
 
+import javafx.scene.image.Image;
+
+import java.util.Arrays;
+
 public class User {
     private String userId;
     private String userName;
@@ -10,6 +14,7 @@ public class User {
     private String workDate;
     private String password;
     private String userRole;
+    private String userImage;
     private String databaseName = "User";
 
     public User(String userId , String userName , String birthDate , String sex , String address , String tel , String workDate ,String password ,  String userRole){
@@ -22,9 +27,30 @@ public class User {
         this.workDate = workDate;
         this.password =password;
         this.userRole = userRole;
-
-
     }
+
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
+
+    public User(String userId, String userName, String birthDate, String sex, String address, String tel, String workDate, String password, String userRole, String  userImage) {
+        this.userId = userId;
+        this.userName = userName;
+        this.birthDate = birthDate;
+        this.sex = sex;
+        this.address =address;
+        this.tel = tel;
+        this.workDate = workDate;
+        this.password =password;
+        this.userRole = userRole;
+        this.userImage = userImage;
+    }
+
 
     public String getUserId() {
         return userId;

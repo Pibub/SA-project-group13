@@ -56,6 +56,7 @@ public class CreateNewUser {
         String password = passwordTextField.getText();
         String dob = dobPicker.getValue().toString();
         String swd = swdPicker.getValue().toString();
+        String defaultImage = "src/main/resources/ku/cs/image/user.png";
 
         User user = userList.findUserByIdAndUsername(id, name);
 
@@ -79,7 +80,7 @@ public class CreateNewUser {
                 warningLabel.setStyle("-fx-text-fill: red;");
             } else if (!id.isEmpty() && !name.isEmpty() && !address.isEmpty() && !phone.isEmpty() && !role.isEmpty() && !password.isEmpty()
                     && !dob.isEmpty() && !swd.isEmpty()) {
-                userList.addNewUser(id, name, dob, sex, address, phone, swd, password, role);
+                userList.addNewUser(id, name, dob, sex, address, phone, swd, password, role, defaultImage);
                 userListDatasource.insertData(userList);
                 warningLabel.setText("Add new user complete");
                 warningLabel.setStyle("-fx-text-fill: green");

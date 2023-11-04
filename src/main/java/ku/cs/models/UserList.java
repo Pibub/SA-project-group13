@@ -46,7 +46,7 @@ public class UserList {
         }
         return null;
     }
-    public void addNewUser(String userId, String userName, String birthDate , String sex, String address, String tel, String workDate, String password, String userRole) {
+    public void addNewUser(String userId, String userName, String birthDate , String sex, String address, String tel, String workDate, String password, String userRole, String userImage) {
         userId = userId.trim();
         userName = userName.trim();
         birthDate = birthDate.trim();
@@ -55,10 +55,11 @@ public class UserList {
         tel = tel.trim();
         workDate = workDate.trim();
         userRole = userRole.trim();
+        userImage = userImage.trim();
         if (!userId.equals("") && !userName.equals("")) {
             User exist = findUserByIdAndUsername(userId, userName);
             if (exist == null) {
-                users.add(new User(userId, userName, birthDate , sex, address, tel, workDate, password, userRole));
+                users.add(new User(userId, userName, birthDate , sex, address, tel, workDate, password, userRole, userImage));
             }
         }
     }
