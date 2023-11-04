@@ -3,10 +3,7 @@ package ku.cs.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ku.cs.models.Stock;
 import ku.cs.models.StockList;
@@ -16,8 +13,11 @@ import com.github.saacsos.FXRouter;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+
+import javafx.scene.control.Alert.AlertType;
 
 public class RequisitionManageController {
     @FXML private TableView<Stock> itemTableView;
@@ -92,18 +92,43 @@ public class RequisitionManageController {
             if (selectedStock != null && selectedStock.getAmount() != 0) {
                 int requisitionAmount = Integer.parseInt(amountField.getText());
 
-                // Ensure that the requisition amount is less than or equal to the available amount
                 if (requisitionAmount <= selectedStock.getAmount()) {
-                    selectedStock.setAmount(selectedStock.getAmount() - requisitionAmount);
+                    // Create a confirmation dialog
+                    Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+                    confirmationAlert.setTitle("Confirmation");
+                    confirmationAlert.setHeaderText("Are you sure to add this item?");
+                    confirmationAlert.setContentText("Please confirm your action.");
 
-                    // Update the data source
-                    stockListDatasource.insertData(stockList);
+                    // Show the confirmation dialog and wait for a response
+                    ButtonType confirmButton = new ButtonType("Confirm");
+                    ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                    confirmationAlert.getButtonTypes().setAll(confirmButton, cancelButton);
 
-                    // Refresh the table view
-                    itemTableView.refresh();
-                    amountField.clear();
-                    errorLabel.setText("Requisition successful!");
-                    errorLabel.setStyle("-fx-text-fill: green;");
+                    // Get the user's response
+                    Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+                    if (result.isPresent() && result.get() == confirmButton) {
+                        // User confirmed the action
+                        selectedStock.setAmount(selectedStock.getAmount() - requisitionAmount);
+
+                        // Check if the amount becomes 0 and delete the item from the database
+                        if (selectedStock.getAmount() == 0) {
+                            stockListDatasource.deleteData(selectedStock.getItemId());
+                            stockList.getStockList().remove(selectedStock);
+                        } else {
+                            stockListDatasource.insertData(stockList);
+                        }
+
+                        itemTableView.refresh();
+                        amountField.clear();
+                        errorLabel.setText("Requisition successful!");
+                        errorLabel.setStyle("-fx-text-fill: green;");
+                    } else {
+                        // User canceled the action
+                        errorLabel.setText("Requisition canceled.");
+                        errorLabel.setStyle("-fx-text-fill: red;");
+                        amountField.clear();
+                    }
                 } else {
                     errorLabel.setText("Error: Insufficient stock amount for requisition.");
                     errorLabel.setStyle("-fx-text-fill: red;");
@@ -114,7 +139,7 @@ public class RequisitionManageController {
                 amountField.clear();
             }
         }
+        loadData();
     }
-
 
 }
