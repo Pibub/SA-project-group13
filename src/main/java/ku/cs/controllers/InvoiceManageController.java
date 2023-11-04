@@ -87,7 +87,6 @@ public class InvoiceManageController {
         addAmountTextField.clear();
         addLocationTextField.clear();
         addStorageDatePicker.getEditor().clear();
-
     }
     @FXML public void onCompleteInvoice(){
         if (invoice != null) {

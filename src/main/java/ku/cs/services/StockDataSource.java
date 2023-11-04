@@ -50,12 +50,13 @@ public class StockDataSource implements Datasource<StockList> {
                 ResultSet checkUserResult = statement.executeQuery(checkUserQuery);
 
                 if (checkUserResult.next()) {
-                    String updateUserQuery = "UPDATE invoice SET item_name = '" + stock.getItemName() + "', " +
+                    String updateUserQuery = "UPDATE stock SET item_name = '" + stock.getItemName() + "', " +
                             "amount = '" + stock.getAmount() + "', " +
                             "location = '" + stock.getLocation() + "', " +
                             "storage_date = '" + stock.getStorageDate() + "', " +
-                            "category_id = '" + stock.getCategoryId() + "', " +
+                            "category_id = '" + stock.getCategoryId() + "' " +
                             "WHERE item_id = '" + stock.getItemId() + "'";
+
 
                     statement.executeUpdate(updateUserQuery);
                 } else {

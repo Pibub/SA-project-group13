@@ -12,6 +12,7 @@ import ku.cs.models.Stock;
 import ku.cs.models.StockList;
 import ku.cs.services.Datasource;
 import ku.cs.services.StockDataSource;
+import com.github.saacsos.FXRouter;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -33,6 +34,7 @@ public class RequisitionManageController {
         errorLabel.setText("");
         stockListDatasource = new StockDataSource();
         stockList = stockListDatasource.readData();
+
     }
     private void initTableView() {
         TableColumn<Stock, String> idColumn = new TableColumn<>("ITEM_ID");
@@ -82,26 +84,37 @@ public class RequisitionManageController {
     }
 
     @FXML
-    public void onConfirmClick(){
-        AtomicInteger amount = new AtomicInteger(Integer.parseInt(amountField.getText()));
-        itemTableView.setOnMouseClicked(event -> {
-            Stock selectedStock = itemTableView.getSelectionModel().getSelectedItem();
-            if (event.getClickCount() == 1 && selectedStock != null && selectedStock.getAmount()!= 0) {
-                    selectedStock.setAmount(selectedStock.getAmount() - amount.get());
+    public void onConfirmClick() {
+        String selectedItemId = itemTableView.getSelectionModel().getSelectedItem().getItemId();
+        if (selectedItemId != null && !selectedItemId.isEmpty()) {
+            Stock selectedStock = stockList.findItemById(selectedItemId);
+
+            if (selectedStock != null && selectedStock.getAmount() != 0) {
+                int requisitionAmount = Integer.parseInt(amountField.getText());
+
+                // Ensure that the requisition amount is less than or equal to the available amount
+                if (requisitionAmount <= selectedStock.getAmount()) {
+                    selectedStock.setAmount(selectedStock.getAmount() - requisitionAmount);
+
+                    // Update the data source
+                    stockListDatasource.insertData(stockList);
+
+                    // Refresh the table view
                     itemTableView.refresh();
-                    amount.set(0);
                     amountField.clear();
                     errorLabel.setText("Requisition successful!");
                     errorLabel.setStyle("-fx-text-fill: green;");
-
-            }
-            else {
-                errorLabel.setText("Error please try again.");
+                } else {
+                    errorLabel.setText("Error: Insufficient stock amount for requisition.");
+                    errorLabel.setStyle("-fx-text-fill: red;");
+                }
+            } else {
+                errorLabel.setText("Error: Please try again.");
                 errorLabel.setStyle("-fx-text-fill: red;");
                 amountField.clear();
-                amount.set(0);
-                itemTableView.refresh();
             }
-        });
+        }
     }
+
+
 }

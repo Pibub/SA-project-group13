@@ -27,6 +27,15 @@ public class StockList {
         }
         return null;
     }
+    public Stock findItemById(String id){
+        for(Stock stock : stocks)
+        {
+            if (stock.getItemId().equals(id)){
+                return stock;
+            }
+        }
+        return null;
+    }
 
     public void addStock(String itemId , String itemName , int amount , String location , String storageDate, String categoryId) {
         itemId = itemId.trim();
