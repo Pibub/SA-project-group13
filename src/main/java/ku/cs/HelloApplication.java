@@ -14,9 +14,9 @@ import java.util.Calendar;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        com.github.saacsos.FXRouter.bind(this, stage, "Warehouse", 800, 600);
+        com.github.saacsos.FXRouter.bind(this, stage, "Warehouse", 1000, 800);
         configRoute();
-        FXRouter.goTo("requisition");
+        FXRouter.goTo("login");
     }
 
 

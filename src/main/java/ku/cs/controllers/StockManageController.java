@@ -17,7 +17,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class StockManageController {
     @FXML private TableView<Stock> itemTableView;
@@ -88,11 +92,25 @@ public class StockManageController {
         Stock selectedStock = itemTableView.getSelectionModel().getSelectedItem();
         if (selectedStock != null) {
             String itemId = selectedStock.getItemId();
-            stockListDatasource.deleteData(itemId);
-            loadData(); // Reload data in the table view after deletion
+
+            Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you to delete this item?");
+            confirmationAlert.setContentText("Please confirm your action.");
+
+            ButtonType confirmButton = new ButtonType("Confirm");
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            confirmationAlert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+            if (result.isPresent() && result.get() == confirmButton) {
+                stockListDatasource.deleteData(itemId);
+                loadData(); // Reload data in the table view after deletion
+            }
         }
     }
-    @FXML public  void onAddItemButton(){
+    @FXML
+    public void onAddItemButton() {
         String addItemID = addItemIdTextField.getText();
         String addItemName = addItemNameTextField.getText();
         Integer addAmountText = Integer.valueOf(addAmountTextField.getText());
@@ -101,24 +119,41 @@ public class StockManageController {
 
         Stock stock = stockList.findItemByIdAndName(addItemID, addItemName);
 
-        if(!addItemID.isEmpty() && !addItemName.isEmpty() && addAmountText != null && !addLocation.isEmpty()){
+        if (!addItemID.isEmpty() && !addItemName.isEmpty() && addAmountText != null && !addLocation.isEmpty()) {
             try {
                 int addAmount = Integer.parseInt(String.valueOf(addAmountText));
-                LocalDateTime localDateTime = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
-                String formattedTime = localDateTime.format(formatter);
-                String itemIdWithDate = addItemID + "-" + formattedTime.toString();
-                stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, addDate, addItemID);
-                stockListDatasource.insertData(stockList);
+
+                Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+                confirmationAlert.setTitle("Confirmation");
+                confirmationAlert.setHeaderText("Are you sure to add this item?");
+                confirmationAlert.setContentText("Please confirm your action.");
+
+                ButtonType confirmButton = new ButtonType("Confirm");
+                ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                confirmationAlert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+                Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+                if (result.isPresent() && result.get() == confirmButton) {
+                    LocalDateTime localDateTime = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
+                    String formattedTime = localDateTime.format(formatter);
+                    String itemIdWithDate = addItemID + "-" + formattedTime.toString();
+                    stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, addDate, addItemID);
+                    stockListDatasource.insertData(stockList);
+
+                    successLabel.setText("Add item to stock complete");
+                    successLabel.setStyle("-fx-text-fill: green");
+                } else {
+                    warning.setText("Action canceled.");
+                }
             } catch (NumberFormatException e) {
                 warning.setText("Please enter a valid amount.");
             }
-            successLabel.setText("Add item to stock complete");
-            successLabel.setStyle("-fx-text-fill: green");
-        }
-        else {
+        } else {
             warning.setText("Please fill in complete information.");
         }
+
         addItemIdTextField.clear();
         addItemNameTextField.clear();
         addAmountTextField.clear();

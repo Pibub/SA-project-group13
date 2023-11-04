@@ -9,6 +9,9 @@ import ku.cs.models.User;
 import ku.cs.models.UserList;
 import ku.cs.services.Datasource;
 import ku.cs.services.UserDataSource;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
 
@@ -26,7 +29,7 @@ public class ChangePasswordController {
     }
 
     @FXML
-    public void updatePassword(ActionEvent actionEvent){
+    public void updatePassword(ActionEvent actionEvent) {
         String currentPassword = currentPasswordField.getText();
         String newPassword = newPasswordField.getText();
         String confirmPassword = confirmNewPasswordField.getText();
@@ -35,51 +38,70 @@ public class ChangePasswordController {
 
         user = userList.findUser(userName, currentPassword);
 
+        if (user != null && !currentPassword.isEmpty() && !newPassword.isEmpty() && !confirmPassword.isEmpty() && !newPassword.equals(confirmPassword)) {
+            // Display a confirmation dialog
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Are you sure you want to change the password?");
+            alert.setContentText("Click OK to proceed, or Cancel to abort.");
 
-        if (user != null && !currentPassword.isEmpty() && !newPassword.isEmpty() && !confirmPassword.isEmpty() && newPassword != confirmPassword){
-            errorLabel.setText("Error password do not match");
-            errorLabel.setStyle("-fx-text-fill: red;");
-            currentPasswordField.clear();
-            newPasswordField.clear();
-            confirmNewPasswordField.clear();
-        }
+            // Show the dialog and wait for the user's response
+            ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
 
-        if (!currentPassword.isEmpty() && !newPassword.isEmpty() && !confirmPassword.isEmpty()){
-            if (!currentPassword.equals(newPassword) && newPassword.equals(confirmPassword)){
+            if (result == ButtonType.OK) {
+                // User confirmed, proceed with password update
                 user.setPassword(newPassword);
-
                 userListDatasource.insertData(userList);
                 errorLabel.setText("Update password complete");
                 errorLabel.setStyle("-fx-text-fill: Green;");
                 currentPasswordField.clear();
                 newPasswordField.clear();
                 confirmNewPasswordField.clear();
+            } else {
+                // User canceled, do nothing
             }
-        }
-        else {
-            if (currentPassword == ""){
-                errorLabel.setText("Please enter current password");
+        } else if (!currentPassword.isEmpty() && !newPassword.isEmpty() && !confirmPassword.isEmpty()) {
+            if (!currentPassword.equals(newPassword) && newPassword.equals(confirmPassword)) {
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation");
+                alert.setHeaderText("Are you sure you want to change the password?");
+                alert.setContentText("Click OK to proceed, or Cancel to abort.");
+
+                ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
+
+                if (result == ButtonType.OK) {
+                    user.setPassword(newPassword);
+                    userListDatasource.insertData(userList);
+                    errorLabel.setText("Update password complete");
+                    errorLabel.setStyle("-fx-text-fill: Green;");
+                    currentPasswordField.clear();
+                    newPasswordField.clear();
+                    confirmNewPasswordField.clear();
+                } else {
+                    // User canceled, do nothing
+                }
+            }
+        } else {
+            // Error handling for empty fields
+            if (currentPassword.isEmpty()) {
+                errorLabel.setText("Please enter the current password");
                 errorLabel.setStyle("-fx-text-fill: red;");
-                currentPasswordField.clear();
-                newPasswordField.clear();
-                confirmNewPasswordField.clear();
             }
-            if (confirmPassword == ""){
-                errorLabel.setText("Please enter confirm new password");
+            if (newPassword.isEmpty()) {
+                errorLabel.setText("Please enter the new password");
                 errorLabel.setStyle("-fx-text-fill: red;");
-                currentPasswordField.clear();
-                newPasswordField.clear();
-                confirmNewPasswordField.clear();
             }
-            if (newPassword == ""){
-                errorLabel.setText("Please enter new password");
+            if (confirmPassword.isEmpty()) {
+                errorLabel.setText("Please enter the confirmation password");
                 errorLabel.setStyle("-fx-text-fill: red;");
-                currentPasswordField.clear();
-                newPasswordField.clear();
-                confirmNewPasswordField.clear();
             }
+            // Clear the input fields
+            currentPasswordField.clear();
+            newPasswordField.clear();
+            confirmNewPasswordField.clear();
         }
     }
+
 
     @FXML
     public void onBackButtonClick() {

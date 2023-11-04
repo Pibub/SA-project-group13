@@ -5,9 +5,7 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import ku.cs.models.*;
 import ku.cs.services.Datasource;
 import ku.cs.services.InvoiceDataSource;
@@ -18,6 +16,9 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
+
+import javafx.scene.control.Alert.AlertType;
 
 public class InvoiceManageController {
     @FXML private Label invoiceIDLabel;
@@ -55,7 +56,8 @@ public class InvoiceManageController {
         warning.setStyle("-fx-text-fill: red;");
     }
 
-    @FXML public void onAddItemClick(){
+    @FXML
+    public void onAddItemClick() {
         String addItemID = addItemIdTextField.getText();
         String addItemName = addItemNameTextField.getText();
         Integer addAmountText = Integer.valueOf(addAmountTextField.getText());
@@ -64,70 +66,111 @@ public class InvoiceManageController {
 
         Stock stock = stockList.findItemByIdAndName(addItemID, addItemName);
 
-        if(!addItemID.isEmpty() && !addItemName.isEmpty() && addAmountText != null && !addLocation.isEmpty()){
-            try {
-                int addAmount = Integer.parseInt(String.valueOf(addAmountText));
-                LocalDateTime localDateTime = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
-                String formattedTime = localDateTime.format(formatter);
-                String itemIdWithDate = addItemID + "-" + formattedTime.toString();
-                stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, addDate, addItemID);
-                stockListDatasource.insertData(stockList);
-            } catch (NumberFormatException e) {
-                warning.setText("Please enter a valid amount.");
+        if (!addItemID.isEmpty() && !addItemName.isEmpty() && addAmountText != null && !addLocation.isEmpty()) {
+            // Create a confirmation dialog
+            Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure to add this new item?");
+            confirmationAlert.setContentText("Please confirm your action.");
+
+            // Show the confirmation dialog and wait for a response
+            ButtonType confirmButton = new ButtonType("Confirm");
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            confirmationAlert.getButtonTypes().setAll(confirmButton, cancelButton);
+
+            // Get the user's response
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+            if (result.isPresent() && result.get() == confirmButton) {
+                try {
+                    int addAmount = Integer.parseInt(String.valueOf(addAmountText));
+                    LocalDateTime localDateTime = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
+                    String formattedTime = localDateTime.format(formatter);
+                    String itemIdWithDate = addItemID + "-" + formattedTime.toString();
+                    stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, addDate, addItemID);
+                    stockListDatasource.insertData(stockList);
+                } catch (NumberFormatException e) {
+                    warning.setText("Please enter a valid amount.");
+                }
+                successLabel.setText("Add item to stock complete");
+                successLabel.setStyle("-fx-text-fill: green");
+            } else {
+                // User canceled the action
+                warning.setText("Action canceled");
             }
-            successLabel.setText("Add item to stock complete");
-            successLabel.setStyle("-fx-text-fill: green");
-        }
-        else {
+
+            addItemIdTextField.clear();
+            addItemNameTextField.clear();
+            addAmountTextField.clear();
+            addLocationTextField.clear();
+            addStorageDatePicker.getEditor().clear();
+        } else {
             warning.setText("Please fill in complete information.");
         }
-        addItemIdTextField.clear();
-        addItemNameTextField.clear();
-        addAmountTextField.clear();
-        addLocationTextField.clear();
-        addStorageDatePicker.getEditor().clear();
     }
-    @FXML public void onCompleteInvoice(){
+    @FXML
+    public void onCompleteInvoice() {
         if (invoice != null) {
-            // Update the status of the invoice to "Completed"
-            invoice.setStatus("Completed");
+            Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure to complete this invoice?");
+            confirmationAlert.setContentText("Please confirm your action.");
 
-            // Save the updated status back to the data source
-            InvoiceDataSource invoiceDataSource = new InvoiceDataSource();
-            InvoiceList invoiceList = invoiceDataSource.readData();
+            ButtonType confirmButton = new ButtonType("Confirm");
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            confirmationAlert.getButtonTypes().setAll(confirmButton, cancelButton);
 
-            for (Invoice i : invoiceList.getInvoices()) {
-                if (i.isId(invoice.getItemId())) {
-                    i.setStatus("Completed");
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+            if (result.isPresent() && result.get() == confirmButton) {
+                invoice.setStatus("Completed");
+
+                InvoiceDataSource invoiceDataSource = new InvoiceDataSource();
+                InvoiceList invoiceList = invoiceDataSource.readData();
+
+                for (Invoice i : invoiceList.getInvoices()) {
+                    if (i.isId(invoice.getItemId())) {
+                        i.setStatus("Completed");
+                    }
                 }
+
+                invoiceDataSource.insertData(invoiceList);
+
+                warning.setText("Invoice Status: " + invoice.getStatus());
             }
-
-            invoiceDataSource.insertData(invoiceList);
-
-            // Update the status label to show that the invoice is now completed
-            warning.setText("Invoice Status: " + invoice.getStatus());
         }
     }
-    @FXML public void onInCompleteInvoice(){
+    @FXML
+    public void onInCompleteInvoice() {
         if (invoice != null) {
-            // Update the status of the invoice to "Incomplete"
-            invoice.setStatus("Incomplete");
+            Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure to mark this invoice as incomplete?");
+            confirmationAlert.setContentText("Please confirm your action.");
 
-            // Save the updated status back to the data source
-            InvoiceDataSource invoiceDataSource = new InvoiceDataSource();
-            InvoiceList invoiceList = invoiceDataSource.readData();
+            ButtonType confirmButton = new ButtonType("Confirm");
+            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            confirmationAlert.getButtonTypes().setAll(confirmButton, cancelButton);
 
-            for (Invoice i : invoiceList.getInvoices()) {
-                if (i.isId(invoice.getItemId())) {
-                    i.setStatus("Incomplete");
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+            if (result.isPresent() && result.get() == confirmButton) {
+                invoice.setStatus("Incomplete");
+
+                InvoiceDataSource invoiceDataSource = new InvoiceDataSource();
+                InvoiceList invoiceList = invoiceDataSource.readData();
+
+                for (Invoice i : invoiceList.getInvoices()) {
+                    if (i.isId(invoice.getItemId())) {
+                        i.setStatus("Incomplete");
+                    }
                 }
+
+                invoiceDataSource.insertData(invoiceList);
+
+                warning.setText("Invoice Status: " + invoice.getStatus());
             }
-
-            invoiceDataSource.insertData(invoiceList);
-
-            // Update the status label to show that the invoice is now incomplete
-            warning.setText("Invoice Status: " + invoice.getStatus());
         }
     }
     @FXML

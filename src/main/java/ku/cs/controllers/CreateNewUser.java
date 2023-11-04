@@ -9,6 +9,11 @@ import ku.cs.services.UserDataSource;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Optional;
+
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class CreateNewUser {
 
@@ -40,7 +45,8 @@ public class CreateNewUser {
         }
     }
 
-    @FXML public void addNewUser(){
+    @FXML
+    public void addNewUser() {
         String id = idTextField.getText();
         String name = nameTextField.getText();
         String sex = sexTextField.getText();
@@ -53,57 +59,51 @@ public class CreateNewUser {
 
         User user = userList.findUserByIdAndUsername(id, name);
 
-        if (user != null ){
-            warningLabel.setText("The username is already exist.");
-            warningLabel.setStyle("-fx-text-fill: red;");
-        }
-        else if (!id.isEmpty() && !name.isEmpty() && !address.isEmpty() && !phone.isEmpty() && !role.isEmpty() && !password.isEmpty()
-        && !dob.isEmpty() && !swd.isEmpty()){
-            userList.addNewUser(id, name, dob, sex, address, phone, swd, password, role);
-            userListDatasource.insertData(userList);
-            warningLabel.setText("Add new user complete");
-            warningLabel.setStyle("-fx-text-fill: green");
-        }
-        if (id.isEmpty() && name.isEmpty() && address.isEmpty() && phone.isEmpty() && role.isEmpty() && password.isEmpty()){
-            warningLabel.setText("Please fill out the information completely");
-            warningLabel.setStyle("-fx-text-fill: red;");
-        }
+        // Create a confirmation dialog
+        Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText("Are you sure to add this new user?");
+        confirmationAlert.setContentText("Please confirm your action.");
 
-        else if (name.isEmpty()){
-            warningLabel.setText("Please fill out the information completely");
-            warningLabel.setStyle("-fx-text-fill: red;");
-        }
+        // Show the confirmation dialog and wait for a response
+        ButtonType confirmButton = new ButtonType("Confirm");
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        confirmationAlert.getButtonTypes().setAll(confirmButton, cancelButton);
 
-        else if (address.isEmpty()){
-            warningLabel.setText("Please fill out the information completely");
-            warningLabel.setStyle("-fx-text-fill: red;");
-        }
-        else if (phone.isEmpty()){
-            warningLabel.setText("Please fill out the information completely");
-            warningLabel.setStyle("-fx-text-fill: red;");
-        }
-        else if (role.isEmpty()){
-            warningLabel.setText("Please fill out the information completely");
-            warningLabel.setStyle("-fx-text-fill: red;");
-        }
+        // Get the user's response
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
 
-        else if (password.isEmpty()){
-            warningLabel.setText("Please fill out the information completely");
-            warningLabel.setStyle("-fx-text-fill: red;");
-        }
+        if (result.isPresent() && result.get() == confirmButton) {
+            if (user != null) {
+                warningLabel.setText("The username is already exist.");
+                warningLabel.setStyle("-fx-text-fill: red;");
+            } else if (!id.isEmpty() && !name.isEmpty() && !address.isEmpty() && !phone.isEmpty() && !role.isEmpty() && !password.isEmpty()
+                    && !dob.isEmpty() && !swd.isEmpty()) {
+                userList.addNewUser(id, name, dob, sex, address, phone, swd, password, role);
+                userListDatasource.insertData(userList);
+                warningLabel.setText("Add new user complete");
+                warningLabel.setStyle("-fx-text-fill: green");
+            } else {
+                warningLabel.setText("Please fill out the information completely");
+                warningLabel.setStyle("-fx-text-fill: red;");
+            }
 
-        idTextField.clear();
-        nameTextField.clear();
-        sexTextField.clear();
-        addressTextField.clear();
-        phoneTextField.clear();
-        roleTextField.clear();
-        passwordTextField.clear();
-        dobPicker.getEditor().clear();
-        dobPicker.setValue(null);
-        swdPicker.getEditor().clear();
-        swdPicker.setValue(null);
-        dobPicker.setValue(LocalDate.now());
-        swdPicker.setValue(LocalDate.now());
+            idTextField.clear();
+            nameTextField.clear();
+            sexTextField.clear();
+            addressTextField.clear();
+            phoneTextField.clear();
+            roleTextField.clear();
+            passwordTextField.clear();
+            dobPicker.getEditor().clear();
+            dobPicker.setValue(null);
+            swdPicker.getEditor().clear();
+            swdPicker.setValue(null);
+            dobPicker.setValue(LocalDate.now());
+            swdPicker.setValue(LocalDate.now());
+        } else {
+            // User canceled the action
+            warningLabel.setText("Action canceled");
+        }
     }
 }
