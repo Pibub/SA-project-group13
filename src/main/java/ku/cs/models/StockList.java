@@ -41,4 +41,8 @@ public class StockList {
         }
     }
 
+    public static void updateAmount(){
+
+    }
+
 }

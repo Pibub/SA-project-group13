@@ -29,6 +29,18 @@ public class RequisitionController {
         loadData();
         initTableView();
 
+        itemTableView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+                Stock selectedStock = itemTableView.getSelectionModel().getSelectedItem();
+                if (selectedStock != null) {
+                    try {
+                        com.github.saacsos.FXRouter.goTo("requisition-manage", selectedStock.getCategoryId());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
         keywordsTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(stock -> {
                 if (newValue == null || newValue.isEmpty()) {

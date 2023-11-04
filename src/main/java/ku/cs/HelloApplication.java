@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         com.github.saacsos.FXRouter.bind(this, stage, "Warehouse", 800, 600);
         configRoute();
-        FXRouter.goTo("receivingData");
+        FXRouter.goTo("requisition");
     }
 
 
@@ -33,6 +33,7 @@ public class HelloApplication extends Application {
         FXRouter.when("invoiceManage" ,packageStr+ "invoice-manage.fxml");
         FXRouter.when("stockManage" ,packageStr+ "stock-manage.fxml");
         FXRouter.when("requisition" , packageStr + "requisition.fxml");
+        FXRouter.when("requisition-manage" , packageStr + "requisition-manage.fxml");
     }
 
     public static void main(String[] args) {
