@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ku.cs.models.*;
 import ku.cs.services.Datasource;
+import ku.cs.services.HistoryDataSource;
 import ku.cs.services.StockDataSource;
 import com.github.saacsos.FXRouter;
 
@@ -46,6 +47,9 @@ public class RequisitionManageController {
         stockList = stockListDatasource.readData();
         userList = userListDatasource.readData();
         user = userList.getUsers().get(0);
+
+        historyList = new HistoryList();
+        historyListDatasource = new HistoryDataSource();
     }
     private String generateRequisitionID() {
         String timestamp = String.valueOf(System.currentTimeMillis());
@@ -135,7 +139,7 @@ public class RequisitionManageController {
                             LocalDate now = LocalDate.now();
                             stockListDatasource.insertData(stockList);
                             String requisitionID = generateRequisitionID();
-                            historyList.addHistory(new History(user.getUserId() ,selectedStock.getItemId(), now.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), stock.getAmount() , requisitionID));
+                            historyList.addHistory(new History(user.getUserId() ,selectedStock.getItemId(), now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")), requisitionAmount , "REQ" + now.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
                             historyListDatasource.insertData(historyList);
 
                         }

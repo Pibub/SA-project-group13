@@ -36,28 +36,38 @@ public class HistoryDataSource implements Datasource<HistoryList>{
     @Override
     public void insertData(HistoryList historyList) {
         databaseConnection = new DatabaseConnection();
-        Connection connectionUser = databaseConnection.getConnection();
+        Connection connectionHistory = databaseConnection.getConnection();
+
         for (History history : historyList.getHistories()) {
             try {
-                Statement statement = connectionUser.createStatement();
-                String insertHistoryQuery = "INSERT INTO history (user_id, item_id, date, amount, requisition_id) " +
-                        "VALUES (?, ?, ?, ?, ?)";
-                try (PreparedStatement preparedStatement = connectionUser.prepareStatement(insertHistoryQuery)) {
-                    preparedStatement.setString(1, history.getUserId());
-                    preparedStatement.setString(2, history.getItemId());
-                    preparedStatement.setString(3, history.getDate());
-                    preparedStatement.setFloat(4, history.getAmount());
-                    preparedStatement.setString(5, history.getRequisitionId());
+                Statement statement = connectionHistory.createStatement();
 
-                    preparedStatement.executeUpdate();
+                String checkHistoryQuery = "SELECT * FROM history WHERE requisition_id = '" + history.getRequisitionId() + "'";
+                ResultSet checkHistoryResult = statement.executeQuery(checkHistoryQuery);
 
-                    statement.executeUpdate(insertHistoryQuery);
-            }
-            } catch (SQLException e) {
+                if (checkHistoryResult.next()){
+                    String updateHistoryQuery = "UPDATE history SET requisition_id '" + history.getRequisitionId() + "'," +
+                            "user_id = '" + history.getUserId() + "'," +
+                            "item_id = '" + history.getItemId() + "', " +
+                            "date = '" + history.getDate() + "', " +
+                            "amount = '" + history.getAmount() + "' " +
+                            "WHERE requisition_id = '" + history.getRequisitionId() + "'";
+
+                    statement.executeUpdate(updateHistoryQuery);
+                }else {
+
+                    String insertUserQuery = "INSERT INTO history (user_id, item_id, date, amount, requisition_id) " +
+                            "VALUES ('" + history.getUserId() + "', '" + history.getItemId() + "', '" + history.getDate() + "', '" +
+                            history.getAmount() + "', '" + history.getRequisitionId() + "')";
+
+                    statement.executeUpdate(insertUserQuery);
+                }
+            } catch (Exception e) {
                 e.printStackTrace();
             }
+            }
+
         }
-    }
 
     @Override
     public void deleteData(String itemId) {

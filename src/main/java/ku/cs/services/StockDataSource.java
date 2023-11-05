@@ -60,7 +60,7 @@ public class StockDataSource implements Datasource<StockList> {
 
                     statement.executeUpdate(updateUserQuery);
                 } else {
-                    // If the user doesn't exist, insert a new user
+
                     String insertUserQuery = "INSERT INTO stock (item_id, item_name, amount, location, storage_date, category_id) " +
                             "VALUES ('" + stock.getItemId() + "', '" + stock.getItemName() + "', '" + stock.getAmount() + "', '" +
                             stock.getLocation() + "', '" + stock.getStorageDate() + "', '" + stock.getCategoryId() + "')";
