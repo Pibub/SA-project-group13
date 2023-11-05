@@ -5,19 +5,21 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import ku.cs.models.Stock;
-import ku.cs.models.StockList;
+import ku.cs.models.*;
 import ku.cs.services.Datasource;
 import ku.cs.services.StockDataSource;
 import com.github.saacsos.FXRouter;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import javafx.scene.control.Alert.AlertType;
+import ku.cs.services.UserDataSource;
 
 public class RequisitionManageController {
     @FXML private TableView<Stock> itemTableView;
@@ -26,15 +28,29 @@ public class RequisitionManageController {
     @FXML private Label errorLabel;
     private  Stock stock;
     private Datasource<StockList> stockListDatasource;
+    private Datasource<UserList> userListDatasource;
+
+    private Datasource<HistoryList> historyListDatasource;
     private StockList stockList;
+    private User user;
+    private UserList userList;
+
+    private HistoryList historyList;
     @FXML
     public void initialize() {
         loadData();
         initTableView();
         errorLabel.setText("");
         stockListDatasource = new StockDataSource();
+        userListDatasource = new UserDataSource();
         stockList = stockListDatasource.readData();
-
+        userList = userListDatasource.readData();
+        user = userList.getUsers().get(0);
+    }
+    private String generateRequisitionID() {
+        String timestamp = String.valueOf(System.currentTimeMillis());
+        String uniqueIdentifier = "REQ";
+        return uniqueIdentifier + timestamp;
     }
     private void initTableView() {
         TableColumn<Stock, String> idColumn = new TableColumn<>("ITEM_ID");
@@ -116,7 +132,12 @@ public class RequisitionManageController {
                             stockListDatasource.deleteData(selectedStock.getItemId());
                             stockList.getStockList().remove(selectedStock);
                         } else {
+                            LocalDate now = LocalDate.now();
                             stockListDatasource.insertData(stockList);
+                            String requisitionID = generateRequisitionID();
+                            historyList.addHistory(new History(user.getUserId() ,selectedStock.getItemId(), now.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")), stock.getAmount() , requisitionID));
+                            historyListDatasource.insertData(historyList);
+
                         }
 
                         itemTableView.refresh();

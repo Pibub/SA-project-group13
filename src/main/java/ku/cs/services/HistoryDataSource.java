@@ -2,11 +2,9 @@ package ku.cs.services;
 
 import ku.cs.models.History;
 import ku.cs.models.HistoryList;
+import ku.cs.models.Stock;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class HistoryDataSource implements Datasource<HistoryList>{
     private DatabaseConnection databaseConnection;
@@ -37,7 +35,28 @@ public class HistoryDataSource implements Datasource<HistoryList>{
 
     @Override
     public void insertData(HistoryList historyList) {
+        databaseConnection = new DatabaseConnection();
+        Connection connectionUser = databaseConnection.getConnection();
+        for (History history : historyList.getHistories()) {
+            try {
+                Statement statement = connectionUser.createStatement();
+                String insertHistoryQuery = "INSERT INTO history (user_id, item_id, date, amount, requisition_id) " +
+                        "VALUES (?, ?, ?, ?, ?)";
+                try (PreparedStatement preparedStatement = connectionUser.prepareStatement(insertHistoryQuery)) {
+                    preparedStatement.setString(1, history.getUserId());
+                    preparedStatement.setString(2, history.getItemId());
+                    preparedStatement.setString(3, history.getDate());
+                    preparedStatement.setFloat(4, history.getAmount());
+                    preparedStatement.setString(5, history.getRequisitionId());
 
+                    preparedStatement.executeUpdate();
+
+                    statement.executeUpdate(insertHistoryQuery);
+            }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

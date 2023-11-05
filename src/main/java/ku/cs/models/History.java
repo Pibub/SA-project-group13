@@ -6,7 +6,7 @@ public class History {
     private String date;
     private Float amount;
     private String requisitionId;
-    public History(String userId, String itemId, String date, Float amount, String requisitionId) {
+    public History(String userId, String itemId, String date, float amount, String requisitionId) {
         this.userId = userId;
         this.itemId = itemId;
         this.date = date;
