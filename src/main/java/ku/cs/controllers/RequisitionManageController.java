@@ -14,6 +14,7 @@ import com.github.saacsos.FXRouter;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -113,6 +114,10 @@ public class RequisitionManageController {
                 int requisitionAmount = Integer.parseInt(amountField.getText());
 
                 if (requisitionAmount <= selectedStock.getAmount()) {
+                    // Create a new instance of HistoryList and HistoryDataSource
+                    HistoryList historyList = new HistoryList();
+                    HistoryDataSource historyListDatasource = new HistoryDataSource();
+
                     // Create a confirmation dialog
                     Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
                     confirmationAlert.setTitle("Confirmation");
@@ -139,9 +144,11 @@ public class RequisitionManageController {
                             LocalDate now = LocalDate.now();
                             stockListDatasource.insertData(stockList);
                             String requisitionID = generateRequisitionID();
-                            historyList.addHistory(new History(user.getUserId() ,selectedStock.getItemId(), now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")), requisitionAmount , "REQ" + now.format(DateTimeFormatter.ofPattern("yyyyMMdd"))));
+                            LocalDateTime localDateTime = LocalDateTime.now();
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmmyyyyMMdd");
+                            String formattedTime = localDateTime.format(formatter);
+                            historyList.addHistory(new History(user.getUserId(), selectedStock.getItemId(), now.format(DateTimeFormatter.ofPattern("yyyy/MM/dd")), requisitionAmount, "REQ" + formattedTime));
                             historyListDatasource.insertData(historyList);
-
                         }
 
                         itemTableView.refresh();
@@ -166,5 +173,7 @@ public class RequisitionManageController {
         }
         loadData();
     }
+
+
 
 }

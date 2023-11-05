@@ -45,29 +45,20 @@ public class HistoryDataSource implements Datasource<HistoryList>{
                 String checkHistoryQuery = "SELECT * FROM history WHERE requisition_id = '" + history.getRequisitionId() + "'";
                 ResultSet checkHistoryResult = statement.executeQuery(checkHistoryQuery);
 
-                if (checkHistoryResult.next()){
-                    String updateHistoryQuery = "UPDATE history SET requisition_id '" + history.getRequisitionId() + "'," +
-                            "user_id = '" + history.getUserId() + "'," +
-                            "item_id = '" + history.getItemId() + "', " +
-                            "date = '" + history.getDate() + "', " +
-                            "amount = '" + history.getAmount() + "' " +
-                            "WHERE requisition_id = '" + history.getRequisitionId() + "'";
-
-                    statement.executeUpdate(updateHistoryQuery);
-                }else {
-
+                if (!checkHistoryResult.next()) {
                     String insertUserQuery = "INSERT INTO history (user_id, item_id, date, amount, requisition_id) " +
-                            "VALUES ('" + history.getUserId() + "', '" + history.getItemId() + "', '" + history.getDate() + "', '" +
-                            history.getAmount() + "', '" + history.getRequisitionId() + "')";
+                            "VALUES ('" + history.getUserId() + "', '" + history.getItemId() + "', '" + history.getDate() + "', " +
+                            history.getAmount() + ", '" + history.getRequisitionId() + "')";
 
                     statement.executeUpdate(insertUserQuery);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            }
-
         }
+    }
+
+
 
     @Override
     public void deleteData(String itemId) {
