@@ -1,32 +1,33 @@
 package ku.cs.models;
 
 public class History {
-    private String user_id;
-    private String item_id;
-
+    private String userId;
+    private String itemId;
     private String date;
-    private String databaseName = "History";
-
-    public History(String user_id , String item_id , String date){
-        this.user_id = user_id;
-        this.item_id = item_id;
+    private Float amount;
+    private String requisitionId;
+    public History(String userId, String itemId, String date, Float amount, String requisitionId) {
+        this.userId = userId;
+        this.itemId = itemId;
         this.date = date;
+        this.amount = amount;
+        this.requisitionId = requisitionId;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getItem_id() {
-        return item_id;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setItem_id(String item_id) {
-        this.item_id = item_id;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
     public String getDate() {
@@ -37,14 +38,22 @@ public class History {
         this.date = date;
     }
 
-    public String getDatabaseName() {
-        return databaseName;
+    public Float getAmount() {
+        return amount;
     }
 
-    public void setDatabaseName(String databaseName) {
-        this.databaseName = databaseName;
+    public void setAmount(Float amount) {
+        this.amount = amount;
     }
 
-    public void add(History history) {
+    public String getRequisitionId() {
+        return requisitionId;
     }
+
+    public void setRequisitionId(String requisitionId) {
+        this.requisitionId = requisitionId;
+    }
+
+
+
 }
