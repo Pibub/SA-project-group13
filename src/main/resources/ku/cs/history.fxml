@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HistoryController">
+   <children>
+      <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisition History">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TableView layoutX="14.0" layoutY="50.0" prefHeight="200.0" prefWidth="347.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="195.99998779296874" text="Column X" />
+        </columns>
+      </TableView>
+      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" />
+   </children>
+</AnchorPane>

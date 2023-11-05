@@ -19,10 +19,5 @@ public class ServiceDisabledController {
             System.out.println(dtf.format(now));
         }
     }
-    public DateTimeFormatter getDate(){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        LocalDateTime now = LocalDateTime.now();
-        return dtf;
-    }
 }
 
