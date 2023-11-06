@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ku.cs.models.*;
-import ku.cs.services.ActualCountStockDataSource;
-import ku.cs.services.CountStockDataSource;
-import ku.cs.services.Datasource;
-import ku.cs.services.UserDataSource;
+import ku.cs.services.*;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -27,7 +24,10 @@ public class ActualCountStockController {
     @FXML private TextField inputerIdTextField;
     @FXML private TextField inputerNameTextField;
     @FXML private TableView<ActualCountStock> itemTableView;
-    @FXML private TableView<CountStock> itemCountStockTableView;
+    @FXML private TextField analyzeCategoryId;
+    @FXML private TextField analyzeUserId;
+    @FXML private TextField analyzeUserName;
+    @FXML private TextField analyzeText;
     private UserList userList;
     private Datasource<UserList> userListDatasource;
     private User user;
@@ -35,7 +35,8 @@ public class ActualCountStockController {
     private Datasource<CountStockList> countStockListDatasource;
     private ActualCountStockList actualCountStockList;
     private Datasource<ActualCountStockList> actualCountStockListDatasource;
-    private CountStock countStock;
+    private AnalyzeList analyzeList;
+    private Datasource<AnalyzeList> analyzeListDatasource;
     public void initialize() {
         loadData();
         initTableView();
@@ -50,6 +51,9 @@ public class ActualCountStockController {
 
         actualCountStockListDatasource = new ActualCountStockDataSource();
         actualCountStockList = actualCountStockListDatasource.readData();
+
+        analyzeListDatasource = new AnalyzeDataSource();
+        analyzeList = analyzeListDatasource.readData();
 
         String userName = (String) com.github.saacsos.FXRouter.getData();
         user = userList.findUserByUsername(userName);
@@ -105,10 +109,6 @@ public class ActualCountStockController {
         ObservableList<ActualCountStock> countStockItems = FXCollections.observableArrayList(actualCountStockList.getActualCountStockList());
 
         itemTableView.setItems(countStockItems);
-    }
-    private void loadCountStockData() {
-        ObservableList<CountStock> countStockItems = FXCollections.observableArrayList(countStockList.getCountStocks());
-        itemCountStockTableView.setItems(countStockItems);
     }
 
     @FXML
@@ -198,11 +198,49 @@ public class ActualCountStockController {
         inputerIdTextField.clear();
         inputerNameTextField.clear();
     }
+    @FXML
+    public void sendAnalyze() {
+        String categoryId = analyzeCategoryId.getText();
+        String userId = analyzeUserId.getText();
+        String userName = analyzeUserName.getText();
+        String textAnalyze = analyzeText.getText();
+
+        Analyze newAnalyze = new Analyze(categoryId, userId, userName, textAnalyze);
+
+        AnalyzeDataSource analyzeDataSource = new AnalyzeDataSource();
+
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirmation");
+        confirmationAlert.setHeaderText(null);
+        confirmationAlert.setContentText("Are you sure you want to send this analysis?");
+
+        Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            AnalyzeList analyzeList = new AnalyzeList();
+            analyzeList.addAnalyze(newAnalyze);
+            analyzeDataSource.insertData(analyzeList);
+
+            analyzeCategoryId.clear();
+            analyzeUserId.clear();
+            analyzeUserName.clear();
+            analyzeText.clear();
+
+            showAlert("Analysis Sent", "Your analysis has been sent successfully.");
+        }
+    }
 
 
     public void onBackClick(){
         try {
             com.github.saacsos.FXRouter.goTo("count-stock");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public void onGotoStockEditClick(){
+        try {
+            com.github.saacsos.FXRouter.goTo("editstock");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

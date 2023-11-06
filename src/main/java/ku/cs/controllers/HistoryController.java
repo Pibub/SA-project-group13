@@ -26,8 +26,6 @@ public class HistoryController {
     public void initialize() {
         loadData();
         initTableView();
-        historyList = new HistoryList();
-        historyListDatasource = new HistoryDataSource();
     }
     private void initTableView() {
         TableColumn<History, String> userIdColumn = new TableColumn<>("USER_ID");
@@ -45,27 +43,21 @@ public class HistoryController {
         TableColumn<History, String> requisitionIdColumn = new TableColumn<>("REQUISITION_ID");
         requisitionIdColumn.setCellValueFactory(new PropertyValueFactory<>("requisitionId"));
 
-
-
-
-        itemTableView.getColumns().setAll(userIdColumn, itemIdColumn, amountColumn, dateColumn, amountColumn, requisitionIdColumn);
+        // Add columns to the TableView
+        itemTableView.getColumns().setAll(userIdColumn, itemIdColumn, dateColumn, amountColumn, requisitionIdColumn);
     }
+
     public void loadData() {
         historyListDatasource = new HistoryDataSource();
         historyList = historyListDatasource.readData();
 
-        String categoryId = (String) com.github.saacsos.FXRouter.getData();
+        // Convert the List of History objects to an ObservableList
+        ObservableList<History> historyObservableList = FXCollections.observableArrayList(historyList.getHistories());
 
-        if (categoryId != null) {
-            ObservableList<History> itemsWithSameCategory = FXCollections.observableArrayList(
-                    historyList.getHistories().stream()
-                            .filter(history -> categoryId.equals(history.getItemId()))
-                            .collect(Collectors.toList())
-            );
-            itemTableView.setItems(itemsWithSameCategory);
-            initTableView();
-        }
+        // Set the ObservableList as the items in the TableView
+        itemTableView.setItems(historyObservableList);
     }
+
     public void onBackButtonClick(){
         try {
             com.github.saacsos.FXRouter.goTo("login");
