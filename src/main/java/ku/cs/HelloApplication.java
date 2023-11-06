@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import com.github.saacsos.FXRouter;
 import ku.cs.controllers.ServiceDisabledController;
+
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 import java.io.IOException;
@@ -14,9 +16,11 @@ import java.util.Calendar;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        com.github.saacsos.FXRouter.bind(this, stage, "Warehouse", 1000, 800);
-        configRoute();
-        FXRouter.goTo("login");
+        LocalDate now = LocalDate.now();
+        LocalDate closeSystem = LocalDate.of(2023 , 6 , 11);
+            com.github.saacsos.FXRouter.bind(this, stage, "Warehouse", 1000, 800);
+            configRoute();
+            FXRouter.goTo("login");
     }
 
 
@@ -34,6 +38,7 @@ public class HelloApplication extends Application {
         FXRouter.when("stockManage" ,packageStr+ "stock-manage.fxml");
         FXRouter.when("requisition" , packageStr + "requisition.fxml");
         FXRouter.when("requisition-manage" , packageStr + "requisition-manage.fxml");
+        FXRouter.when("history" , packageStr + "history.fxml");
     }
 
     public static void main(String[] args) {

@@ -11,7 +11,9 @@ import ku.cs.services.Datasource;
 import ku.cs.services.UserDataSource;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class LoginController {
@@ -36,9 +38,20 @@ public class LoginController {
         String username = usernameText.getText();
         String password = passwordText.getText();
         User user = userList.findUser(username, password);
+        LocalDate now = LocalDate.now();
+        LocalDate closeSystem = LocalDate.of(2023 , 12 , 6);
+        LocalDate closeSystemFinalDay = LocalDate.of(2023 , 12 , 7);
         if(user != null){
             try{
-                FXRouter.goTo("home", user.getUserName());
+                if(now.equals(closeSystem) && !Objects.equals(user.getUserRole(), "admin") || now.equals(closeSystem) && !Objects.equals(user.getUserRole(), "Inputter")
+                        ||now.equals(closeSystemFinalDay) && !Objects.equals(user.getUserRole(), "admin") || now.equals(closeSystemFinalDay) && !Objects.equals(user.getUserRole(), "Inputter")
+                        || now.equals(closeSystem) && !Objects.equals(user.getUserRole(), "warehouse data")
+                        ||now.equals(closeSystemFinalDay) && !Objects.equals(user.getUserRole(), "warehouse data") ){
+                    FXRouter.goTo("disable-service");
+                }
+                else {
+                    FXRouter.goTo("home", user.getUserName());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

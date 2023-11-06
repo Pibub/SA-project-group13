@@ -96,5 +96,16 @@
          </children>
       </AnchorPane>
       <Separator layoutX="184.0" layoutY="61.0" orientation="VERTICAL" prefHeight="538.0" prefWidth="6.0" style="-fx-background-color: #191717;" />
+      <Button layoutX="220.0" layoutY="80.0" mnemonicParsing="false" onAction="#onHistoryButtonClick" text="History" />
+      <Label fx:id="headerLabel" layoutX="220.0" layoutY="150.0" text="headerLabel" textFill="WHITE">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="textLabel" layoutX="220.0" layoutY="211.0" text="textLabel" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
