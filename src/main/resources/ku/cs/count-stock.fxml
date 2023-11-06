@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.CountStockController">
+   <children>
+      <Button layoutX="56.0" layoutY="36.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
+      <Button layoutX="220.0" layoutY="364.0" mnemonicParsing="false" onAction="#onWareHouseCountClick" text="Ware house count" />
+      <Button layoutX="754.0" layoutY="364.0" mnemonicParsing="false" onAction="#onActualCountStockClick" text="Actual count stock day" />
+   </children>
+</AnchorPane>

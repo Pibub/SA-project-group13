@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
    <children>
       <AnchorPane prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #191717;">
          <children>
@@ -93,6 +93,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button layoutX="46.0" layoutY="415.0" mnemonicParsing="false" onAction="#onCountStockClick" text="Count stock" />
          </children>
       </AnchorPane>
       <Separator layoutX="184.0" layoutY="61.0" orientation="VERTICAL" prefHeight="538.0" prefWidth="6.0" style="-fx-background-color: #191717;" />

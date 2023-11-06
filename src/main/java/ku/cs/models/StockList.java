@@ -18,15 +18,6 @@ public class StockList {
         }
         return null;
     }
-    public Stock findItemByCategoryId(String id){
-        for (Stock stock : stocks)
-        {
-            if(stock.getCategoryId().equals(id)){
-                return stock;
-            }
-        }
-        return null;
-    }
     public Stock findItemById(String id){
         for(Stock stock : stocks)
         {

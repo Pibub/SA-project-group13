@@ -34,6 +34,9 @@ public class HelloApplication extends Application {
         FXRouter.when("stockManage" ,packageStr+ "stock-manage.fxml");
         FXRouter.when("requisition" , packageStr + "requisition.fxml");
         FXRouter.when("requisition-manage" , packageStr + "requisition-manage.fxml");
+        FXRouter.when("count-stock" , packageStr + "count-stock.fxml");
+        FXRouter.when("ware-house-count" , packageStr + "ware-house-count.fxml");
+        FXRouter.when("actual-count-stock" , packageStr + "actual-count-stock.fxml");
     }
 
     public static void main(String[] args) {

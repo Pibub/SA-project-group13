@@ -74,5 +74,12 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
+    @FXML public void onCountStockClick(){
+        try {
+            FXRouter.goTo("count-stock", user.getUserName());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
