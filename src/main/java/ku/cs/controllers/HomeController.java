@@ -2,6 +2,9 @@ package ku.cs.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import com.github.saacsos.FXRouter;
 import ku.cs.models.User;
@@ -67,27 +70,42 @@ public class HomeController {
     }
     @FXML
     public void onEditStock() {
-        try {
-            FXRouter.goTo("editstock");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        // Check if the user's role is "admin" or "warehouse"
+        if ("admin".equals(user.getUserRole()) || "warehouse".equals(user.getUserRole())) {
+            try {
+                FXRouter.goTo("editstock");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            showAccessDeniedAlert();
         }
     }
 
     @FXML
     public void onCreateNewUserClick() {
-        try {
-            FXRouter.goTo("createNewUser");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        // Check if the user's role is "admin"
+        if ("admin".equals(user.getUserRole())) {
+            try {
+                FXRouter.goTo("createNewUser");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            showAccessDeniedAlert();
         }
     }
     @FXML
     public void onReceivingDataClick() {
-        try {
-            FXRouter.goTo("receivingData");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        // Check if the user's role is "admin" or "warehouse"
+        if ("admin".equals(user.getUserRole()) || "warehouse".equals(user.getUserRole())) {
+            try {
+                FXRouter.goTo("receivingData");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            showAccessDeniedAlert();
         }
     }
 
@@ -99,21 +117,44 @@ public class HomeController {
             throw new RuntimeException(e);
         }
     }
-    @FXML public void onCountStockClick(){
-        try {
-            FXRouter.goTo("count-stock", user.getUserName());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    @FXML
+    public void onCountStockClick() {
+        // Check if the user's role is "admin" or "warehouse"
+        if ("admin".equals(user.getUserRole()) || "warehouse".equals(user.getUserRole())) {
+            try {
+                FXRouter.goTo("count-stock", user.getUserName());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            showAccessDeniedAlert();
         }
     }
 
     @FXML
-    public  void  onHistoryButtonClick(){
-        try{
-            FXRouter.goTo("history");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public void onHistoryButtonClick() {
+        // Check if the user's role is "admin" or "warehouse"
+        if ("admin".equals(user.getUserRole()) || "warehouse".equals(user.getUserRole())) {
+            try {
+                FXRouter.goTo("history");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            showAccessDeniedAlert();
         }
     }
+    private void showAccessDeniedAlert() {
+        Alert accessDeniedAlert = new Alert(Alert.AlertType.ERROR);
+        accessDeniedAlert.setTitle("Access Denied");
+        accessDeniedAlert.setHeaderText("Access Denied");
+        accessDeniedAlert.setContentText("You do not have permission to access this page.");
+
+        ButtonType closeButton = new ButtonType("Close", ButtonBar.ButtonData.CANCEL_CLOSE);
+        accessDeniedAlert.getButtonTypes().setAll(closeButton);
+
+        accessDeniedAlert.showAndWait();
+    }
+
 
 }

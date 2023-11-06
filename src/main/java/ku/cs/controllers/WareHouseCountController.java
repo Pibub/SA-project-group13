@@ -68,39 +68,52 @@ public class WareHouseCountController {
     public void onInsertDataClick() {
         String itemName = itemNameTextField.getText();
         String categoryId = categoryIdTextField.getText();
-        float total = Float.parseFloat(totalTextfield.getText());
+        String totalText = totalTextfield.getText();
         String location = locationTextField.getText();
 
-        // Create a new CountStock object
-        CountStock newCountStock = new CountStock(user.getUserId(), itemName, categoryId, total, location, user.getUserName());
-
-        // Create a confirmation dialog
-        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle("Confirmation");
-        confirmationAlert.setHeaderText("Are you sure to add this item?");
-        confirmationAlert.setContentText("Please confirm your action.");
-
-        // Show the confirmation dialog and wait for a response
-        Optional<ButtonType> result = confirmationAlert.showAndWait();
-
-        if (result.isPresent() && result.get() == ButtonType.OK) {
-            // User confirmed the action
-            // Add the new CountStock to the CountStockList and update the database
-            countStockList.addCountStock(newCountStock);
-            CountStockDataSource countStockDataSource = new CountStockDataSource();
-            countStockDataSource.insertData(countStockList);
-
-            // Clear the input fields
-            itemNameTextField.clear();
-            categoryIdTextField.clear();
-            totalTextfield.clear();
-            locationTextField.clear();
-
-            // Refresh the table view to display the new data
-            itemTableView.getItems().add(newCountStock);
+        // Check if any of the fields are empty
+        if (itemName.isEmpty() || categoryId.isEmpty() || totalText.isEmpty() || location.isEmpty()) {
+            showErrorAlert("Error", "Please fill out all the information fields.");
+            return; // Exit the method if any field is empty
         }
-        loadCountStockData();
+
+        try {
+            float total = Float.parseFloat(totalText);
+
+            // Create a new CountStock object
+            CountStock newCountStock = new CountStock(user.getUserId(), itemName, categoryId, total, location, user.getUserName());
+
+            // Create a confirmation dialog
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirmation");
+            confirmationAlert.setHeaderText("Are you sure to add this item?");
+            confirmationAlert.setContentText("Please confirm your action.");
+
+            // Show the confirmation dialog and wait for a response
+            Optional<ButtonType> result = confirmationAlert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // User confirmed the action
+                // Add the new CountStock to the CountStockList and update the database
+                countStockList.addCountStock(newCountStock);
+                CountStockDataSource countStockDataSource = new CountStockDataSource();
+                countStockDataSource.insertData(countStockList);
+
+                // Clear the input fields
+                itemNameTextField.clear();
+                categoryIdTextField.clear();
+                totalTextfield.clear();
+                locationTextField.clear();
+
+                // Refresh the table view to display the new data
+                itemTableView.getItems().add(newCountStock);
+            }
+            loadCountStockData();
+        } catch (NumberFormatException e) {
+            showErrorAlert("Error", "Invalid value for 'Total'. Please enter a valid number.");
+        }
     }
+
     @FXML
     public void onDeleteDataFromTableView() {
         CountStock selectedItem = itemTableView.getSelectionModel().getSelectedItem();

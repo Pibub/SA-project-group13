@@ -60,13 +60,24 @@ public class InvoiceManageController {
     public void onAddItemClick() {
         String addItemID = addItemIdTextField.getText();
         String addItemName = addItemNameTextField.getText();
-        Integer addAmountText = Integer.valueOf(addAmountTextField.getText());
+        String addAmountText = addAmountTextField.getText();
         String addLocation = addLocationTextField.getText();
-        String addDate = addStorageDatePicker.getValue().toString();
+        LocalDate addDate = addStorageDatePicker.getValue();
 
-        Stock stock = stockList.findItemByIdAndName(addItemID, addItemName);
+        // Check if any of the fields are empty
+        if (addItemID.isEmpty() || addItemName.isEmpty() || addAmountText.isEmpty() || addLocation.isEmpty() || addDate == null) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Missing Information");
+            alert.setContentText("Please fill out all the information fields.");
+            alert.showAndWait();
+            return; // Exit the method if any field is empty
+        }
 
-        if (!addItemID.isEmpty() && !addItemName.isEmpty() && addAmountText != null && !addLocation.isEmpty()) {
+        // Proceed with the item addition
+        try {
+            int addAmount = Integer.parseInt(addAmountText);
+
             // Create a confirmation dialog
             Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
@@ -82,17 +93,12 @@ public class InvoiceManageController {
             Optional<ButtonType> result = confirmationAlert.showAndWait();
 
             if (result.isPresent() && result.get() == confirmButton) {
-                try {
-                    int addAmount = Integer.parseInt(String.valueOf(addAmountText));
-                    LocalDateTime localDateTime = LocalDateTime.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
-                    String formattedTime = localDateTime.format(formatter);
-                    String itemIdWithDate = addItemID + "-" + formattedTime.toString();
-                    stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, addDate, addItemID);
-                    stockListDatasource.insertData(stockList);
-                } catch (NumberFormatException e) {
-                    warning.setText("Please enter a valid amount.");
-                }
+                LocalDateTime localDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
+                String formattedTime = localDateTime.format(formatter);
+                String itemIdWithDate = addItemID + "-" + formattedTime.toString();
+                stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, addDate.toString(), addItemID);
+                stockListDatasource.insertData(stockList);
                 successLabel.setText("Add item to stock complete");
                 successLabel.setStyle("-fx-text-fill: green");
             } else {
@@ -100,15 +106,18 @@ public class InvoiceManageController {
                 warning.setText("Action canceled");
             }
 
+            // Clear the input fields
             addItemIdTextField.clear();
             addItemNameTextField.clear();
             addAmountTextField.clear();
             addLocationTextField.clear();
             addStorageDatePicker.getEditor().clear();
-        } else {
-            warning.setText("Please fill in complete information.");
+        } catch (NumberFormatException e) {
+            // Handle invalid amount input
+            warning.setText("Please enter a valid amount.");
         }
     }
+
     @FXML
     public void onCompleteInvoice() {
         if (invoice != null) {

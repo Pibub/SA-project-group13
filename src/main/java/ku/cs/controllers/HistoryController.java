@@ -60,7 +60,7 @@ public class HistoryController {
 
     public void onBackButtonClick(){
         try {
-            com.github.saacsos.FXRouter.goTo("login");
+            com.github.saacsos.FXRouter.goTo("home");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

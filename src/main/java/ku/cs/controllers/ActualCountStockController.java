@@ -116,11 +116,30 @@ public class ActualCountStockController {
         String categoryId = categoryIdTextField.getText();
         String itemName = itemNameTextField.getText();
         String location = locationTextField.getText();
-        float firstCount = Float.parseFloat(firstCountTextField.getText());
-        float secondCount = Float.parseFloat(secondCountTextField.getText());
-        float thirdCount = Float.parseFloat(thirdCountTextField.getText());
+        String firstCountText = firstCountTextField.getText();
+        String secondCountText = secondCountTextField.getText();
+        String thirdCountText = thirdCountTextField.getText();
         String inputerId = inputerIdTextField.getText();
         String inputerName = inputerNameTextField.getText();
+
+        // Check if any of the fields are empty
+        if (categoryId.isEmpty() || itemName.isEmpty() || location.isEmpty() || firstCountText.isEmpty() || secondCountText.isEmpty() || thirdCountText.isEmpty() || inputerId.isEmpty() || inputerName.isEmpty()) {
+            showAlert("Missing Information", "Please fill out all the information fields.");
+            return; // Exit the method if any field is empty
+        }
+
+        // Attempt to parse float values from the count fields
+        float firstCount;
+        float secondCount;
+        float thirdCount;
+        try {
+            firstCount = Float.parseFloat(firstCountText);
+            secondCount = Float.parseFloat(secondCountText);
+            thirdCount = Float.parseFloat(thirdCountText);
+        } catch (NumberFormatException e) {
+            showAlert("Invalid Count", "Please enter valid numerical values for the count fields.");
+            return; // Exit the method if count fields are not valid
+        }
 
         // Create a confirmation alert
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -133,7 +152,6 @@ public class ActualCountStockController {
         if (result.isPresent() && result.get() == ButtonType.OK) {
             // Check if a record with the same category ID already exists
             if (actualCountStockList.isCategoryIdExists(categoryId)) {
-                // Display an alert to the user
                 showAlert("Category ID Already Counted", "This category ID has already been counted.");
             } else {
                 ActualCountStock newActualCountStock = new ActualCountStock(categoryId, itemName, firstCount, secondCount, thirdCount, inputerId, inputerName, location);
@@ -148,6 +166,7 @@ public class ActualCountStockController {
             }
         }
     }
+
     @FXML
     public void onDeleteData() {
         ActualCountStock selectedCountStock = itemTableView.getSelectionModel().getSelectedItem();
@@ -205,10 +224,13 @@ public class ActualCountStockController {
         String userName = analyzeUserName.getText();
         String textAnalyze = analyzeText.getText();
 
-        Analyze newAnalyze = new Analyze(categoryId, userId, userName, textAnalyze);
+        // Check if any of the fields are empty
+        if (categoryId.isEmpty() || userId.isEmpty() || userName.isEmpty() || textAnalyze.isEmpty()) {
+            showAlert("Missing Information", "Please fill out all the information fields.");
+            return; // Exit the method if any field is empty
+        }
 
-        AnalyzeDataSource analyzeDataSource = new AnalyzeDataSource();
-
+        // Create a confirmation alert
         Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmationAlert.setTitle("Confirmation");
         confirmationAlert.setHeaderText(null);
@@ -217,18 +239,26 @@ public class ActualCountStockController {
         Optional<ButtonType> result = confirmationAlert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
+            Analyze newAnalyze = new Analyze(categoryId, userId, userName, textAnalyze);
+
+            AnalyzeDataSource analyzeDataSource = new AnalyzeDataSource();
+
             AnalyzeList analyzeList = new AnalyzeList();
             analyzeList.addAnalyze(newAnalyze);
             analyzeDataSource.insertData(analyzeList);
 
-            analyzeCategoryId.clear();
-            analyzeUserId.clear();
-            analyzeUserName.clear();
-            analyzeText.clear();
+            clearAnalyzeFields();
 
             showAlert("Analysis Sent", "Your analysis has been sent successfully.");
         }
     }
+    private void clearAnalyzeFields() {
+        analyzeCategoryId.clear();
+        analyzeUserId.clear();
+        analyzeUserName.clear();
+        analyzeText.clear();
+    }
+
 
 
     public void onBackClick(){

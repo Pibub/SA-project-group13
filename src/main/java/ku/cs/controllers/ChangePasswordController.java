@@ -38,7 +38,7 @@ public class ChangePasswordController {
 
         user = userList.findUser(userName, currentPassword);
 
-        if (user != null && !currentPassword.isEmpty() && !newPassword.isEmpty() && !confirmPassword.isEmpty() && !newPassword.equals(confirmPassword)) {
+        if (user != null && !currentPassword.isEmpty() && !newPassword.isEmpty() && !confirmPassword.isEmpty() && newPassword.equals(confirmPassword)) {
             // Display a confirmation dialog
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
@@ -60,47 +60,26 @@ public class ChangePasswordController {
             } else {
                 // User canceled, do nothing
             }
-        } else if (!currentPassword.isEmpty() && !newPassword.isEmpty() && !confirmPassword.isEmpty()) {
-            if (!currentPassword.equals(newPassword) && newPassword.equals(confirmPassword)) {
-                Alert alert = new Alert(AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation");
-                alert.setHeaderText("Are you sure you want to change the password?");
-                alert.setContentText("Click OK to proceed, or Cancel to abort.");
-
-                ButtonType result = alert.showAndWait().orElse(ButtonType.CANCEL);
-
-                if (result == ButtonType.OK) {
-                    user.setPassword(newPassword);
-                    userListDatasource.insertData(userList);
-                    errorLabel.setText("Update password complete");
-                    errorLabel.setStyle("-fx-text-fill: Green;");
-                    currentPasswordField.clear();
-                    newPasswordField.clear();
-                    confirmNewPasswordField.clear();
-                } else {
-                    // User canceled, do nothing
-                }
-            }
         } else {
-            // Error handling for empty fields
-            if (currentPassword.isEmpty()) {
-                errorLabel.setText("Please enter the current password");
+            // Error handling for different cases
+            if (user == null) {
+                errorLabel.setText("Current password is incorrect");
+                errorLabel.setStyle("-fx-text-fill: red;");
+            } else if (newPassword.isEmpty() || confirmPassword.isEmpty()) {
+                errorLabel.setText("Please enter both new and confirmation passwords");
+                errorLabel.setStyle("-fx-text-fill: red;");
+            } else if (!newPassword.equals(confirmPassword)) {
+                errorLabel.setText("New password and confirmation password do not match");
                 errorLabel.setStyle("-fx-text-fill: red;");
             }
-            if (newPassword.isEmpty()) {
-                errorLabel.setText("Please enter the new password");
-                errorLabel.setStyle("-fx-text-fill: red;");
-            }
-            if (confirmPassword.isEmpty()) {
-                errorLabel.setText("Please enter the confirmation password");
-                errorLabel.setStyle("-fx-text-fill: red;");
-            }
+
             // Clear the input fields
             currentPasswordField.clear();
             newPasswordField.clear();
             confirmNewPasswordField.clear();
         }
     }
+
 
 
     @FXML
