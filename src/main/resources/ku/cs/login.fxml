@@ -11,56 +11,56 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #CCC8AA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.LoginController">
+<AnchorPane fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.LoginController">
    <children>
-      <AnchorPane layoutX="322.0" layoutY="85.0" prefHeight="431.0" prefWidth="458.0" style="-fx-background-color: #191717; -fx-background-radius: 30;">
+      <ImageView fitHeight="835.0" fitWidth="1000.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@image/warehouse-login.jpeg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="250.0" layoutY="150.0" prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: #191717; -fx-background-radius: 30;">
          <children>
-            <Text fill="WHITE" layoutX="156.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In">
+            <Text fill="WHITE" layoutX="177.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In">
                <font>
                   <Font name="System Bold" size="45.0" />
                </font>
             </Text>
-            <TextField fx:id="usernameText" layoutX="105.0" layoutY="110.0" prefHeight="45.0" prefWidth="250.0" promptText="Enter username" style="-fx-border-radius: 30; -fx-background-radius: 30; -fx-border-color: #CCC8AA;">
+            <TextField fx:id="usernameText" layoutX="100.0" layoutY="120.0" prefHeight="45.0" prefWidth="300.0" promptText="Enter username" style="-fx-border-radius: 30; -fx-background-radius: 30; -fx-border-color: #CCC8AA;">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="passwordText" layoutX="105.0" layoutY="190.0" prefHeight="45.0" prefWidth="250.0" promptText="Enter password" style="-fx-background-radius: 30; -fx-border-color: #7D7C7C; -fx-border-radius: 30;">
+            <PasswordField fx:id="passwordText" layoutX="100.0" layoutY="210.0" prefHeight="45.0" prefWidth="300.0" promptText="Enter password" style="-fx-background-radius: 30; -fx-border-color: #7D7C7C; -fx-border-radius: 30;">
                <font>
                   <Font size="20.0" />
                </font>
             </PasswordField>
-            <Label fx:id="passwordLabel" layoutX="110.0" layoutY="240.0" text="passwordLabel" textFill="RED">
+            <Label fx:id="passwordLabel" layoutX="100.0" layoutY="270.0" text="passwordLabel" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Button layoutX="130.0" layoutY="280.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Confirm">
+            <Button layoutX="150.0" layoutY="310.0" mnemonicParsing="false" onAction="#onConfirmButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Confirm">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Button layoutX="230.0" layoutY="280.0" mnemonicParsing="false" onAction="#onClearButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Clear">
+            <Button layoutX="260.0" layoutY="310.0" mnemonicParsing="false" onAction="#onClearButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Clear">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <Hyperlink layoutX="344.0" layoutY="365.0" onAction="#onBypassClick" text="Bypass" textFill="#ccc8aa">
+            <Hyperlink disable="true" layoutX="400.0" layoutY="442.0" onAction="#onBypassClick" text="Bypass" textFill="#ccc8aa">
                <font>
                   <Font name="System Bold" size="17.0" />
                </font>
             </Hyperlink>
-            <Label fx:id="usernameLabel" layoutX="110.0" layoutY="160.0" text="usernameLabel" textFill="RED">
+            <Label fx:id="usernameLabel" layoutX="100.0" layoutY="180.0" text="usernameLabel" textFill="RED">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="724.0" fitWidth="520.0" layoutX="-66.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@image/welcome1.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

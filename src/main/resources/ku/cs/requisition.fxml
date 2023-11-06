@@ -8,30 +8,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.RequisitionController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.RequisitionController">
    <children>
-      <Text fill="WHITE" layoutX="310.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisition" textAlignment="CENTER">
+      <Text fill="WHITE" layoutX="407.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisition" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
       </Text>
-      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="126.0" prefHeight="411.0" prefWidth="600.0" style="-fx-background-color: #CCC8AA;">
+      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="126.0" prefHeight="570.0" prefWidth="806.0" style="-fx-background-color: #CCC8AA;">
         <columns>
-          <TableColumn maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="C1" />
+          <TableColumn maxWidth="100.0" prefWidth="100.0" style="-fx-alignment: center;" text="C1" />
           <TableColumn maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="C2" />
-            <TableColumn maxWidth="300.0" prefWidth="300.0" style="-fx-alignment: center;" text="Column X" />
-            <TableColumn maxWidth="150.0" prefWidth="150.0" style="-fx-alignment: center;" text="Column X" />
+            <TableColumn maxWidth="400.0" prefWidth="400.0" style="-fx-alignment: center;" text="Column X" />
+            <TableColumn maxWidth="230.0" prefWidth="230.0" style="-fx-alignment: center;" text="Column X" />
         </columns>
       </TableView>
-      <TextField fx:id="keywordsTextField" layoutX="185.0" layoutY="79.0" prefHeight="26.0" prefWidth="517.0" promptText="keywords....." style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;">
+      <TextField fx:id="keywordsTextField" layoutX="226.0" layoutY="79.0" prefHeight="32.0" prefWidth="678.0" promptText="keywords....." style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;">
          <font>
             <Font size="14.0" />
          </font></TextField>
       <Text fill="WHITE" layoutX="100.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search bar :" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="20.0" />
          </font></Text>
-      <Button layoutX="355.0" layoutY="550.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Back">
+      <Button layoutX="455.0" layoutY="728.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Back">
          <font>
             <Font size="16.0" />
          </font></Button>

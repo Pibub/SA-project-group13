@@ -27,7 +27,12 @@ public class HomeController {
         LocalDate now = LocalDate.now();
         LocalDate closeSystem = LocalDate.of(2023 , 12 , 6);
         LocalDate closeSystemFinalDay = LocalDate.of(2023 , 12 , 7);
-        if(now.isBefore(closeSystem)){
+        LocalDate closeSystemFirstHalf = LocalDate.of(2023 , 6 , 6);
+        LocalDate closeSystemFinalFirstHalf = LocalDate.of(2023 , 6 , 7);
+        if(now.isBefore(closeSystemFirstHalf)){
+            headerLabel.setText("System Disabling Announcement");
+            textLabel.setText("system is going to disable in 6th June to 7th June.");
+        }if(now.isBefore(closeSystem) && now.isAfter(closeSystemFirstHalf)){
             headerLabel.setText("System Disabling Announcement");
             textLabel.setText("system is going to disable in 6th December to 7th December.");
         }else {
@@ -41,6 +46,7 @@ public class HomeController {
         String userName = (String) FXRouter.getData();
         user = userList.findUserByUsername(userName);
     }
+
 
     @FXML
     protected void onProfileClick() {

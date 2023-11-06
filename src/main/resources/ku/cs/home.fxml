@@ -8,20 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #7D7C7C;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
    <children>
-      <AnchorPane prefHeight="61.0" prefWidth="800.0" style="-fx-background-color: #191717;">
+      <AnchorPane prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: #191717;">
          <children>
-            <Label layoutX="254.0" layoutY="8.0" text="KOMATSU Co., Ltd." textFill="WHITE">
+            <Label layoutX="283.0" layoutY="19.0" text="WAREHOUSE Co., Ltd." textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="35.0" />
+                  <Font name="System Bold" size="42.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="61.0" prefHeight="538.0" prefWidth="185.0" style="-fx-background-color: #CCC8AA;">
+      <AnchorPane layoutY="100.0" prefHeight="700.0" prefWidth="217.0" style="-fx-background-color: #CCC8AA;">
          <children>
-            <Button layoutX="2.0" layoutY="470.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="53.0" prefWidth="182.0" style="-fx-background-color: transparenttransparent transparenttransparent;" text="Logout">
+            <Button layoutY="640.0" mnemonicParsing="false" onAction="#onLogoutClick" prefHeight="60.0" prefWidth="227.0" style="-fx-background-color: transparenttransparent transparenttransparent;" text="Logout">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" onDragDetected="#onLogoutClick" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -33,33 +33,33 @@
                   <Font size="20.0" />
                </font>
             </Button>
-            <Button layoutX="-2.0" layoutY="117.0" mnemonicParsing="false" onAction="#onCreateNewUserClick" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Create new user" textAlignment="CENTER">
+            <Button layoutY="100.0" mnemonicParsing="false" onAction="#onCreateNewUserClick" prefHeight="60.0" prefWidth="227.0" style="-fx-background-color: transparenttransparent;" text="Create new user" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/AddUser.png" />
                      </image>
                   </ImageView>
                </graphic>
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="-5.0" layoutY="27.0" mnemonicParsing="false" onAction="#onProfileClick" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Profile" textAlignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#onProfileClick" prefHeight="60.0" prefWidth="227.0" style="-fx-background-color: transparenttransparent;" text="Profile" textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="60.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/user.png" />
                      </image>
                   </ImageView>
                </graphic>
                <font>
-                  <Font name="System Bold" size="23.0" />
+                  <Font name="System Bold" size="32.0" />
                </font>
             </Button>
-            <Button layoutX="-2.0" layoutY="189.0" mnemonicParsing="false" onAction="#onEditStock" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Edit stock" textAlignment="CENTER">
+            <Button layoutY="260.0" mnemonicParsing="false" onAction="#onEditStock" prefHeight="60.0" prefWidth="227.0" style="-fx-background-color: transparenttransparent;" text="      Edit stock " textAlignment="CENTER">
                <graphic>
-                  <ImageView fitHeight="49.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/EditStock2.png" />
                      </image>
@@ -69,43 +69,64 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="2.0" layoutY="269.0" mnemonicParsing="false" onAction="#onRequisitionClick" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Requisition" textAlignment="CENTER">
+            <Button layoutY="340.0" mnemonicParsing="false" onAction="#onRequisitionClick" prefHeight="60.0" prefWidth="227.0" style="-fx-background-color: transparenttransparent;" text="    Requisition" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="49.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/requisition.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="2.0" layoutY="349.0" mnemonicParsing="false" onAction="#onReceivingDataClick" prefHeight="60.0" prefWidth="181.0" style="-fx-background-color: transparenttransparent;" text="Receiving data" textAlignment="CENTER">
+            <Button layoutY="420.0" mnemonicParsing="false" onAction="#onReceivingDataClick" prefHeight="60.0" prefWidth="227.0" style="-fx-background-color: transparenttransparent;" text="Receiving data" textAlignment="CENTER">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="33.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@image/delivered.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="46.0" layoutY="415.0" mnemonicParsing="false" onAction="#onCountStockClick" text="Count stock" />
+            <Button layoutY="180.0" mnemonicParsing="false" onAction="#onCountStockClick" prefHeight="60.0" prefWidth="227.0" style="-fx-background-color: transparenttransparent;" text="      Count stock" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/count-stock.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button layoutY="500.0" mnemonicParsing="false" onAction="#onHistoryButtonClick" prefHeight="60.0" prefWidth="227.0" style="-fx-background-color: transparenttransparent;" text="     History          " textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@image/History.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
-      <Separator layoutX="184.0" layoutY="61.0" orientation="VERTICAL" prefHeight="538.0" prefWidth="6.0" style="-fx-background-color: #191717;" />
-      <Button layoutX="220.0" layoutY="80.0" mnemonicParsing="false" onAction="#onHistoryButtonClick" text="History" />
-      <Label fx:id="headerLabel" layoutX="220.0" layoutY="150.0" text="headerLabel" textFill="WHITE">
+      <Separator layoutX="225.0" layoutY="100.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="6.0" style="-fx-background-color: #191717;" />
+      <Label fx:id="headerLabel" layoutX="366.0" layoutY="178.0" text="headerLabel" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="28.0" />
+            <Font size="32.0" />
          </font>
       </Label>
-      <Label fx:id="textLabel" layoutX="220.0" layoutY="211.0" text="textLabel" textFill="WHITE">
+      <Label fx:id="textLabel" layoutX="296.0" layoutY="225.0" text="textLabel" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font size="24.0" />
          </font>
       </Label>
    </children>

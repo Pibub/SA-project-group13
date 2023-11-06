@@ -7,22 +7,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HistoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HistoryController">
    <children>
-      <Text layoutX="14.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisition History">
+      <Text fill="WHITE" layoutX="338.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisition History">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="36.0" />
          </font>
       </Text>
-      <TableView fx:id="itemTableView" layoutX="14.0" layoutY="50.0" prefHeight="200.0" prefWidth="441.0">
+      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="125.0" prefHeight="570.0" prefWidth="800.0" style="-fx-background-color: #CCC8AA;">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="84.79998779296875" text="Column X" />
-            <TableColumn prefWidth="81.5999755859375" text="Column X" />
-            <TableColumn prefWidth="123.9999938964844" text="Column X" />
+          <TableColumn maxWidth="100.0" prefWidth="100.0" style="-fx-alignment: center;" text="C1" />
+          <TableColumn maxWidth="100.0" prefWidth="100.0" style="-fx-alignment: center;" text="C2" />
+            <TableColumn maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Column X" />
+            <TableColumn maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Column X" />
+            <TableColumn maxWidth="200.0" prefWidth="200.0" style="-fx-alignment: center;" text="Column X" />
         </columns>
       </TableView>
-      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" />
+      <Button layoutX="455.0" layoutY="730.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>

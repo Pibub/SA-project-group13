@@ -5,41 +5,82 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ActualCountStockController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ActualCountStockController">
    <children>
-      <Button layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
-      <Label layoutX="134.0" layoutY="94.0" text="Category id :" />
-      <Label layoutX="134.0" layoutY="137.0" text="Item name :" />
-      <Label layoutX="137.0" layoutY="172.0" text="First count :" />
-      <Label layoutX="133.0" layoutY="209.0" text="Second count  :" />
-      <Label layoutX="137.0" layoutY="330.0" text="Inputer id :" />
-      <Label layoutX="129.0" layoutY="368.0" text="Inputer name :" />
-      <TextField fx:id="categoryIdTextField" layoutX="239.0" layoutY="90.0" />
-      <TextField fx:id="itemNameTextField" layoutX="239.0" layoutY="133.0" />
-      <TextField fx:id="firstCountTextField" layoutX="239.0" layoutY="168.0" />
-      <TextField fx:id="secondCountTextField" layoutX="239.0" layoutY="205.0" />
-      <TextField fx:id="inputerIdTextField" layoutX="239.0" layoutY="326.0" />
-      <TextField fx:id="inputerNameTextField" layoutX="239.0" layoutY="364.0" />
-      <TableView fx:id="itemTableView" layoutX="640.0" layoutY="100.0" prefHeight="300.0" prefWidth="300.0" />
-      <Button layoutX="456.0" layoutY="146.0" mnemonicParsing="false" onAction="#onInsertDataClick" text="Insert Data" />
-      <Button layoutX="461.0" layoutY="242.0" mnemonicParsing="false" onAction="#onDeleteData" text="Delete Data" />
-      <Label layoutX="149.0" layoutY="286.0" text="Location :" />
-      <TextField fx:id="locationTextField" layoutX="239.0" layoutY="282.0" />
-      <Label layoutX="141.0" layoutY="246.0" text="Third count :" />
-      <TextField fx:id="thirdCountTextField" layoutX="239.0" layoutY="242.0" />
-      <Label layoutX="67.0" layoutY="452.0" text="If any count not equal ON-HAND. Please analyze and send to Executive" />
-      <Label layoutX="589.0" layoutY="452.0" text="When you noticed to Executive then please adjust stock" />
-      <Button layoutX="710.0" layoutY="526.0" mnemonicParsing="false" onAction="#onGotoStockEditClick" text="Go to stock edit" />
-      <Label layoutX="41.0" layoutY="509.0" text="Category id that not equal on hand :" />
-      <Label layoutX="127.0" layoutY="565.0" text="user id :" />
-      <Label layoutX="119.0" layoutY="616.0" text="User name :" />
-      <Label layoutX="127.0" layoutY="668.0" text="Analyze :" />
-      <TextField fx:id="analyzeCategoryId" layoutX="246.0" layoutY="505.0" />
-      <TextField fx:id="analyzeUserId" layoutX="246.0" layoutY="561.0" />
-      <TextField fx:id="analyzeUserName" layoutX="246.0" layoutY="612.0" />
-      <TextField fx:id="analyzeText" layoutX="246.0" layoutY="664.0" />
-      <Button layoutX="217.0" layoutY="726.0" mnemonicParsing="false" onAction="#sendAnalyze" text="Send" />
+      <Button layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Label layoutX="132.0" layoutY="130.0" text="Category id :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="132.0" layoutY="170.0" text="Item name :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="135.0" layoutY="210.0" text="First count :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="131.0" layoutY="250.0" text="Second count  :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="135.0" layoutY="370.0" text="Inputer id :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="127.0" layoutY="410.0" text="Inputer name :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="categoryIdTextField" layoutX="237.0" layoutY="128.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TextField fx:id="itemNameTextField" layoutX="237.0" layoutY="168.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TextField fx:id="firstCountTextField" layoutX="237.0" layoutY="207.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TextField fx:id="secondCountTextField" layoutX="237.0" layoutY="247.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TextField fx:id="inputerIdTextField" layoutX="237.0" layoutY="367.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TextField fx:id="inputerNameTextField" layoutX="237.0" layoutY="407.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TableView fx:id="itemTableView" layoutX="641.0" layoutY="135.0" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #CCC8AA;" />
+      <Button layoutX="453.0" layoutY="230.0" mnemonicParsing="false" onAction="#onInsertDataClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Insert Data" />
+      <Button layoutX="455.0" layoutY="292.0" mnemonicParsing="false" onAction="#onDeleteData" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Delete Data" />
+      <Label layoutX="147.0" layoutY="330.0" text="Location :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="locationTextField" layoutX="237.0" layoutY="327.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <Label layoutX="139.0" layoutY="290.0" text="Third count :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <TextField fx:id="thirdCountTextField" layoutX="237.0" layoutY="287.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <Label layoutX="38.0" layoutY="480.0" text="If any count not equal ON-HAND. Please analyze and send to Executive" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="590.0" layoutY="480.0" text="When you noticed to Executive then please adjust stock" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Button layoutX="717.0" layoutY="516.0" mnemonicParsing="false" onAction="#onGotoStockEditClick" prefHeight="40.0" prefWidth="140.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Go to stock edit">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Label layoutX="38.0" layoutY="540.0" text="Category id that not equal on hand :" textFill="WHITE" />
+      <Label layoutX="124.0" layoutY="596.0" text="user id :" textFill="WHITE" />
+      <Label layoutX="116.0" layoutY="647.0" text="User name :" textFill="WHITE" />
+      <Label layoutX="124.0" layoutY="699.0" text="Analyze :" textFill="WHITE" />
+      <TextField fx:id="analyzeCategoryId" layoutX="237.0" layoutY="536.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TextField fx:id="analyzeUserId" layoutX="237.0" layoutY="592.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TextField fx:id="analyzeUserName" layoutX="237.0" layoutY="643.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <TextField fx:id="analyzeText" layoutX="237.0" layoutY="695.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" />
+      <Button layoutX="172.0" layoutY="745.0" mnemonicParsing="false" onAction="#sendAnalyze" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Send" />
+      <Label layoutX="400.0" layoutY="43.0" text="Actual Count" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

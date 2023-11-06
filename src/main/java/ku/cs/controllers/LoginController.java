@@ -41,12 +41,18 @@ public class LoginController {
         LocalDate now = LocalDate.now();
         LocalDate closeSystem = LocalDate.of(2023 , 12 , 6);
         LocalDate closeSystemFinalDay = LocalDate.of(2023 , 12 , 7);
+        LocalDate closeSystemFirstHalf = LocalDate.of(2023 , 6 , 6);
+        LocalDate closeSystemFinalFirstHalf = LocalDate.of(2023 , 6 , 7);
         if(user != null){
             try{
                 if(now.equals(closeSystem) && !Objects.equals(user.getUserRole(), "admin") || now.equals(closeSystem) && !Objects.equals(user.getUserRole(), "Inputter")
                         ||now.equals(closeSystemFinalDay) && !Objects.equals(user.getUserRole(), "admin") || now.equals(closeSystemFinalDay) && !Objects.equals(user.getUserRole(), "Inputter")
                         || now.equals(closeSystem) && !Objects.equals(user.getUserRole(), "warehouse data")
-                        ||now.equals(closeSystemFinalDay) && !Objects.equals(user.getUserRole(), "warehouse data") ){
+                        ||now.equals(closeSystemFinalDay) && !Objects.equals(user.getUserRole(), "warehouse data") ||
+                        now.equals(closeSystemFirstHalf) && !Objects.equals(user.getUserRole(), "admin") || now.equals(closeSystemFirstHalf) && !Objects.equals(user.getUserRole(), "Inputter")
+                        ||now.equals(closeSystemFinalFirstHalf) && !Objects.equals(user.getUserRole(), "admin") || now.equals(closeSystemFinalFirstHalf) && !Objects.equals(user.getUserRole(), "Inputter")
+                        || now.equals(closeSystemFirstHalf) && !Objects.equals(user.getUserRole(), "warehouse data")
+                        ||now.equals(closeSystemFinalFirstHalf) && !Objects.equals(user.getUserRole(), "warehouse data")){
                     FXRouter.goTo("disable-service");
                 }
                 else {

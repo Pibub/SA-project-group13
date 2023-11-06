@@ -5,19 +5,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ServiceDisabledController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.ServiceDisabledController">
    <children>
-      <Text layoutX="178.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Disabled">
+      <Text fill="WHITE" layoutX="297.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Service Disabled">
          <font>
-            <Font size="34.0" />
+            <Font size="56.0" />
          </font>
       </Text>
-      <Text layoutX="161.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please try again next time.">
+      <Text fill="WHITE" layoutX="362.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please try again next time.">
          <font>
             <Font size="24.0" />
          </font>
       </Text>
-      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#onBackButtonClick" text="Back" />
+      <Button layoutX="454.0" layoutY="483.0" mnemonicParsing="false" onAction="#onBackButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Back" textAlignment="CENTER">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>

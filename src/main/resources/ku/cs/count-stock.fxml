@@ -1,13 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.CountStockController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.CountStockController">
    <children>
-      <Button layoutX="56.0" layoutY="36.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
-      <Button layoutX="220.0" layoutY="364.0" mnemonicParsing="false" onAction="#onWareHouseCountClick" text="Ware house count" />
-      <Button layoutX="754.0" layoutY="364.0" mnemonicParsing="false" onAction="#onActualCountStockClick" text="Actual count stock day" />
+      <Button layoutX="455.0" layoutY="591.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <AnchorPane layoutX="100.0" layoutY="200.0" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #CCC8AA;">
+         <children>
+            <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" onAction="#onWareHouseCountClick" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: transparenttransparent;" text="Ware house count" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="75.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/Warehouse-count.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="515.0" layoutY="200.0" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #CCC8AA;">
+         <children>
+            <Button alignment="BOTTOM_CENTER" layoutX="-14.0" mnemonicParsing="false" onAction="#onActualCountStockClick" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: transparenttransparent;" text="Actual count stock day" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="250.0" fitWidth="250.0" layoutX="75.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@image/Actual-count.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

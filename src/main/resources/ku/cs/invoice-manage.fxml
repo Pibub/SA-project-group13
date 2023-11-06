@@ -7,109 +7,147 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #CCC8AA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.InvoiceManageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #CCC8AA;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.InvoiceManageController">
    <children>
-      <AnchorPane layoutX="50.0" layoutY="60.0" prefHeight="450.0" prefWidth="700.0" style="-fx-background-color: #191717;">
+      <AnchorPane layoutX="100.0" layoutY="100.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #191717;">
          <children>
-            <Label fx:id="successLabel" layoutX="309.0" layoutY="360.0" textFill="#00c903">
+            <Label fx:id="successLabel" layoutX="374.0" layoutY="434.0" textFill="#00c903">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Button layoutX="355.0" layoutY="473.0" mnemonicParsing="false" onAction="#onAddItemClick" prefHeight="30.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Add" />
+            <Label fx:id="warning" layoutX="372.0" layoutY="424.0" textAlignment="CENTER" textFill="RED">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="273.0" layoutY="14.0" text="Invoice Manage" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="34.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="120.0" text="Invoice NO :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="180.0" text="Item Id : " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="240.0" text="Item Name :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="300.0" text="QTY :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="70.0" layoutY="360.0" text="Keep Location :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="invoiceIDLabel" layoutX="220.0" layoutY="120.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="itemIDLabel" layoutX="220.0" layoutY="180.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="itemNameLabel" layoutX="220.0" layoutY="240.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="qtyLabel" layoutX="220.0" layoutY="300.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="kLocLabel" layoutX="220.0" layoutY="360.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="100.0" layoutY="80.0" text="Detail of invoice" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="460.0" layoutY="80.0" text="Add item from invoice" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="120.0" text="Item Id :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="180.0" text="Item Name :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="240.0" text="amount :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="400.0" layoutY="300.0" text="Location :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="storageDateTextField" layoutX="400.0" layoutY="360.0" text="Storage Date :" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="addItemIdTextField" layoutX="540.0" layoutY="120.0" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;">
                <font>
                   <Font size="14.0" />
                </font>
-            </Label>
-            <Button layoutX="289.0" layoutY="395.0" mnemonicParsing="false" onAction="#onAddItemClick" prefHeight="30.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Add" />
-            <Label fx:id="warning" layoutX="309.0" layoutY="350.0" textAlignment="CENTER" textFill="RED">
+            </TextField>
+            <TextField fx:id="addItemNameTextField" layoutX="540.0" layoutY="183.0" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;">
                <font>
                   <Font size="14.0" />
                </font>
-            </Label>
-            <Label layoutX="261.0" layoutY="13.0" text="Invoice Manage" textFill="WHITE">
+            </TextField>
+            <TextField fx:id="addAmountTextField" layoutX="540.0" layoutY="240.0" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font size="14.0" />
                </font>
-            </Label>
+            </TextField>
+            <TextField fx:id="addLocationTextField" layoutX="540.0" layoutY="300.0" prefHeight="25.0" prefWidth="175.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <DatePicker fx:id="addStorageDatePicker" layoutX="540.0" layoutY="362.0" prefWidth="175.0" />
+            <Button layoutX="195.0" layoutY="532.0" mnemonicParsing="false" onAction="#onInCompleteInvoice" style="-fx-border-radius: 30; -fx-border-color: #CCC8AA; -fx-background-radius: 30;" text="Incomplete this invoice">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="428.0" layoutY="532.0" mnemonicParsing="false" onAction="#onCompleteInvoice" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Complete this invoice">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
-      <Button layoutX="20.0" layoutY="15.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #191717;" text="Back">
+      <Button layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #191717;" text="Back">
          <font>
             <Font size="16.0" />
          </font></Button>
-      <Label layoutX="127.0" layoutY="160.0" text="Invoice NO :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="127.0" layoutY="210.0" text="Item Id : " textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="127.0" layoutY="260.0" text="Item Name :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="127.0" layoutY="310.0" text="QTY :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="127.0" layoutY="360.0" text="Keep Location :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label fx:id="invoiceIDLabel" layoutX="228.0" layoutY="160.0" text="Label" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label fx:id="itemIDLabel" layoutX="228.0" layoutY="210.0" text="Label" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label fx:id="itemNameLabel" layoutX="228.0" layoutY="260.0" text="Label" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label fx:id="qtyLabel" layoutX="228.0" layoutY="310.0" text="Label" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label fx:id="kLocLabel" layoutX="228.0" layoutY="360.0" text="Label" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="150.0" layoutY="120.0" text="Detail of invoice" textFill="WHITE" />
-      <Label layoutX="523.0" layoutY="120.0" text="Add item from invoice" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="425.0" layoutY="160.0" text="Item Id :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="425.0" layoutY="210.0" text="Item Name :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="425.0" layoutY="260.0" text="amount :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label layoutX="425.0" layoutY="310.0" text="Location :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <Label fx:id="storageDateTextField" layoutX="425.0" layoutY="360.0" text="Storage Date :" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-      <TextField fx:id="addItemIdTextField" layoutX="518.0" layoutY="160.0" prefHeight="25.0" prefWidth="150.0" />
-      <TextField fx:id="addItemNameTextField" layoutX="518.0" layoutY="210.0" prefHeight="25.0" prefWidth="150.0" />
-      <TextField fx:id="addAmountTextField" layoutX="518.0" layoutY="260.0" prefHeight="25.0" prefWidth="150.0" />
-      <TextField fx:id="addLocationTextField" layoutX="518.0" layoutY="310.0" prefHeight="25.0" prefWidth="150.0" />
-      <Button layoutX="180.0" layoutY="530.0" mnemonicParsing="false" onAction="#onInCompleteInvoice" style="-fx-border-radius: 30; -fx-border-color: #191717; -fx-background-radius: 30;" text="Incomplete this invoice">
-         <font>
-            <Font size="16.0" />
-         </font></Button>
-      <Button layoutX="410.0" layoutY="530.0" mnemonicParsing="false" onAction="#onCompleteInvoice" style="-fx-background-radius: 30; -fx-border-color: #191717; -fx-border-radius: 30;" text="Complete this invoice">
-         <font>
-            <Font size="16.0" />
-         </font></Button>
-      <DatePicker fx:id="addStorageDatePicker" layoutX="518.0" layoutY="360.0" />
    </children>
 </AnchorPane>

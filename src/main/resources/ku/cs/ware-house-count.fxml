@@ -5,22 +5,58 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.WareHouseCountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.WareHouseCountController">
    <children>
-      <Button layoutX="54.0" layoutY="51.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
-      <TableView fx:id="itemTableView" layoutX="630.0" layoutY="255.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="163.0" layoutY="68.0" text="On hand" />
-      <Label layoutX="95.0" layoutY="268.0" text="Item Name :" />
-      <Label layoutX="95.0" layoutY="320.0" text="Category Id :" />
-      <Label layoutX="95.0" layoutY="371.0" text="Total :" />
-      <Label layoutX="95.0" layoutY="424.0" text="Location :" />
-      <TextField fx:id="itemNameTextField" layoutX="210.0" layoutY="264.0" />
-      <TextField fx:id="categoryIdTextField" layoutX="211.0" layoutY="316.0" />
-      <TextField fx:id="totalTextfield" layoutX="211.0" layoutY="367.0" />
-      <TextField fx:id="locationTextField" layoutX="212.0" layoutY="420.0" />
-      <Button layoutX="448.0" layoutY="329.0" mnemonicParsing="false" onAction="#onInsertDataClick" text="Insert Data" />
-      <Button layoutX="445.0" layoutY="411.0" mnemonicParsing="false" onAction="#onDeleteDataFromTableView" text="Delete Data" />
+      <Button layoutX="455.0" layoutY="719.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <TableView fx:id="itemTableView" layoutX="610.0" layoutY="200.0" prefHeight="340.0" prefWidth="320.0" style="-fx-background-color: #CCC8AA;" />
+      <Label layoutX="324.0" layoutY="65.0" text="Warehouse Count" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="42.0" />
+         </font></Label>
+      <Label layoutX="90.0" layoutY="200.0" text="Item Name :" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="90.0" layoutY="300.0" text="Category Id :" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="90.0" layoutY="400.0" text="Total :" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label layoutX="90.0" layoutY="500.0" text="Location :" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <TextField fx:id="itemNameTextField" layoutX="210.0" layoutY="200.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="categoryIdTextField" layoutX="210.0" layoutY="300.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="totalTextfield" layoutX="210.0" layoutY="400.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="locationTextField" layoutX="210.0" layoutY="500.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button layoutX="445.0" layoutY="315.0" mnemonicParsing="false" onAction="#onInsertDataClick" prefHeight="40.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-border-color: #CCC8AA; -fx-border-radius: 30;" text="Insert Data">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <Button layoutX="445.0" layoutY="380.0" mnemonicParsing="false" onAction="#onDeleteDataFromTableView" prefHeight="40.0" prefWidth="110.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Delete Data">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
    </children>
 </AnchorPane>
