@@ -5,17 +5,23 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AnalyzeHistoryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.AnalyzeHistoryController">
    <children>
-      <Button layoutX="43.0" layoutY="52.0" mnemonicParsing="false" onAction="#onBackClick" text="Back" />
-      <TableView fx:id="itemTableView" layoutX="367.0" layoutY="159.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../table-view-highlight.css">
+      <Button layoutX="456.0" layoutY="720.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-color: CCC8AA; -fx-border-radius: 30;" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font></Button>
+      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="115.0" prefHeight="570.0" prefWidth="800.0" style="-fx-background-color: CCC8AA;" stylesheets="@../table-view-highlight.css">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="75.0" style="-fx-alignment: center;" text="C1" />
+          <TableColumn prefWidth="75.0" style="-fx-alignment: center;" text="C2" />
         </columns>
       </TableView>
-      <Label layoutX="160.0" layoutY="56.0" text="Analyze List" />
+      <Label layoutX="423.0" layoutY="29.0" text="Analyze" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="42.0" />
+         </font></Label>
    </children>
 </AnchorPane>
