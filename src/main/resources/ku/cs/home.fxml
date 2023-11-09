@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #7D7C7C;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.HomeController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #7D7C7C;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="ku.cs.controllers.HomeController">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: #191717;">
          <children>
@@ -116,6 +116,7 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button layoutX="62.0" layoutY="580.0" mnemonicParsing="false" onAction="#onAnalyzeHistoryClick" text="Analyze History" />
          </children>
       </AnchorPane>
       <Separator layoutX="225.0" layoutY="100.0" orientation="VERTICAL" prefHeight="700.0" prefWidth="6.0" style="-fx-background-color: #191717;" />

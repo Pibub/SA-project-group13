@@ -29,7 +29,7 @@ public class InvoiceDataSource implements Datasource<InvoiceList> {
 
                 String itemId = queryOutput.getString(1);
                 String itemName = queryOutput.getString(2);
-                Float qty = queryOutput.getFloat(3);
+                int qty = queryOutput.getInt(3);
                 String description = queryOutput.getString(4);
                 String vendor = queryOutput.getString(5);
                 String invoiceNo = queryOutput.getString(6);
@@ -39,9 +39,10 @@ public class InvoiceDataSource implements Datasource<InvoiceList> {
                 String keepLoc = queryOutput.getString(10);
                 String receiveLoc = queryOutput.getString(11);
                 String status = queryOutput.getString(12);
+                String unit = queryOutput.getString(13);
 
 
-                invoiceList.addInvoice(new Invoice(itemId , itemName , qty , description , vendor, invoiceNo, poNo, dueDate, line, keepLoc, receiveLoc, status));
+                invoiceList.addInvoice(new Invoice(itemId , itemName , qty , description , vendor, invoiceNo, poNo, dueDate, line, keepLoc, receiveLoc, status, unit));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,18 +74,19 @@ public class InvoiceDataSource implements Datasource<InvoiceList> {
                             "line = '" + invoice.getLine() + "', " +
                             "keep_loc = '" + invoice.getKeepLoc()+ "', " +
                             "receive_loc = '" + invoice.getReceiveLoc() + "', " +
-                            "status = '" + invoice.getStatus()+ "' " +
+                            "status = '" + invoice.getStatus()+ "', " +
+                            "unit = '" + invoice.getUnit()+ "' " +
                             "WHERE item_id = '" + invoice.getItemId() + "'";
 
 
                     statement.executeUpdate(updateUserQuery);
                 } else {
                     // If the user doesn't exist, insert a new user
-                    String insertUserQuery = "INSERT INTO invoice (item_id, item_name, qty, description, vendor, invoice_no, po_no, due_date, line, keep_loc, receive_loc, status) " +
+                    String insertUserQuery = "INSERT INTO invoice (item_id, item_name, qty, description, vendor, invoice_no, po_no, due_date, line, keep_loc, receive_loc, status, unit) " +
                             "VALUES ('" + invoice.getItemId() + "', '" + invoice.getItemName() + "', '" + invoice.getQty() + "', '" +
                             invoice.getDescription() + "', '" + invoice.getVendor() + "', '" + invoice.getInvoiceNo() + "', '" +
                             invoice.getPoNo() + "', '" + invoice.getDueDate() + "', '" + invoice.getLine() + "', '" + invoice.getKeepLoc() + "', '" +
-                            invoice.getReceiveLoc() + "', '" + invoice.getStatus() + "')";
+                            invoice.getReceiveLoc() + "', '" + invoice.getStatus() + invoice.getUnit() + "')";
 
                     statement.executeUpdate(insertUserQuery);
                 }

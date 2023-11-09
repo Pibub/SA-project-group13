@@ -15,6 +15,7 @@ public class User {
     private String password;
     private String userRole;
     private String userImage;
+    private int roleNumber;
     private String databaseName = "User";
 
     public User(String userId , String userName , String birthDate , String sex , String address , String tel , String workDate ,String password ,  String userRole){
@@ -38,7 +39,15 @@ public class User {
         this.userImage = userImage;
     }
 
-    public User(String userId, String userName, String birthDate, String sex, String address, String tel, String workDate, String password, String userRole, String  userImage) {
+    public int getRoleNumber() {
+        return roleNumber;
+    }
+
+    public void setRoleNumber(int roleNumber) {
+        this.roleNumber = roleNumber;
+    }
+
+    public User(String userId, String userName, String birthDate, String sex, String address, String tel, String workDate, String password, String userRole, String  userImage, int roleNumber) {
         this.userId = userId;
         this.userName = userName;
         this.birthDate = birthDate;
@@ -49,6 +58,7 @@ public class User {
         this.password =password;
         this.userRole = userRole;
         this.userImage = userImage;
+        this.roleNumber = roleNumber;
     }
 
 

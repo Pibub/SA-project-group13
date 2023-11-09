@@ -92,6 +92,9 @@ public class InvoiceListController {
         TableColumn<Invoice, String> qtyColumn = new TableColumn<>("QTY");
         qtyColumn.setCellValueFactory(new PropertyValueFactory<>("qty"));
 
+        TableColumn<Invoice, String> unitColumn = new TableColumn<>("UNIT");
+        unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit"));
+
         TableColumn<Invoice, String> descriptionColumn = new TableColumn<>("DESCRIPTION");
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
 
@@ -117,7 +120,7 @@ public class InvoiceListController {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         itemTableView.getColumns().clear();
-        itemTableView.getColumns().addAll(idColumn, nameColumn, qtyColumn, descriptionColumn, vendorColumn,
+        itemTableView.getColumns().addAll(idColumn, nameColumn, qtyColumn, unitColumn, descriptionColumn, vendorColumn,
                 poColumn, ddColumn, lineColumn, kLocColumn, rLocColumn, statusColumn);
     }
 

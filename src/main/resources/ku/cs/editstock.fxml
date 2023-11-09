@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.EditStockController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="ku.cs.controllers.EditStockController">
    <children>
       <Button layoutX="455.0" layoutY="732.0" mnemonicParsing="false" onAction="#onButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: #CCC8AA;" text="Back">
          <font>
@@ -23,7 +23,7 @@
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="130.0" prefHeight="578.0" prefWidth="794.0" style="-fx-background-color: #CCC8AA;">
+      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="130.0" prefHeight="578.0" prefWidth="794.0" style="-fx-background-color: #CCC8AA;" stylesheets="@../table-view-highlight.css">
         <columns>
           <TableColumn maxWidth="100.0" prefWidth="100.0" style="-fx-alignment: center;" text="C1" />
           <TableColumn maxWidth="100.0" prefWidth="100.0" style="-fx-alignment: center;" text="C2" />

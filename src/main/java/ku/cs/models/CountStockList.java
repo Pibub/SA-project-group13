@@ -8,10 +8,18 @@ public class CountStockList {
     public ArrayList<CountStock> getCountStocks(){ return countStocks;}
     public CountStock findTotalByCategoryId(String CId){
         for (CountStock countStock : countStocks){
-            if (countStock.getCategoryId().equals(CId)){
+            if (countStock.getShelfId().equals(CId)){
                 return countStock;
             }
         }
         return null;
+    }
+    public CountStock findLocationByShelfId(String shelfId){
+        for (CountStock countStock : countStocks){
+            if (countStock.getShelfId().equals(shelfId)){
+                return countStock;
+            }
+        }
+        return  null;
     }
 }

@@ -17,12 +17,21 @@ public class ActualCountStockList {
         return actualCountStocks;
     }
 
-    public boolean isCategoryIdExists(String categoryId) {
+    public boolean isShelfIdExists(String shelfId) {
         for (ActualCountStock actualCountStock : actualCountStocks) {
-            if (actualCountStock.getCategoryId().equals(categoryId)) {
+            if (actualCountStock.getShelfId().equals(shelfId)) {
                 return true; // Found a record with the same category ID
             }
         }
         return false; // No record with the same category ID found
+    }
+
+    public ActualCountStock findActualCountStockByShelfId(String shelfId) {
+        for (ActualCountStock actualCountStock : actualCountStocks) {
+            if (actualCountStock.getShelfId().equals(shelfId)) {
+                return actualCountStock; // Return the matching ActualCountStock object
+            }
+        }
+        return null; // Return null if no matching ActualCountStock is found
     }
 }

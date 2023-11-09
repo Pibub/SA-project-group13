@@ -24,13 +24,12 @@ public class CountStockDataSource implements Datasource<CountStockList>{
             ResultSet queryOutput = statement.executeQuery(getCountStockData);
             while (queryOutput != null && queryOutput.next()){
                 String userId = queryOutput.getString(1);
-                String itemName = queryOutput.getString(2);
-                String categoryId = queryOutput.getString(3);
-                float total = queryOutput.getFloat(4);
-                String location = queryOutput.getString(5);
-                String userName = queryOutput.getString(6);
+                String shelfId = queryOutput.getString(2);
+                int total = queryOutput.getInt(3);
+                String location = queryOutput.getString(4);
+                String userName = queryOutput.getString(5);
 
-                countStockList.addCountStock(new CountStock(userId, itemName, categoryId, total, location, userName));
+                countStockList.addCountStock(new CountStock(userId, shelfId, total, location, userName));
 
             }
         } catch (Exception e) {
@@ -48,25 +47,24 @@ public class CountStockDataSource implements Datasource<CountStockList>{
             try {
                 Statement statement = connectionCountStock.createStatement();
 
-                String checkCountStockQuery = "SELECT * FROM count_stock WHERE category_id = '" + countStock.getCategoryId() + "'";
+                String checkCountStockQuery = "SELECT * FROM count_stock WHERE shelf_id = '" + countStock.getShelfId() + "'";
                 ResultSet checkCountStockResult = statement.executeQuery(checkCountStockQuery);
 
                 if (checkCountStockResult.next()) {
-                    String updateUserQuery = "UPDATE count_stock SET item_name = '" + countStock.getItemName() + "', " +
-                            "user_id = '" + countStock.getUserId() + "', " +
+                    String updateUserQuery = "UPDATE count_stock SET user_id = '" + countStock.getUserId() + "', " +
                             "total = '" + countStock.getTotal() + "', " +
                             "location = '" + countStock.getLocation() + "', " +
                             "user_name = '" + countStock.getUserName() + "' " +
-                            "WHERE category_id = '" + countStock.getCategoryId() + "'";
+                            "WHERE shelf_id = '" + countStock.getShelfId()+ "'";
 
 
 
                     statement.executeUpdate(updateUserQuery);
                 } else {
 
-                    String insertUserQuery = "INSERT INTO count_stock (user_id, item_name, category_id, total, location, user_name ) " +
-                            "VALUES ('" + countStock.getUserId() + "', '" + countStock.getItemName() + "', '" + countStock.getCategoryId() + "', '" +
-                            countStock.getTotal() + "', '" + countStock.getLocation() + "', '" + countStock.getUserName() + "')";
+                    String insertUserQuery = "INSERT INTO count_stock (user_id, shelf_id, total, location, user_name ) " +
+                            "VALUES ('" + countStock.getUserId() + "', '" + countStock.getShelfId() + "', '" + countStock.getTotal() + "', '" +
+                            countStock.getLocation() + "', '" + countStock.getUserName() + "')";
 
                     statement.executeUpdate(insertUserQuery);
                 }

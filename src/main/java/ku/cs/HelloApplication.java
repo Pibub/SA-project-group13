@@ -42,6 +42,9 @@ public class HelloApplication extends Application {
         FXRouter.when("ware-house-count" , packageStr + "ware-house-count.fxml");
         FXRouter.when("actual-count-stock" , packageStr + "actual-count-stock.fxml");
         FXRouter.when("history" , packageStr + "history.fxml");
+        FXRouter.when("notify" , packageStr + "notify.fxml");
+        FXRouter.when("analyze" , packageStr + "analyze.fxml");
+        FXRouter.when("analyzeDetails" , packageStr + "analyzeDetails.fxml");
     }
 
     public static void main(String[] args) {

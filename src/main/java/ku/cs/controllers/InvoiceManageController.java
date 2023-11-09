@@ -26,13 +26,7 @@ public class InvoiceManageController {
     @FXML private Label itemNameLabel;
     @FXML private Label qtyLabel;
     @FXML private Label kLocLabel;
-    @FXML private TextField addItemIdTextField;
-    @FXML private TextField addItemNameTextField;
-    @FXML private TextField addAmountTextField;
-    @FXML private TextField addLocationTextField;
-    @FXML private DatePicker addStorageDatePicker;
-    @FXML private Label warning;
-    @FXML private Label successLabel;
+    @FXML private Label unit;
     private Invoice invoice;
     private StockList stockList;
     private Datasource<StockList> stockListDatasource;
@@ -52,70 +46,7 @@ public class InvoiceManageController {
         itemNameLabel.setText(invoice.getItemName());
         qtyLabel.setText(String.valueOf(invoice.getQty()));
         kLocLabel.setText(invoice.getKeepLoc());
-        warning.setText("***You have to fill information above completely***");
-        warning.setStyle("-fx-text-fill: red;");
-    }
-
-    @FXML
-    public void onAddItemClick() {
-        String addItemID = addItemIdTextField.getText();
-        String addItemName = addItemNameTextField.getText();
-        String addAmountText = addAmountTextField.getText();
-        String addLocation = addLocationTextField.getText();
-        LocalDate addDate = addStorageDatePicker.getValue();
-
-        // Check if any of the fields are empty
-        if (addItemID.isEmpty() || addItemName.isEmpty() || addAmountText.isEmpty() || addLocation.isEmpty() || addDate == null) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Missing Information");
-            alert.setContentText("Please fill out all the information fields.");
-            alert.showAndWait();
-            return; // Exit the method if any field is empty
-        }
-
-        // Proceed with the item addition
-        try {
-            int addAmount = Integer.parseInt(addAmountText);
-
-            // Create a confirmation dialog
-            Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
-            confirmationAlert.setTitle("Confirmation");
-            confirmationAlert.setHeaderText("Are you sure to add this new item?");
-            confirmationAlert.setContentText("Please confirm your action.");
-
-            // Show the confirmation dialog and wait for a response
-            ButtonType confirmButton = new ButtonType("Confirm");
-            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-            confirmationAlert.getButtonTypes().setAll(confirmButton, cancelButton);
-
-            // Get the user's response
-            Optional<ButtonType> result = confirmationAlert.showAndWait();
-
-            if (result.isPresent() && result.get() == confirmButton) {
-                LocalDateTime localDateTime = LocalDateTime.now();
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
-                String formattedTime = localDateTime.format(formatter);
-                String itemIdWithDate = addItemID + "-" + formattedTime.toString();
-                stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, addDate.toString(), addItemID);
-                stockListDatasource.insertData(stockList);
-                successLabel.setText("Add item to stock complete");
-                successLabel.setStyle("-fx-text-fill: green");
-            } else {
-                // User canceled the action
-                warning.setText("Action canceled");
-            }
-
-            // Clear the input fields
-            addItemIdTextField.clear();
-            addItemNameTextField.clear();
-            addAmountTextField.clear();
-            addLocationTextField.clear();
-            addStorageDatePicker.getEditor().clear();
-        } catch (NumberFormatException e) {
-            // Handle invalid amount input
-            warning.setText("Please enter a valid amount.");
-        }
+        unit.setText(invoice.getUnit());
     }
 
     @FXML
@@ -124,7 +55,7 @@ public class InvoiceManageController {
             Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
             confirmationAlert.setHeaderText("Are you sure to complete this invoice?");
-            confirmationAlert.setContentText("Please confirm your action.");
+            confirmationAlert.setContentText("Please confirm your action");
 
             ButtonType confirmButton = new ButtonType("Confirm");
             ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -146,12 +77,42 @@ public class InvoiceManageController {
 
                 invoiceDataSource.insertData(invoiceList);
 
-                warning.setText("Invoice Status: " + invoice.getStatus());
+                // Create an Alert to inform the user about marking the invoice as 'Completed'
+                Alert infoAlert = new Alert(AlertType.INFORMATION);
+                infoAlert.setTitle("Information");
+                infoAlert.setHeaderText("Invoice Status");
+                infoAlert.setContentText("Invoice has been marked as 'Completed'");
+                infoAlert.showAndWait();
+
+                // Now, add the invoice details to the stock database
+                String addItemID = invoice.getItemId();
+                String addItemName = invoice.getItemName();
+                int addAmount = invoice.getQty();
+                String addLocation = invoice.getKeepLoc();
+                String addUnit = invoice.getUnit();
+
+                LocalDateTime localDateTime = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm-yyyy-MM-dd");
+                String formattedTime = localDateTime.format(formatter);
+                String itemIdWithDate = addItemID + "-" + formattedTime.toString();
+
+                // Add to the stock database
+                stockList.addStock(itemIdWithDate, addItemName, addAmount, addLocation, formattedTime.toString(), addItemID, addUnit);
+                stockListDatasource.insertData(stockList);
+
+                // Create an Alert to inform the user about adding to the stock
+                Alert addedToStockAlert = new Alert(AlertType.INFORMATION);
+                addedToStockAlert.setTitle("Information");
+                addedToStockAlert.setHeaderText("Added to Stock");
+                addedToStockAlert.setContentText("The item has been added to the stock.");
+                addedToStockAlert.showAndWait();
             }
         }
     }
+
+
     @FXML
-    public void onInCompleteInvoice() {
+    public void onIncompleteInvoice() {
         if (invoice != null) {
             Alert confirmationAlert = new Alert(AlertType.CONFIRMATION);
             confirmationAlert.setTitle("Confirmation");
@@ -178,10 +139,19 @@ public class InvoiceManageController {
 
                 invoiceDataSource.insertData(invoiceList);
 
-                warning.setText("Invoice Status: " + invoice.getStatus());
+                // Create an Alert to inform the user about marking the invoice as 'Incomplete'
+                Alert infoAlert = new Alert(AlertType.INFORMATION);
+                infoAlert.setTitle("Information");
+                infoAlert.setHeaderText("Invoice Status");
+                infoAlert.setContentText("Invoice has been marked as 'Incomplete'");
+                infoAlert.showAndWait();
             }
         }
     }
+
+
+
+
     @FXML
     public void onBackClick() {
         try {

@@ -1,0 +1,11 @@
+/* Define a style for highlighting rows when the mouse hovers over them */
+.table-row-cell:hover {
+    -fx-background-color: #6699FF; /* Change the background color to your desired highlight color */
+    -fx-text-fill: white; /* Change the text color */
+}
+
+/* Define a style for selected (clicked) rows */
+.table-row-cell:selected {
+    -fx-background-color: #6699B1; /* Change the background color for selected rows */
+    -fx-text-fill: white; /* Change the text color */
+}

@@ -24,16 +24,15 @@ public class ActualCountStockDataSource implements Datasource<ActualCountStockLi
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                String categoryId = resultSet.getString(1);
-                String itemName = resultSet.getString(2);
-                float firstCount = resultSet.getFloat(3);
-                float secondCount = resultSet.getFloat(4);
-                float thirdCount = resultSet.getFloat(5);
-                String inputerId = resultSet.getString(6);
-                String inputerName = resultSet.getString(7);
-                String location = resultSet.getString(8);
+                String shelfId = resultSet.getString(1);
+                int firstCount = resultSet.getInt(2);
+                int secondCount = resultSet.getInt(3);
+                int thirdCount = resultSet.getInt(4);
+                String inputerId = resultSet.getString(5);
+                String inputerName = resultSet.getString(6);
+                String location = resultSet.getString(7);
 
-                actualCountStockList.addActualCountStock(new ActualCountStock(categoryId, itemName, firstCount, secondCount, thirdCount, inputerId, inputerName, location));
+                actualCountStockList.addActualCountStock(new ActualCountStock(shelfId, firstCount, secondCount, thirdCount, inputerId, inputerName, location));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -50,25 +49,24 @@ public class ActualCountStockDataSource implements Datasource<ActualCountStockLi
             try {
                 Statement statement = connection.createStatement();
 
-                String checkCountStockQuery = "SELECT * FROM actual_count_stock WHERE category_id = '" + actualCountStock.getCategoryId() + "'";
+                String checkCountStockQuery = "SELECT * FROM actual_count_stock WHERE shelf_id = '" + actualCountStock.getShelfId()+ "'";
                 ResultSet checkCountStockResult = statement.executeQuery(checkCountStockQuery);
 
                 if (checkCountStockResult.next()) {
-                    String updateCountStockQuery = "UPDATE actual_count_stock SET item_name = '" + actualCountStock.getItemName() + "', " +
-                            "first_count = '" + actualCountStock.getFirstCount() + "', " +
+                    String updateCountStockQuery = "UPDATE actual_count_stock SET first_count = '" + actualCountStock.getFirstCount() + "', " +
                             "second_count = '" + actualCountStock.getSecondCount() + "', " +
                             "third_count = '" + actualCountStock.getThirdCount() + "', " +
                             "inputer_id = '" + actualCountStock.getInputerId() + "', " +
-                            "inputer_name = '" + actualCountStock.getInputerName() + "' " +
+                            "inputer_name = '" + actualCountStock.getInputerName() + "', " +
                             "location = '" + actualCountStock.getLocation() + "' " +
-                            "WHERE category_id = '" + actualCountStock.getCategoryId() + "'";
+                            "WHERE shelf_id = '" + actualCountStock.getShelfId() + "'";
 
                     statement.executeUpdate(updateCountStockQuery);
                 } else {
-                    String insertCountStockQuery = "INSERT INTO actual_count_stock (category_id, item_name, first_count, second_count, third_count, inputer_id, inputer_name, location) " +
-                            "VALUES ('" + actualCountStock.getCategoryId() + "', '" + actualCountStock.getItemName() + "', '" +
+                    String insertCountStockQuery = "INSERT INTO actual_count_stock (shelf_id, first_count, second_count, third_count, inputer_id, inputer_name, location) " +
+                            "VALUES ('" + actualCountStock.getShelfId() + "', '" +
                             actualCountStock.getFirstCount() + "', '" + actualCountStock.getSecondCount() + "', '" + actualCountStock.getThirdCount() + "', '" +
-                            actualCountStock.getInputerId() + "', '" + actualCountStock.getInputerName() + "', '" + actualCountStock.getLocation() +"')";
+                            actualCountStock.getInputerId() + "', '" + actualCountStock.getInputerName() + "', '" + actualCountStock.getLocation() + "')";
 
                     statement.executeUpdate(insertCountStockQuery);
                 }
@@ -79,7 +77,7 @@ public class ActualCountStockDataSource implements Datasource<ActualCountStockLi
     }
 
     @Override
-    public void deleteData(String categoryId) {
+    public void deleteData(String shelfId) {
         databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
 
@@ -87,7 +85,7 @@ public class ActualCountStockDataSource implements Datasource<ActualCountStockLi
             Statement statement = connection.createStatement();
 
             // SQL query to delete actual count stock records with a specific categoryId
-            String deleteCountStockQuery = "DELETE FROM actual_count_stock WHERE category_id = '" + categoryId + "'";
+            String deleteCountStockQuery = "DELETE FROM actual_count_stock WHERE shelf_id = '" + shelfId + "'";
 
             // Execute the delete query
             statement.executeUpdate(deleteCountStockQuery);

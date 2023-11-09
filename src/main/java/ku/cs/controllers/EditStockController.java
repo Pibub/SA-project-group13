@@ -36,7 +36,7 @@ public class EditStockController {
                 Stock selectedStock = itemTableView.getSelectionModel().getSelectedItem();
                 if (selectedStock != null) {
                     try {
-                        com.github.saacsos.FXRouter.goTo("stockManage", selectedStock.getCategoryId());
+                        com.github.saacsos.FXRouter.goTo("stockManage", selectedStock.getShelfId());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -54,9 +54,9 @@ public class EditStockController {
                 String lowerCaseFilter = newValue.toLowerCase();
                 return stock.getItemName().toLowerCase().contains(lowerCaseFilter)
                         || stock.getItemId().toLowerCase().contains(lowerCaseFilter)
-                        || String.valueOf(stock.getAmount()).toLowerCase().contains(lowerCaseFilter)
+                        || String.valueOf(stock.getQty()).toLowerCase().contains(lowerCaseFilter)
                         || stock.getLocation().toLowerCase().contains(lowerCaseFilter)
-                        || stock.getCategoryId().toLowerCase().contains(lowerCaseFilter);
+                        || stock.getShelfId().toLowerCase().contains(lowerCaseFilter);
             });
         });
     }
@@ -69,14 +69,14 @@ public class EditStockController {
 
         // Group and sum items by category ID
         for (Stock stockItem : stockItems) {
-            String categoryID = stockItem.getCategoryId();
-            if (stockMap.containsKey(categoryID)) {
-                Stock existingItem = stockMap.get(categoryID);
+            String shelfId = stockItem.getShelfId();
+            if (stockMap.containsKey(shelfId)) {
+                Stock existingItem = stockMap.get(shelfId);
                 // Add the amount to the existing item
-                existingItem.setAmount(existingItem.getAmount() + stockItem.getAmount());
+                existingItem.setQty(existingItem.getQty() + stockItem.getQty());
             } else {
                 // Add the item to the map
-                stockMap.put(categoryID, stockItem);
+                stockMap.put(shelfId, stockItem);
             }
         }
 
@@ -85,20 +85,23 @@ public class EditStockController {
     }
 
     private void initTableView() {
-        TableColumn<Stock, String> idColumn = new TableColumn<>("CATEGORY_ID");
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
+        TableColumn<Stock, String> idColumn = new TableColumn<>("SHELF_ID");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("shelfId"));
 
         TableColumn<Stock, String> nameColumn = new TableColumn<>("ITEM_NAME");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
 
-        TableColumn<Stock, String> amountColumn = new TableColumn<>("AMOUNT");
-        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        TableColumn<Stock, String> qtyColumn = new TableColumn<>("QTY");
+        qtyColumn.setCellValueFactory(new PropertyValueFactory<>("qty"));
+
+        TableColumn<Stock, String> unitColumn = new TableColumn<>("UNIT");
+        unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit"));
 
         TableColumn<Stock, String> locationColumn = new TableColumn<>("LOCATION");
         locationColumn.setCellValueFactory(new PropertyValueFactory<>("location"));
 
         itemTableView.getColumns().clear();
-        itemTableView.getColumns().addAll(idColumn, nameColumn, amountColumn, locationColumn);
+        itemTableView.getColumns().addAll(idColumn, nameColumn, qtyColumn, unitColumn, locationColumn);
     }
 
 

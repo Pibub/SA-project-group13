@@ -25,11 +25,12 @@ public class StockDataSource implements Datasource<StockList> {
             while(queryOutput != null && queryOutput.next()){
                 String itemId = queryOutput.getString(1);
                 String itemName = queryOutput.getString(2);
-                int amount = queryOutput.getInt(3);
+                int qty = queryOutput.getInt(3);
                 String location = queryOutput.getString(4);
                 String storageDate = queryOutput.getString(5);
-                String categoryId = queryOutput.getString(6);
-                stockList.addStock(new Stock(itemId , itemName , amount , location , storageDate, categoryId));
+                String shelfId = queryOutput.getString(6);
+                String unit = queryOutput.getString(7);
+                stockList.addStock(new Stock(itemId , itemName , qty , location , storageDate, shelfId, unit));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,19 +52,23 @@ public class StockDataSource implements Datasource<StockList> {
 
                 if (checkUserResult.next()) {
                     String updateUserQuery = "UPDATE stock SET item_name = '" + stock.getItemName() + "', " +
-                            "amount = '" + stock.getAmount() + "', " +
+                            "qty = '" + stock.getQty() + "', " +
                             "location = '" + stock.getLocation() + "', " +
                             "storage_date = '" + stock.getStorageDate() + "', " +
-                            "category_id = '" + stock.getCategoryId() + "' " +
+                            "shelf_id = '" + stock.getShelfId() + "', " +
+                            "unit = '" + stock.getUnit() + "' " +
                             "WHERE item_id = '" + stock.getItemId() + "'";
+
 
 
                     statement.executeUpdate(updateUserQuery);
                 } else {
 
-                    String insertUserQuery = "INSERT INTO stock (item_id, item_name, amount, location, storage_date, category_id) " +
-                            "VALUES ('" + stock.getItemId() + "', '" + stock.getItemName() + "', '" + stock.getAmount() + "', '" +
-                            stock.getLocation() + "', '" + stock.getStorageDate() + "', '" + stock.getCategoryId() + "')";
+                    String insertUserQuery = "INSERT INTO stock (item_id, item_name, qty, location, storage_date, shelf_id, unit) " +
+                            "VALUES ('" + stock.getItemId() + "', '" + stock.getItemName() + "', '" + stock.getQty() + "', '" +
+                            stock.getLocation() + "', '" + stock.getStorageDate() + "', '" + stock.getShelfId() + "', '" + stock.getUnit() + "')";
+
+
 
                     statement.executeUpdate(insertUserQuery);
                 }

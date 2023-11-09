@@ -35,8 +35,9 @@ public class UserDataSource implements Datasource<UserList> {
                 String password = queryOutput.getString(8);
                 String userRole = queryOutput.getString(9);
                 String userImage = queryOutput.getString(10);
+                int roleNUmber = queryOutput.getInt(11);
 
-                list.addUser(new User(userId, userName, birthDate, sex, address,tel, workDate,password, userRole, userImage));
+                list.addUser(new User(userId, userName, birthDate, sex, address,tel, workDate,password, userRole, userImage, roleNUmber));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,17 +66,18 @@ public class UserDataSource implements Datasource<UserList> {
                             "start_working_date = '" + user.getWorkDate() + "', " +
                             "password = '" + user.getPassword() + "', " +
                             "role = '" + user.getUserRole() + "', " +
-                            "image = '" + user.getUserImage() + "' " +
+                            "image = '" + user.getUserImage() + "', " +
+                            "role_number = '" + user.getRoleNumber() + "' " +
                             "WHERE id = '" + user.getUserId() + "'";
 
 
                     statement.executeUpdate(updateUserQuery);
                 } else {
                     // If the user doesn't exist, insert a new user
-                    String insertUserQuery = "INSERT INTO employee (id, name, date_of_birth, sex, address, phone_number, start_working_date, password, role, image) " +
+                    String insertUserQuery = "INSERT INTO employee (id, name, date_of_birth, sex, address, phone_number, start_working_date, password, role, image, role_number) " +
                             "VALUES ('" + user.getUserId() + "', '" + user.getUserName() + "', '" + user.getBirthDate() + "', '" +
                             user.getSex() + "', '" + user.getAddress() + "', '" + user.getTel() + "', '" +
-                            user.getWorkDate() + "', '" + user.getPassword() + "', '" + user.getUserRole() + "', '" + user.getUserImage() + "')";
+                            user.getWorkDate() + "', '" + user.getPassword() + "', '" + user.getUserRole() + "', '" + user.getUserImage() + "', '" +user.getRoleNumber() + "')";
 
                     statement.executeUpdate(insertUserQuery);
                 }

@@ -37,6 +37,15 @@ public class UserList {
         }
         return null;
     }
+    public  User findUserById(String id){
+        for (User user : users)
+        {
+            if (user.getUserId().equals(id)){
+                return user;
+            }
+        }
+        return null;
+    }
     public User findUserByIdAndUsername(String id, String username) {
         for(User user : users)
         {
@@ -46,7 +55,7 @@ public class UserList {
         }
         return null;
     }
-    public void addNewUser(String userId, String userName, String birthDate , String sex, String address, String tel, String workDate, String password, String userRole, String userImage) {
+    public void addNewUser(String userId, String userName, String birthDate , String sex, String address, String tel, String workDate, String password, String userRole, String userImage, int roleNumber) {
         userId = userId.trim();
         userName = userName.trim();
         birthDate = birthDate.trim();
@@ -59,7 +68,7 @@ public class UserList {
         if (!userId.equals("") && !userName.equals("")) {
             User exist = findUserByIdAndUsername(userId, userName);
             if (exist == null) {
-                users.add(new User(userId, userName, birthDate , sex, address, tel, workDate, password, userRole, userImage));
+                users.add(new User(userId, userName, birthDate , sex, address, tel, workDate, password, userRole, userImage, roleNumber));
             }
         }
     }

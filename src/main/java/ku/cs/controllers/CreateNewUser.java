@@ -26,6 +26,7 @@ public class CreateNewUser {
     @FXML PasswordField passwordTextField;
     @FXML DatePicker swdPicker;
     @FXML DatePicker dobPicker;
+    @FXML TextField roleNumberTextField;
     @FXML Label warningLabel;
     private UserList userList;
     private Datasource<UserList> userListDatasource;
@@ -57,6 +58,7 @@ public class CreateNewUser {
         String dob = dobPicker.getValue().toString();
         String swd = swdPicker.getValue().toString();
         String defaultImage = "src/main/resources/ku/cs/image/user.png";
+        String roleNumber = roleNumberTextField.getText();
 
         if (id.isEmpty() || name.isEmpty() || sex.isEmpty() || address.isEmpty() || phone.isEmpty() || role.isEmpty() || password.isEmpty() || dob.isEmpty() || swd.isEmpty()) {
             // Some fields are empty, show an Alert
@@ -83,13 +85,20 @@ public class CreateNewUser {
 
             if (result.isPresent() && result.get() == confirmButton) {
                 if (user != null) {
-                    warningLabel.setText("The username is already exist.");
-                    warningLabel.setStyle("-fx-text-fill: red;");
+                    // Show an Alert to indicate that the username already exists
+                    Alert usernameExistsAlert = new Alert(AlertType.ERROR);
+                    usernameExistsAlert.setTitle("Username Exists");
+                    usernameExistsAlert.setHeaderText("The username is already in use.");
+                    usernameExistsAlert.showAndWait();
                 } else {
-                    userList.addNewUser(id, name, dob, sex, address, phone, swd, password, role, defaultImage);
+                    userList.addNewUser(id, name, dob, sex, address, phone, swd, password, role, defaultImage, Integer.parseInt(roleNumber));
                     userListDatasource.insertData(userList);
-                    warningLabel.setText("Add new user complete");
-                    warningLabel.setStyle("-fx-text-fill: green");
+
+                    // Show a success Alert
+                    Alert successAlert = new Alert(AlertType.INFORMATION);
+                    successAlert.setTitle("User Added");
+                    successAlert.setHeaderText("User added successfully.");
+                    successAlert.showAndWait();
                 }
 
                 // Clear the input fields and set default values
@@ -108,9 +117,13 @@ public class CreateNewUser {
                 swdPicker.setValue(LocalDate.now());
             } else {
                 // User canceled the action
-                warningLabel.setText("Action canceled");
+                Alert canceledAlert = new Alert(AlertType.INFORMATION);
+                canceledAlert.setTitle("Action Canceled");
+                canceledAlert.setHeaderText("User addition was canceled.");
+                canceledAlert.showAndWait();
             }
         }
     }
+
 
 }

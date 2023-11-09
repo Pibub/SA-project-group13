@@ -28,7 +28,16 @@ public class StockList {
         return null;
     }
 
-    public void addStock(String itemId , String itemName , int amount , String location , String storageDate, String categoryId) {
+    public String getLocationByShelfId(String shelfId) {
+        for (Stock stock : stocks) {
+            if (stock.getShelfId().equals(shelfId)) {
+                return stock.getLocation();
+            }
+        }
+        return null;
+    }
+
+    public void addStock(String itemId , String itemName , int amount , String location , String storageDate, String categoryId, String unit) {
         itemId = itemId.trim();
         itemName = itemName.trim();
         location = location.trim();
@@ -36,13 +45,9 @@ public class StockList {
         if (!itemId.equals("") && !itemName.equals("")) {
             Stock exist = findItemByIdAndName(itemId, itemName);
             if (exist == null) {
-                stocks.add(new Stock(itemId, itemName, amount, location, storageDate, categoryId));
+                stocks.add(new Stock(itemId, itemName, amount, location, storageDate, categoryId, unit));
             }
         }
-    }
-
-    public static void updateAmount(){
-
     }
 
 }

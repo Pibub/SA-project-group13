@@ -3,21 +3,47 @@ package ku.cs.models;
 public class Stock {
     private String itemId;
     private String itemName;
-    private int amount;
+    private int qty;
     private String location;
     private String storageDate;
-    private String categoryId;
+    private String shelfId;
+    private String unit;
     private String databaseName = "Stock";
 
-    public Stock(String itemId , String itemName , int amount , String location , String storageDate, String categoryId){
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public String getShelfId() {
+        return shelfId;
+    }
+
+    public void setShelfId(String shelfId) {
+        this.shelfId = shelfId;
+    }
+
+    public Stock(String itemId , String itemName , int qty , String location , String storageDate, String shelfId, String unit){
         this.itemId = itemId;
         this.itemName =itemName;
-        this.amount = amount;
+        this.qty = qty;
         this.location = location;
         this.storageDate = storageDate;
-        this.categoryId = categoryId;
+        this.shelfId = shelfId;
+        this.unit = unit;
     }
-    public String getCategoryId(){ return  categoryId;}
+
 
     public String getItemId() {
         return itemId;
@@ -33,14 +59,6 @@ public class Stock {
 
     public void setItemName(String itemName) {
         this.itemName = itemName;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
     }
 
     public String getLocation() {

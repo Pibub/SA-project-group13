@@ -8,23 +8,23 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import ku.cs.models.*;
 import ku.cs.services.CountStockDataSource;
 import ku.cs.services.Datasource;
+import ku.cs.services.StockDataSource;
 import ku.cs.services.UserDataSource;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class WareHouseCountController {
-    @FXML private TextField itemNameTextField;
     @FXML private TextField categoryIdTextField;
     @FXML private TextField totalTextfield;
-    @FXML private TextField locationTextField;
     @FXML private TableView<CountStock> itemTableView;
     private UserList userList;
     private Datasource<UserList> userListDatasource;
     private User user;
     private CountStockList countStockList;
     private Datasource<CountStockList> countStockListDatasource;
-    private CountStock countStock;
+    private StockList stockList;
+    private Datasource<StockList> stockListDatasource;
 
     public void initialize(){
         loadData();
@@ -37,6 +37,9 @@ public class WareHouseCountController {
         countStockListDatasource = new CountStockDataSource();
         countStockList = countStockListDatasource.readData();
 
+        stockListDatasource = new StockDataSource();
+        stockList = stockListDatasource.readData();
+
 
         String userName = (String) com.github.saacsos.FXRouter.getData();
         user = userList.findUserByUsername(userName);
@@ -44,11 +47,8 @@ public class WareHouseCountController {
         loadCountStockData();
     }
     private void initTableView(){
-        TableColumn<CountStock, String> idColumn = new TableColumn<>("CATEGORY_ID");
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("categoryId"));
-
-        TableColumn<CountStock, String> nameColumn = new TableColumn<>("ITEM_NAME");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("itemName"));
+        TableColumn<CountStock, String> idColumn = new TableColumn<>("SHELF_ID");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("shelfId"));
 
         TableColumn<CountStock, String> totalColumn = new TableColumn<>("Total");
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
@@ -62,26 +62,40 @@ public class WareHouseCountController {
         TableColumn<CountStock, String> userNameColumn = new TableColumn<>("USER-Name");
         userNameColumn.setCellValueFactory(new PropertyValueFactory<>("userName"));
 
-        itemTableView.getColumns().addAll(idColumn, nameColumn, totalColumn, locationColumn, userIdColumn, userNameColumn);
+        itemTableView.getColumns().addAll(idColumn, totalColumn, locationColumn, userIdColumn, userNameColumn);
+    }
+    private String getLocationFromStockList(String shelfId) {
+        return stockList.getLocationByShelfId(shelfId);
     }
     @FXML
     public void onInsertDataClick() {
-        String itemName = itemNameTextField.getText();
-        String categoryId = categoryIdTextField.getText();
+        String shelfId = categoryIdTextField.getText();
         String totalText = totalTextfield.getText();
-        String location = locationTextField.getText();
+        String location = getLocationFromStockList(shelfId);
+
+        // Check if the shelfId exists in the stock list
+        if (!isShelfIdValid(shelfId)) {
+            showErrorAlert("Error", "Invalid Shelf ID. Please enter a valid Shelf ID.");
+            return; // Exit the method if shelfId is invalid
+        }
 
         // Check if any of the fields are empty
-        if (itemName.isEmpty() || categoryId.isEmpty() || totalText.isEmpty() || location.isEmpty()) {
+        if (shelfId.isEmpty() || totalText.isEmpty()) {
             showErrorAlert("Error", "Please fill out all the information fields.");
             return; // Exit the method if any field is empty
         }
 
         try {
-            float total = Float.parseFloat(totalText);
+            int total = Integer.parseInt(totalText);
+
+            // Check if the total is not negative
+            if (total < 0) {
+                showErrorAlert("Error", "Total cannot be negative. Please enter a non-negative number.");
+                return; // Exit the method if total is negative
+            }
 
             // Create a new CountStock object
-            CountStock newCountStock = new CountStock(user.getUserId(), itemName, categoryId, total, location, user.getUserName());
+            CountStock newCountStock = new CountStock(user.getUserId(), shelfId, total, location, user.getUserName());
 
             // Create a confirmation dialog
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -99,53 +113,32 @@ public class WareHouseCountController {
                 CountStockDataSource countStockDataSource = new CountStockDataSource();
                 countStockDataSource.insertData(countStockList);
 
-                // Clear the input fields
-                itemNameTextField.clear();
                 categoryIdTextField.clear();
                 totalTextfield.clear();
-                locationTextField.clear();
 
                 // Refresh the table view to display the new data
                 itemTableView.getItems().add(newCountStock);
+
+
             }
             loadCountStockData();
         } catch (NumberFormatException e) {
-            showErrorAlert("Error", "Invalid value for 'Total'. Please enter a valid number.");
+            showErrorAlert("Error", "Invalid value for 'Total'. Please enter a valid non-negative integer.");
         }
     }
 
-    @FXML
-    public void onDeleteDataFromTableView() {
-        CountStock selectedItem = itemTableView.getSelectionModel().getSelectedItem();
 
-        if (selectedItem != null) {
-            // Create a confirmation dialog
-            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-            confirmationAlert.setTitle("Confirmation");
-            confirmationAlert.setHeaderText("Are you sure to delete this item?");
-            confirmationAlert.setContentText("Please confirm your action.");
-
-            // Show the confirmation dialog and wait for a response
-            Optional<ButtonType> result = confirmationAlert.showAndWait();
-
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                // User confirmed the action, delete the item
-                itemTableView.getItems().remove(selectedItem);
-                countStockList.getCountStocks().remove(selectedItem);
-
-                // Update the database by calling your deleteData method
-                // Make sure to implement the deleteData method in your CountStockDataSource
-                countStockListDatasource.deleteData(selectedItem.getCategoryId());
-
-                // Display a success message
-                showErrorAlert("Success", "Item deleted successfully.");
+    private boolean isShelfIdValid(String shelfId) {
+        // Check if the shelfId exists in the stock list
+        for (Stock stock : stockList.getStockList()) {
+            if (stock.getShelfId().equals(shelfId)) {
+                return true; // Shelf ID is valid
             }
-        } else {
-            // No item selected, show an error alert
-            showErrorAlert("Error", "Please select an item to delete.");
         }
-        loadCountStockData();
+        return false; // Shelf ID not found in stock list
     }
+
+
 
     private void showErrorAlert(String title, String contentText) {
         Alert errorAlert = new Alert(Alert.AlertType.ERROR);

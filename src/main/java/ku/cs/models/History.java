@@ -4,14 +4,33 @@ public class History {
     private String userId;
     private String itemId;
     private String date;
-    private Float amount;
+    private int qty;
     private String requisitionId;
-    public History(String userId, String itemId, String date, float amount, String requisitionId) {
+    private String unit;
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public History(String userId, String itemId, String date, int qty, String requisitionId, String unit) {
         this.userId = userId;
         this.itemId = itemId;
         this.date = date;
-        this.amount = amount;
+        this.qty = qty;
         this.requisitionId = requisitionId;
+        this.unit = unit;
     }
 
     public String getUserId() {
@@ -38,13 +57,6 @@ public class History {
         this.date = date;
     }
 
-    public Float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
-    }
 
     public String getRequisitionId() {
         return requisitionId;

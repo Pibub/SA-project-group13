@@ -22,10 +22,11 @@ public class HistoryDataSource implements Datasource<HistoryList>{
                 String userId = queryOutput.getString(1);
                 String itemId = queryOutput.getString(2);
                 String date = queryOutput.getString(3);
-                float amount = queryOutput.getFloat(4);
+                int qty = queryOutput.getInt(4);
                 String requisitionId = queryOutput.getString(5);
+                String unit = queryOutput.getString(6);
 
-                historyList.addHistory(new History(userId, itemId, date, amount, requisitionId));
+                historyList.addHistory(new History(userId, itemId, date, qty, requisitionId, unit));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,9 +47,10 @@ public class HistoryDataSource implements Datasource<HistoryList>{
                 ResultSet checkHistoryResult = statement.executeQuery(checkHistoryQuery);
 
                 if (!checkHistoryResult.next()) {
-                    String insertUserQuery = "INSERT INTO history (user_id, item_id, date, amount, requisition_id) " +
+                    String insertUserQuery = "INSERT INTO history (user_id, item_id, date, qty, requisition_id, unit) " +
                             "VALUES ('" + history.getUserId() + "', '" + history.getItemId() + "', '" + history.getDate() + "', " +
-                            history.getAmount() + ", '" + history.getRequisitionId() + "')";
+                            history.getQty() + ", '" + history.getRequisitionId() + "', '" + history.getUnit() + "')";
+
 
                     statement.executeUpdate(insertUserQuery);
                 }

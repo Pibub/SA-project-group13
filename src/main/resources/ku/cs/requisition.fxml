@@ -8,14 +8,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ku.cs.controllers.RequisitionController">
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #191717;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="ku.cs.controllers.RequisitionController">
    <children>
       <Text fill="WHITE" layoutX="407.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Requisition" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="35.0" />
          </font>
       </Text>
-      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="126.0" prefHeight="570.0" prefWidth="806.0" style="-fx-background-color: #CCC8AA;">
+      <TableView fx:id="itemTableView" layoutX="100.0" layoutY="126.0" prefHeight="570.0" prefWidth="806.0" style="-fx-background-color: #CCC8AA;" stylesheets="@../table-view-highlight.css">
         <columns>
           <TableColumn maxWidth="100.0" prefWidth="100.0" style="-fx-alignment: center;" text="C1" />
           <TableColumn maxWidth="75.0" prefWidth="75.0" style="-fx-alignment: center;" text="C2" />

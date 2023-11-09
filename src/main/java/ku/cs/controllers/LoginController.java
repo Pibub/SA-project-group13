@@ -39,7 +39,7 @@ public class LoginController {
         String password = passwordText.getText();
         User user = userList.findUser(username, password);
         LocalDate now = LocalDate.now();
-        LocalDate closeSystem = LocalDate.of(2023 , 12 , 6);
+        LocalDate closeSystem = LocalDate.of(2023 , 11 , 7);
         LocalDate closeSystemFinalDay = LocalDate.of(2023 , 12 , 7);
         LocalDate closeSystemFirstHalf = LocalDate.of(2023 , 6 , 6);
         LocalDate closeSystemFinalFirstHalf = LocalDate.of(2023 , 6 , 7);

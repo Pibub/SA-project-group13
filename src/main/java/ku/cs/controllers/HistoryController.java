@@ -37,14 +37,17 @@ public class HistoryController {
         TableColumn<History, String> dateColumn = new TableColumn<>("DATE");
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
-        TableColumn<History, Integer> amountColumn = new TableColumn<>("AMOUNT");
-        amountColumn.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        TableColumn<History, Integer> qtyColumn = new TableColumn<>("QTY");
+        qtyColumn.setCellValueFactory(new PropertyValueFactory<>("qty"));
+
+        TableColumn<History, Integer> unitColumn = new TableColumn<>("UNIT");
+        unitColumn.setCellValueFactory(new PropertyValueFactory<>("unit"));
 
         TableColumn<History, String> requisitionIdColumn = new TableColumn<>("REQUISITION_ID");
         requisitionIdColumn.setCellValueFactory(new PropertyValueFactory<>("requisitionId"));
 
         // Add columns to the TableView
-        itemTableView.getColumns().setAll(userIdColumn, itemIdColumn, dateColumn, amountColumn, requisitionIdColumn);
+        itemTableView.getColumns().setAll(userIdColumn, itemIdColumn, dateColumn, qtyColumn, unitColumn, requisitionIdColumn);
     }
 
     public void loadData() {

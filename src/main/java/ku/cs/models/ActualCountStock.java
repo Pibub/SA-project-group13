@@ -1,77 +1,43 @@
 package ku.cs.models;
 
 public class ActualCountStock {
-    private String categoryId;
-    private String itemName;
-    private float actualTotal;
-    private float firstCount;
-    private float secondCount;
-    private float thirdCount;
+    private String shelfId;
+    private int firstCount;
+    private int secondCount;
+    private int thirdCount;
     private String inputerId;
     private String inputerName;
-    private float onHand;
     private String location;
 
-    public String getLocation() {
-        return location;
+    public String getShelfId() {
+        return shelfId;
     }
 
-    public ActualCountStock(String categoryId, String itemName, float firstCount, float secondCount, float thirdCount, String inputerId, String inputerName, String location) {
-        this.categoryId = categoryId;
-        this.itemName = itemName;
-        this.firstCount = firstCount;
-        this.secondCount = secondCount;
-        this.thirdCount = thirdCount;
-        this.inputerId = inputerId;
-        this.inputerName = inputerName;
-        this.location =location;
+    public void setShelfId(String shelfId) {
+        this.shelfId = shelfId;
     }
 
-    public String getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public float getActualTotal() {
-        return actualTotal;
-    }
-
-    public void setActualTotal(float actualTotal) {
-        this.actualTotal = actualTotal;
-    }
-
-    public float getFirstCount() {
+    public int getFirstCount() {
         return firstCount;
     }
 
-    public void setFirstCount(float firstCount) {
+    public void setFirstCount(int firstCount) {
         this.firstCount = firstCount;
     }
 
-    public float getSecondCount() {
+    public int getSecondCount() {
         return secondCount;
     }
 
-    public void setSecondCount(float secondCount) {
+    public void setSecondCount(int secondCount) {
         this.secondCount = secondCount;
     }
 
-    public float getThirdCount() {
+    public int getThirdCount() {
         return thirdCount;
     }
 
-    public void setThirdCount(float thirdCount) {
+    public void setThirdCount(int thirdCount) {
         this.thirdCount = thirdCount;
     }
 
@@ -91,11 +57,21 @@ public class ActualCountStock {
         this.inputerName = inputerName;
     }
 
-    public void setOnHand(float onHand) {
-        this.onHand = onHand;
+    public String getLocation() {
+        return location;
     }
 
     public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public ActualCountStock(String shelfId, int firstCount, int secondCount, int thirdCount, String inputerId, String inputerName, String location) {
+        this.shelfId = shelfId;
+        this.firstCount = firstCount;
+        this.secondCount = secondCount;
+        this.thirdCount = thirdCount;
+        this.inputerId = inputerId;
+        this.inputerName = inputerName;
         this.location = location;
     }
 }

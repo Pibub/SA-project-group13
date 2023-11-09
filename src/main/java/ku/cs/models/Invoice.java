@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class Invoice {
     private String itemId;
     private String itemName;
-    private Float qty;
+    private int qty;
     private String description;
     private String vendor;
     private String invoiceNo;
@@ -15,8 +15,11 @@ public class Invoice {
     private String keepLoc;
     private String receiveLoc;
     private String status;
+    private String unit;
 
-    public Invoice(String itemId, String itemName, Float qty, String description, String vendor, String invoiceNo, String poNo, String dueDate, String line, String keepLoc, String receiveLoc, String status) {
+
+
+    public Invoice(String itemId, String itemName, int qty, String description, String vendor, String invoiceNo, String poNo, String dueDate, String line, String keepLoc, String receiveLoc, String status, String unit) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.qty = qty;
@@ -29,6 +32,7 @@ public class Invoice {
         this.keepLoc = keepLoc;
         this.receiveLoc = receiveLoc;
         this.status = status;
+        this.unit = unit;
     }
 
     public String getItemId() {
@@ -47,12 +51,19 @@ public class Invoice {
         this.itemName = itemName;
     }
 
-    public Float getQty() {
+    public int getQty() {
         return qty;
     }
-
-    public void setQty(Float qty) {
+    public void setQty(int qty) {
         this.qty = qty;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public String getDescription() {

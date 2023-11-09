@@ -28,7 +28,7 @@ public class HomeController {
 
     public void initialize(){
         LocalDate now = LocalDate.now();
-        LocalDate closeSystem = LocalDate.of(2023 , 12 , 6);
+        LocalDate closeSystem = LocalDate.of(2023 , 11 , 7);
         LocalDate closeSystemFinalDay = LocalDate.of(2023 , 12 , 7);
         LocalDate closeSystemFirstHalf = LocalDate.of(2023 , 6 , 6);
         LocalDate closeSystemFinalFirstHalf = LocalDate.of(2023 , 6 , 7);
@@ -156,5 +156,13 @@ public class HomeController {
         accessDeniedAlert.showAndWait();
     }
 
+    @FXML
+    public void onAnalyzeHistoryClick(){
+        try {
+            FXRouter.goTo("analyze");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
