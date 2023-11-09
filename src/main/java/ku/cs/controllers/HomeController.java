@@ -70,8 +70,7 @@ public class HomeController {
     }
     @FXML
     public void onEditStock() {
-        // Check if the user's role is "admin" or "warehouse"
-        if ("admin".equals(user.getUserRole()) || "warehouse".equals(user.getUserRole())) {
+        if (user.getRoleNumber() == 5|| user.getRoleNumber() == 2) {
             try {
                 FXRouter.goTo("editstock");
             } catch (IOException e) {
@@ -85,7 +84,7 @@ public class HomeController {
     @FXML
     public void onCreateNewUserClick() {
         // Check if the user's role is "admin"
-        if ("admin".equals(user.getUserRole())) {
+        if (user.getRoleNumber() == 5) {
             try {
                 FXRouter.goTo("createNewUser");
             } catch (IOException e) {
@@ -98,7 +97,7 @@ public class HomeController {
     @FXML
     public void onReceivingDataClick() {
         // Check if the user's role is "admin" or "warehouse"
-        if ("admin".equals(user.getUserRole()) || "warehouse".equals(user.getUserRole())) {
+        if (user.getRoleNumber() == 5 || user.getRoleNumber() == 2) {
             try {
                 FXRouter.goTo("receivingData");
             } catch (IOException e) {
@@ -120,7 +119,7 @@ public class HomeController {
     @FXML
     public void onCountStockClick() {
         // Check if the user's role is "admin" or "warehouse"
-        if ("admin".equals(user.getUserRole()) || "warehouse".equals(user.getUserRole())) {
+        if (user.getRoleNumber() == 5 || user.getRoleNumber() == 2) {
             try {
                 FXRouter.goTo("count-stock", user.getUserName());
             } catch (IOException e) {
@@ -134,7 +133,7 @@ public class HomeController {
     @FXML
     public void onHistoryButtonClick() {
         // Check if the user's role is "admin" or "warehouse"
-        if ("admin".equals(user.getUserRole()) || "warehouse".equals(user.getUserRole())) {
+        if (user.getRoleNumber() == 5 || user.getRoleNumber() == 2) {
             try {
                 FXRouter.goTo("history");
             } catch (IOException e) {
@@ -158,10 +157,13 @@ public class HomeController {
 
     @FXML
     public void onAnalyzeHistoryClick(){
+        if (user.getRoleNumber() == 5 || user.getRoleNumber() == 4)
         try {
             FXRouter.goTo("analyze");
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } else {
+            showAccessDeniedAlert();
         }
     }
 

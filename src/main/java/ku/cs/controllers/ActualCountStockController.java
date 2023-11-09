@@ -12,6 +12,8 @@ import ku.cs.services.*;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -111,12 +113,6 @@ public class ActualCountStockController {
 
         itemTableView.setItems(countStockItems);
     }
-    private void loadCountStockData(){
-        countStockList = countStockListDatasource.readData();
-        ObservableList<CountStock> warehouseCountItems = FXCollections.observableArrayList(countStockList.getCountStocks());
-
-
-    }
     private String getLocationFromStockList(String shelfId) {
         return stockList.getLocationByShelfId(shelfId);
     }
@@ -167,8 +163,6 @@ public class ActualCountStockController {
             CountStock countStock = countStockList.findTotalByCategoryId(shelfId); // Retrieve the CountStock object
 
             if (countStock != null) {
-                // Use countStock.getTotal() here
-                int total = countStock.getTotal();
 
                 Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmationAlert.setTitle("Confirmation");
@@ -187,6 +181,55 @@ public class ActualCountStockController {
                         actualCountStockList.addActualCountStock(newActualCountStock);
                         actualCountStockListDatasource.insertData(actualCountStockList);
 
+//                        Connection connection = DatabaseConnection.getConnection();
+//                        if(firstCount == secondCount && firstCount != thirdCount){
+//                            System.out.println("return first count");
+//                            String sql = "UPDATE stock SET qty = " + firstCount + " WHERE shelf_id = " + shelfId ;
+//                            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//                            System.out.println(sql);
+//                        }if(firstCount == thirdCount && firstCount != secondCount){
+//                            System.out.println("return first count");
+//                            String sql = "UPDATE stock SET qty = " + firstCount + " WHERE shelf_id = " + shelfId ;
+//                            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//                            System.out.println(sql);
+//                        }if(secondCount == thirdCount && secondCount != firstCount){
+//                            System.out.println("return second count");
+//                            String sql = "UPDATE stock SET qty = " + secondCount + " WHERE shelf_id = " + shelfId ;
+//                            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//                            System.out.println(sql);
+//                        }if(firstCount == secondCount && secondCount == thirdCount){
+//                            System.out.println("return third count");
+//                            String sql = "UPDATE stock SET qty = " + thirdCount + " WHERE shelf_id = " + shelfId ;
+//                            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//                            System.out.println(sql);
+//                        }
+
+
+//                        int[] list = new int[3];
+//                        list[0] = firstCount;
+//                        list[1] = secondCount;
+//                        list[2] = thirdCount;
+//
+//                        Map<Integer, Integer> count = new HashMap<>();
+//
+//                        for (int n : list) {
+//                            if (count.containsKey(n)){
+//                                count.put(n, count.get(n) + 1);
+//                            } else {
+//                                count.put(n, 1);
+//                            }
+//                        }
+//
+//                        System.out.println(count);
+//
+//                        int max = 0;
+//                        int num = 0;
+//                        for (int n : count.keySet()){
+//                            if (count.get(n) > max){
+//                                num = n;
+//                            }
+//                        }
+
                         clearInputFields();
 
                         itemTableView.getItems().add(newActualCountStock);
@@ -198,8 +241,6 @@ public class ActualCountStockController {
     }
 
 
-
-
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(title);
@@ -207,7 +248,6 @@ public class ActualCountStockController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 
     private void clearInputFields() {
         categoryIdTextField.clear();
@@ -224,8 +264,6 @@ public class ActualCountStockController {
         }
         return false; // Shelf ID not found in stock list
     }
-
-
 
     public void onBackClick(){
         try {
