@@ -163,7 +163,9 @@ public class ActualCountStockController {
             CountStock countStock = countStockList.findTotalByCategoryId(shelfId); // Retrieve the CountStock object
 
             if (countStock != null) {
-
+                showAlert("Category ID Already Counted", "This category ID has already been counted.");
+                return; // Exit the method if the category ID has already been counted
+            } else {
                 Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
                 confirmationAlert.setTitle("Confirmation");
                 confirmationAlert.setHeaderText(null);
@@ -172,73 +174,20 @@ public class ActualCountStockController {
                 Optional<ButtonType> result = confirmationAlert.showAndWait();
 
                 if (result.isPresent() && result.get() == ButtonType.OK) {
-                    // Check if a record with the same category ID already exists
-                    if (actualCountStockList.isShelfIdExists(shelfId)) {
-                        showAlert("Category ID Already Counted", "This category ID has already been counted.");
-                    } else {
-                        ActualCountStock newActualCountStock = new ActualCountStock(shelfId, firstCount, secondCount, thirdCount, user.getUserId(), user.getUserName(), location);
+                    ActualCountStock newActualCountStock = new ActualCountStock(shelfId, firstCount, secondCount, thirdCount, user.getUserId(), user.getUserName(), location);
 
-                        actualCountStockList.addActualCountStock(newActualCountStock);
-                        actualCountStockListDatasource.insertData(actualCountStockList);
+                    actualCountStockList.addActualCountStock(newActualCountStock);
+                    actualCountStockListDatasource.insertData(actualCountStockList);
 
-//                        Connection connection = DatabaseConnection.getConnection();
-//                        if(firstCount == secondCount && firstCount != thirdCount){
-//                            System.out.println("return first count");
-//                            String sql = "UPDATE stock SET qty = " + firstCount + " WHERE shelf_id = " + shelfId ;
-//                            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//                            System.out.println(sql);
-//                        }if(firstCount == thirdCount && firstCount != secondCount){
-//                            System.out.println("return first count");
-//                            String sql = "UPDATE stock SET qty = " + firstCount + " WHERE shelf_id = " + shelfId ;
-//                            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//                            System.out.println(sql);
-//                        }if(secondCount == thirdCount && secondCount != firstCount){
-//                            System.out.println("return second count");
-//                            String sql = "UPDATE stock SET qty = " + secondCount + " WHERE shelf_id = " + shelfId ;
-//                            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//                            System.out.println(sql);
-//                        }if(firstCount == secondCount && secondCount == thirdCount){
-//                            System.out.println("return third count");
-//                            String sql = "UPDATE stock SET qty = " + thirdCount + " WHERE shelf_id = " + shelfId ;
-//                            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-//                            System.out.println(sql);
-//                        }
+                    clearInputFields();
 
-
-//                        int[] list = new int[3];
-//                        list[0] = firstCount;
-//                        list[1] = secondCount;
-//                        list[2] = thirdCount;
-//
-//                        Map<Integer, Integer> count = new HashMap<>();
-//
-//                        for (int n : list) {
-//                            if (count.containsKey(n)){
-//                                count.put(n, count.get(n) + 1);
-//                            } else {
-//                                count.put(n, 1);
-//                            }
-//                        }
-//
-//                        System.out.println(count);
-//
-//                        int max = 0;
-//                        int num = 0;
-//                        for (int n : count.keySet()){
-//                            if (count.get(n) > max){
-//                                num = n;
-//                            }
-//                        }
-
-                        clearInputFields();
-
-                        itemTableView.getItems().add(newActualCountStock);
-                        loadData();
-                    }
+                    itemTableView.getItems().add(newActualCountStock);
+                    loadData();
                 }
             }
         }
     }
+
 
 
     private void showAlert(String title, String message) {
